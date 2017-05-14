@@ -1,0 +1,10 @@
+parameters:
+    psi.ui.helper.slots.class:  Psi\UIBundle\Helper\SlotsHelper
+
+services:
+    psi.ui.helper.slots:
+        class: "%psi.ui.helper.slots.class%"
+        arguments:
+            - true
+        tags:
+            - { name: templating.helper, alias: UI }

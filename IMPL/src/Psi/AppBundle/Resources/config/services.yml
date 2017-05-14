@@ -1,0 +1,12 @@
+services:
+#    psi_app.example:
+#        class: Psi\AppBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    n2m.request.static.authenthication:
+        class: Psi\AppBundle\Request\StaticAuthentication
+
+    n2m.request.factory:
+        class: Psi\ApiBundle\Request\Factory\RequestFactory
+        arguments:
+            - "@n2m.request.static.authenthication"

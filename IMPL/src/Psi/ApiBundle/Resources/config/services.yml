@@ -1,0 +1,4 @@
+services:
+#    psi_api.example:
+#        class: Psi\ApiBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

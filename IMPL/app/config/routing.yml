@@ -1,0 +1,14 @@
+psi_admin:
+    resource: "@PsiAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+psi_user:
+    resource: "@PsiUserBundle/Controller/"
+    type:     annotation
+    prefix:   /account
+
+psi_app:
+    resource: "@PsiAppBundle/Controller/"
+    type:     annotation
+    prefix:   /

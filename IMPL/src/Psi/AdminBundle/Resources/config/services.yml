@@ -1,0 +1,8 @@
+parameters:
+    psi.admin.user.manager.class:   Psi\AdminBundle\Manager\UserManager
+
+services:
+    psi.admin.user.manager:
+        class: "%psi.admin.user.manager.class%"
+        arguments:
+            - "@psi.user.manager"

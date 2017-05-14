@@ -1,0 +1,1 @@
+<?php $view->extend('PsiAdminBundle:layout:base.html.php') ?>

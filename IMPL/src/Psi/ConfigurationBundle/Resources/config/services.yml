@@ -1,0 +1,7 @@
+services:
+#    psi_configuration.example:
+#        class: Psi\ConfigurationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    psi.manager.configuration.registry:
+        class: Psi\ConfigurationBundle\Manager\ConfigurationRegistry
