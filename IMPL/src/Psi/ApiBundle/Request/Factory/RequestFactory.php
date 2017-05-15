@@ -7,6 +7,15 @@ use Psi\ApiBundle\Request\SummonerRequest;
 use Psi\ApiBundle\Request\MasteryRequest;
 use Psi\ApiBundle\Request\MatchRequest;
 use Psi\ApiBundle\Request\AuthenticationInterface;
+use Psi\ApiBundle\Request\ChampionMasteryRequest;
+use Psi\ApiBundle\Request\MasteryScoreRequest;
+use Psi\ApiBundle\Request\MatchListRequest;
+use Psi\ApiBundle\Request\RecentMatchListRequest;
+use Psi\ApiBundle\Request\MatchTimelinesRequest;
+use Psi\ApiBundle\Request\LeaguesRequest;
+use Psi\ApiBundle\Request\LeaguePositionRequest;
+use Psi\ApiBundle\Request\ActiveGameSpecRequest;
+use Psi\ApiBundle\Request\FeaturedGamesRequest;
 
 class RequestFactory implements RequestFactoryInterface
 {
@@ -27,8 +36,8 @@ class RequestFactory implements RequestFactoryInterface
     {
         $request = new MatchRequest($this->_authenthication, $params);
         return $request;
-    }    
-
+    } 
+    
     public function createRestRequest($params): RestRequest
     {
         $request = new RestRequest($this->_authenthication, $params);
@@ -50,6 +59,51 @@ class RequestFactory implements RequestFactoryInterface
     public function createRuneRequest($params): RuneRequest
     {
         $request = new RuneRequest($this->_authenthication, $params);
+        return $request;
+    }
+     public function createChampionMasteryRequest($params): ChampionMasteryRequest
+    {
+        $request = new ChampionMasteryRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createMasteryScoreRequest($params): MasteryScoreRequest
+    {
+        $request = new MasteryScoreRequest($this->_authenthication, $params);
+        return $request;
+    }
+     public function createMatchListRequest($params): MatchListRequest
+    {
+        $request = new MatchListRequest($this->_authenthication, $params);
+        return $request;
+    }
+     public function createRecentMatchListRequest($params): RecentMatchListRequest
+    {
+        $request = new RecentMatchListRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createMatchTimelinesRequest($params): MatchTimelinesRequest
+    {
+        $request = new MatchTimelinesRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createLeaguesRequest($params): LeaguesRequest
+    {
+        $request = new LeaguesRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createLeaguePositionRequest($params): LeaguePositionRequest
+    {
+        $request = new LeaguePositionRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createActiveGameSpecRequest($params): ActiveGameSpecRequest
+    {
+        $request = new ActiveGameSpecRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createFeaturedGamesRequest($params): FeaturedGamesRequest
+    {
+        $request = new FeaturedGamesRequest($this->_authenthication, $params);
         return $request;
     }
 }
