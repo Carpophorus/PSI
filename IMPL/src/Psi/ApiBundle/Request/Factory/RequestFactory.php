@@ -16,7 +16,7 @@ use Psi\ApiBundle\Request\LeaguesRequest;
 use Psi\ApiBundle\Request\LeaguePositionRequest;
 use Psi\ApiBundle\Request\ActiveGameSpecRequest;
 use Psi\ApiBundle\Request\FeaturedGamesRequest;
-
+use Psi\ApiBundle\Request\RankedStatsRequest;
 class RequestFactory implements RequestFactoryInterface
 {
     
@@ -104,6 +104,11 @@ class RequestFactory implements RequestFactoryInterface
     public function createFeaturedGamesRequest($params): FeaturedGamesRequest
     {
         $request = new FeaturedGamesRequest($this->_authenthication, $params);
+        return $request;
+    }
+     public function createRankedStatsRequest($params): RankedStatsRequest
+    {
+        $request = new RankedStatsRequest($this->_authenthication, $params);
         return $request;
     }
 }

@@ -368,4 +368,30 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
+    /**
+     * Gets featured game information.     
+     *  
+     * @Route("/rankedstats", name="test_rankedstats_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testRankedStatsAction(Request $request)
+    {
+        $summonerName = $request->get('summoner_id');
+        $summonerRegion = "EUNE";
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createRankedStatsRequest(["region" => rawurlencode($summonerRegion),
+               "summonerId" => rawurlencode($summonerName)
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
 }

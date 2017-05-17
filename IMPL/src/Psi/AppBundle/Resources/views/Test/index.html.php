@@ -100,4 +100,11 @@ Test api call by using the following forms:
         <input type="submit" />
     </form>
 </fieldset>
+<fieldset>
+    <legend>Get ranked stats:</legend>
+    <form action="<?php echo $router->generate('test_rankedstats_action'); ?>" method="get">
+        Summoner Id: <input type="text" name="summoner_id" />
+        <input type="submit" />
+    </form>
+</fieldset>
 <?php $view['UI']->stop() ?>
