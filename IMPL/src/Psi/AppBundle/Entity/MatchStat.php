@@ -2,6 +2,8 @@
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Psi\AppBundle\Entity\ImportedAtTrait;
+use Psi\AppBundle\Entity\ExternalIdTrait;
 
 /**
  * MatchStat
@@ -11,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class MatchStat
 {
+
+    use ImportedAtTrait;
+    use ExternalIdTrait;
 
     /**
      * @var string
@@ -44,27 +49,6 @@ class MatchStat
      * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\Match")
      */
     protected $match;
-
-    /**
-     * @var string
-     * @ORM\Column(name="external_id", type="bigint")
-     */
-    protected $externalId;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;    
-
 
     /**
      * Get id
@@ -146,78 +130,6 @@ class MatchStat
     public function getValue()
     {
         return $this->value;
-    }
-
-    /**
-     * Set externalId
-     *
-     * @param integer $externalId
-     *
-     * @return MatchStat
-     */
-    public function setExternalId($externalId)
-    {
-        $this->externalId = $externalId;
-
-        return $this;
-    }
-
-    /**
-     * Get externalId
-     *
-     * @return integer
-     */
-    public function getExternalId()
-    {
-        return $this->externalId;
-    }
-
-    /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return MatchStat
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return MatchStat
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

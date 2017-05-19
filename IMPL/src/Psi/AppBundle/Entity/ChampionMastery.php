@@ -2,15 +2,21 @@
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Psi\AppBundle\Entity\ImportedAtTrait;
+use Psi\AppBundle\Entity\ExternalIdTrait;
 
 /**
  * ChampionMastery
  *
  * @ORM\Entity()
  * @ORM\Table(name="champion_mastery")
+ * @ORM\HasLifecycleCallbacks
  */
 class ChampionMastery
 {
+
+    use ExternalIdTrait;
+    use ImportedAtTrait;
 
     /**
      * @var string
@@ -67,21 +73,6 @@ class ChampionMastery
      * @ORM\Column(name="last_play_time", type="datetime")
      */
     protected $lastPlayTime;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;    
-
 
     /**
      * Get id
@@ -235,54 +226,6 @@ class ChampionMastery
     public function getLastPlayTime()
     {
         return $this->lastPlayTime;
-    }
-
-    /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return ChampionMastery
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return ChampionMastery
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

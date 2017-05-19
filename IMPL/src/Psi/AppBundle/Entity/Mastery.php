@@ -2,6 +2,7 @@
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Psi\AppBundle\Entity\ExternalIdTrait;
 
 /**
  * Mastery
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Mastery
 {
+
+    use ExternalIdTrait;
 
     /**
      * @var string
@@ -25,34 +28,13 @@ class Mastery
      * @var MasteryPage
      * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\MasteryPage")
      */
-    protected $masterypage;
-
-    /**
-     * @var integer
-     * @ORM\Column(name="external_id", type="integer")
-     */
-    protected $external_id;
+    protected $masteryPage;
 
     /**
      * @var integer
      * @ORM\Column(name="rank", type="integer")
      */
     protected $rank;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;    
-
 
     /**
      * Get id
@@ -62,30 +44,6 @@ class Mastery
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set externalId
-     *
-     * @param integer $externalId
-     *
-     * @return Mastery
-     */
-    public function setExternalId($externalId)
-    {
-        $this->external_id = $externalId;
-
-        return $this;
-    }
-
-    /**
-     * Get externalId
-     *
-     * @return integer
-     */
-    public function getExternalId()
-    {
-        return $this->external_id;
     }
 
     /**
@@ -110,54 +68,6 @@ class Mastery
     public function getRank()
     {
         return $this->rank;
-    }
-
-    /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return Mastery
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Mastery
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

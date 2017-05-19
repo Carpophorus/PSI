@@ -2,15 +2,21 @@
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Psi\AppBundle\Entity\ImportedAtTrait;
+use Psi\AppBundle\Entity\ExternalIdTrait;
 
 /**
  * Summoner
  *
  * @ORM\Entity()
- * @ORM\Table(name="summoner"),indexes={@ORM\Index(name="search_idx", columns={"name","external_id"})}
+ * @ORM\Table(name="summoner",indexes={@ORM\Index(name="search_idx", columns={"name","external_id"})})
+ * @ORM\HasLifecycleCallbacks
  */
 class Summoner
 {
+
+    use ImportedAtTrait;
+    use ExternalIdTrait;
 
     /**
      * @var string
@@ -45,13 +51,6 @@ class Summoner
     /**
      *
      * @var string
-     * @ORM\Column(name="external_id", type="bigint") 
-     */
-    protected $externalId;
-
-    /**
-     *
-     * @var string
      * @ORM\Column(name="account_id", type="bigint")
      */
     protected $accountId;
@@ -59,7 +58,7 @@ class Summoner
     /**
      *
      * @var RunePage[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Psi\AppBundle\Entity\RunePage")
+     * @ORM\ManyToMany(targetEntity="Psi\AppBundle\Entity\RunePage", cascade={"persist"})
      * @ORM\JoinTable(name="summoner_rune_pages") 
      */
     protected $runePages;
@@ -71,20 +70,6 @@ class Summoner
      * @ORM\JoinTable(name="summoner_mastery_pages") 
      */
     protected $masteryPages;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;
 
     /**
      * Constructor
@@ -178,30 +163,6 @@ class Summoner
     }
 
     /**
-     * Set externalId
-     *
-     * @param integer $externalId
-     *
-     * @return Summoner
-     */
-    public function setExternalId($externalId)
-    {
-        $this->externalId = $externalId;
-
-        return $this;
-    }
-
-    /**
-     * Get externalId
-     *
-     * @return integer
-     */
-    public function getExternalId()
-    {
-        return $this->externalId;
-    }
-
-    /**
      * Set accountId
      *
      * @param integer $accountId
@@ -223,54 +184,6 @@ class Summoner
     public function getAccountId()
     {
         return $this->accountId;
-    }
-
-    /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return Summoner
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Summoner
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
