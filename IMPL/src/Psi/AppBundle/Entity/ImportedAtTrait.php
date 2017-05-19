@@ -7,6 +7,18 @@ trait ImportedAtTrait
 {
 
     /**
+     * @var \DateTime
+     * @ORM\Column(name="imported_at", type="datetime")
+     */
+    protected $importedAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    protected $updatedAt;
+
+    /**
      *
      * @ORM\PrePersist
      * @ORM\PreUpdate
