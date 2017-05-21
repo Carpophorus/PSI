@@ -3,6 +3,7 @@ namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Psi\AppBundle\Entity\ExternalIdTrait;
+use Psi\AppBundle\Entity\MasteryPage;
 
 /**
  * Mastery
@@ -26,7 +27,7 @@ class Mastery
 
     /**
      * @var MasteryPage
-     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\MasteryPage")
+     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\MasteryPage", inversedBy="masteries")
      */
     protected $masteryPage;
 
@@ -71,26 +72,26 @@ class Mastery
     }
 
     /**
-     * Set masterypage
+     * Set masteryPage
      *
-     * @param \Psi\AppBundle\Entity\MasteryPage $masterypage
+     * @param \Psi\AppBundle\Entity\MasteryPage $masteryPage
      *
      * @return Mastery
      */
-    public function setMasterypage(\Psi\AppBundle\Entity\MasteryPage $masterypage = null)
+    public function setMasterypage(\Psi\AppBundle\Entity\MasteryPage $masteryPage = null)
     {
-        $this->masterypage = $masterypage;
+        $this->masteryPage = $masteryPage;
 
         return $this;
     }
 
     /**
-     * Get masterypage
+     * Get masteryPage
      *
      * @return \Psi\AppBundle\Entity\MasteryPage
      */
     public function getMasterypage()
     {
-        return $this->masterypage;
+        return $this->masteryPage;
     }
 }

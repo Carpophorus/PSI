@@ -11,7 +11,7 @@ trait ExternalIdTrait
      * @var string
      * @ORM\Column(name="external_id", type="bigint", unique=true) 
      */
-    protected $external_id;
+    protected $externalId;
 
     /**
      * Set externalId
@@ -22,7 +22,7 @@ trait ExternalIdTrait
      */
     public function setExternalId($externalId)
     {
-        $this->external_id = $externalId;
+        $this->externalId = $externalId;
 
         return $this;
     }
@@ -34,6 +34,6 @@ trait ExternalIdTrait
      */
     public function getExternalId()
     {
-        return $this->external_id;
+        return $this->externalId;
     }
 }

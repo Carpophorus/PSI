@@ -1,12 +1,33 @@
-services:
-#    psi_app.example:
-#        class: Psi\AppBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+parameters:
 
-    n2m.request.static.authenthication:
+services:
+
+    psi.app.request.static.authenthication:
         class: Psi\AppBundle\Request\StaticAuthentication
 
-    n2m.request.factory:
+    psi.app.request.factory:
         class: Psi\ApiBundle\Request\Factory\RequestFactory
         arguments:
-            - "@n2m.request.static.authenthication"
+            - "@psi.app.request.static.authenthication"
+
+    
+    psi.app.denormalizer.runePage:
+        class: Psi\AppBundle\Serializer\Denormalizer\RunePageDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            
+    psi.app.denormalizer.masteryPage:
+        class: Psi\AppBundle\Serializer\Denormalizer\MasteryPageDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"            
+
+
+    psi.app.manager.api.response.manager:
+        class: Psi\AppBundle\Manager\ApiResponseManager
+        calls:
+            - method: addResponseHandler
+              arguments: 
+                  - "@psi.app.denormalizer.runePage"
+            - method: addResponseHandler
+              arguments: 
+                  - "@psi.app.denormalizer.masteryPage"                  

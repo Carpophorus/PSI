@@ -11,6 +11,7 @@ use Psi\AppBundle\Entity\ExternalIdTrait;
  *
  * @ORM\Entity()
  * @ORM\Table(name="match",indexes={@ORM\Index(name="search_idx", columns={"external_id","created_at"})})
+ * @ORM\HasLifecycleCallbacks
  */
 class Match
 {

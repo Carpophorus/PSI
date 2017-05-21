@@ -66,7 +66,7 @@ class Summoner
     /**
      *
      * @var MasteryPage[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Psi\AppBundle\Entity\MasteryPage")
+     * @ORM\ManyToMany(targetEntity="Psi\AppBundle\Entity\MasteryPage", cascade={"persist"})
      * @ORM\JoinTable(name="summoner_mastery_pages") 
      */
     protected $masteryPages;
@@ -184,6 +184,16 @@ class Summoner
     public function getAccountId()
     {
         return $this->accountId;
+    }
+
+    function setRunePages(array $runePages)
+    {
+        $this->runePages = $runePages;
+    }
+
+    function setMasteryPages(array $masteryPages)
+    {
+        $this->masteryPages = $masteryPages;
     }
 
     /**

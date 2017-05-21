@@ -9,6 +9,7 @@ use Psi\AppBundle\Entity\ImportedAtTrait;
  *
  * @ORM\Entity()
  * @ORM\Table(name="participant",indexes={@ORM\Index(name="search_idx", columns={"summoner_id","team_id"})})
+ * @ORM\HasLifecycleCallbacks
  */
 class Participant
 {

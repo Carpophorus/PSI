@@ -10,7 +10,8 @@ use Psi\AppBundle\Entity\ExternalIdTrait;
  * MasteryPage
  *
  * @ORM\Entity()
- * @ORM\Table(name="summoner_mastery_page")
+ * @ORM\Table(name="summoner_masterypage")
+ * @ORM\HasLifecycleCallbacks
  */
 class MasteryPage
 {
@@ -91,7 +92,7 @@ class MasteryPage
     public function addMastery(\Psi\AppBundle\Entity\Mastery $mastery)
     {
         $this->masteries[] = $mastery;
-
+        $mastery->setMasterypage($this);
         return $this;
     }
 
@@ -102,6 +103,7 @@ class MasteryPage
      */
     public function removeMastery(\Psi\AppBundle\Entity\Mastery $mastery)
     {
+        $mastery->setMasterypage(null);
         $this->masteries->removeElement($mastery);
     }
 

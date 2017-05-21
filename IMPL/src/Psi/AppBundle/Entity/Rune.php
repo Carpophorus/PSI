@@ -28,6 +28,7 @@ class Rune
     /**
      * @var RunePage
      * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\RunePage", inversedBy="runes", cascade={"persist"})
+     * @ORM\JoinColumn(name="rune_page_id", referencedColumnName="id")
      */
     protected $runePage;
 

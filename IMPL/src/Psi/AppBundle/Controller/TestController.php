@@ -45,7 +45,7 @@ class TestController extends Controller
     {
         $summonerName = $request->get('summoner_name');
 
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createSummonerRequest([
             "summonerName" => rawurlencode($summonerName)
@@ -72,7 +72,7 @@ class TestController extends Controller
     {
         $summonerName = $request->get('summoner_id');
 
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createRuneRequest([
             "summonerId" => rawurlencode($summonerName)
@@ -99,7 +99,7 @@ class TestController extends Controller
     {
         $summonerName = $request->get('summoner_id');
 
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createMasteryRequest([
             "summonerId" => rawurlencode($summonerName)
