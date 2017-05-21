@@ -7,6 +7,18 @@ use Psi\ApiBundle\Request\SummonerRequest;
 use Psi\ApiBundle\Request\MasteryRequest;
 use Psi\ApiBundle\Request\MatchRequest;
 use Psi\ApiBundle\Request\AuthenticationInterface;
+use Psi\ApiBundle\Request\RankedStatsRequest;
+use Psi\ApiBundle\Request\PlayerStatsSummaryRequest;
+use Psi\ApiBundle\Request\StaticDataChampionsRequest;
+use Psi\ApiBundle\Request\StaticDataChampionIdRequest;
+use Psi\ApiBundle\Request\StaticDataMasteriesRequest;
+use Psi\ApiBundle\Request\StaticDataMasteriesIdRequest;
+use Psi\ApiBundle\Request\StaticDataProfileIconsRequest;
+use Psi\ApiBundle\Request\StaticDataRunesRequest;
+use Psi\ApiBundle\Request\StaticDataRunesIdRequest;
+use Psi\ApiBundle\Request\StaticDataSummonerSpellsRequest;
+use Psi\ApiBundle\Request\StaticDataSummonerSpellidRequest;
+
 
 class RequestFactory implements RequestFactoryInterface
 {
@@ -50,6 +62,61 @@ class RequestFactory implements RequestFactoryInterface
     public function createRuneRequest($params): RuneRequest
     {
         $request = new RuneRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createRankedStatsRequest($params): RankedStatsRequest
+    {
+        $request = new RankedStatsRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createPlayerStatsSummaryRequest($params): PlayerStatsSummaryRequest
+    {
+        $request = new PlayerStatsSummaryRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataChampionsRequest($params): StaticDataChampionsRequest
+    {
+        $request = new StaticDataChampionsRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataChampionIdRequest($params): StaticDataChampionIdRequest
+    {
+        $request = new StaticDataChampionIdRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataMasteriesRequest($params): StaticDataMasteriesRequest
+    {
+        $request = new StaticDataMasteriesRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataMasteriesIdRequest($params): StaticDataMasteriesIdRequest
+    {
+        $request = new StaticDataMasteriesIdRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataProfileIconsRequest($params): StaticDataProfileIconsRequest
+    {
+        $request = new StaticDataProfileIconsRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataRunesRequest($params): StaticDataRunesRequest
+    {
+        $request = new StaticDataRunesRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataRunesIdRequest($params): StaticDataRunesIdRequest
+    {
+        $request = new StaticDataRunesIdRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataSummonerSpellsRequest($params): StaticDataSummonerSpellsRequest
+    {
+        $request = new StaticDataSummonerSpellsRequest($this->_authenthication, $params);
+        return $request;
+    }
+    public function createStaticDataSummonerSpellidRequest($params): StaticDataSummonerSpellidRequest
+    {
+        $request = new StaticDataSummonerSpellidRequest($this->_authenthication, $params);
         return $request;
     }
 }
