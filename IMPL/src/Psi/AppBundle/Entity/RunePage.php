@@ -2,16 +2,21 @@
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+use Psi\AppBundle\Entity\ImportedAtTrait;
+use Psi\AppBundle\Entity\ExternalIdTrait;
 
 /**
  * RunePage
  *
  * @ORM\Entity()
  * @ORM\Table(name="summoner_runepage")
+ * @ORM\HasLifecycleCallbacks
  */
 class RunePage
 {
+
+    use ImportedAtTrait;
+    use ExternalIdTrait;
 
     /**
      * @var string
@@ -21,40 +26,19 @@ class RunePage
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
-    /**
-     *
-     * @var string
-     * @ORM\Column(name="external_id", type="bigint")  
-     */
-    protected $externalId;
-    
+
     /**
      *
      * @var string 
      * @ORM\Column(name="name", type="string") 
      */
     protected $name;
-    
+
     /**
-     * @var Rune[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="Psi\AppBundle\Entity\Rune", mappedBy="runepage",cascade={"all"})
-     */    
+     * @var \Psi\AppBundle\Entity\Rune[]
+     * @ORM\OneToMany(targetEntity="Psi\AppBundle\Entity\Rune", mappedBy="runePage",cascade={"all"})
+     */
     protected $runes;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;    
 
     /**
      * Constructor
@@ -72,30 +56,6 @@ class RunePage
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set externalId
-     *
-     * @param integer $externalId
-     *
-     * @return RunePage
-     */
-    public function setExternalId($externalId)
-    {
-        $this->externalId = $externalId;
-
-        return $this;
-    }
-
-    /**
-     * Get externalId
-     *
-     * @return integer
-     */
-    public function getExternalId()
-    {
-        return $this->externalId;
     }
 
     /**
@@ -123,54 +83,6 @@ class RunePage
     }
 
     /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return RunePage
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return RunePage
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
      * Add rune
      *
      * @param \Psi\AppBundle\Entity\Rune $rune
@@ -180,7 +92,7 @@ class RunePage
     public function addRune(\Psi\AppBundle\Entity\Rune $rune)
     {
         $this->runes[] = $rune;
-
+        $rune->setRunePage($this);
         return $this;
     }
 
@@ -197,10 +109,19 @@ class RunePage
     /**
      * Get runes
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Psi\AppBundle\Entity\Rune[]
      */
     public function getRunes()
     {
         return $this->runes;
+    }
+
+    /**
+     * 
+     * @param \Psi\AppBundle\Entity\Rune[] $runes
+     */
+    public function setRunes($runes)
+    {
+        $this->runes = $runes;
     }
 }

@@ -3,15 +3,21 @@ namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Psi\AppBundle\Entity\ImportedAtTrait;
+use Psi\AppBundle\Entity\ExternalIdTrait;
 
 /**
  * Match
  *
  * @ORM\Entity()
  * @ORM\Table(name="match",indexes={@ORM\Index(name="search_idx", columns={"external_id","created_at"})})
+ * @ORM\HasLifecycleCallbacks
  */
 class Match
 {
+
+    use ImportedAtTrait;
+    use ExternalIdTrait;
 
     /**
      * @var string
@@ -34,13 +40,6 @@ class Match
      *  @ORM\Column(name="version", type="string") 
      */
     protected $version;
-
-    /**
-     *
-     * @var integer
-     * @ORM\Column(name="external_id", type="string") 
-     */
-    protected $externalId;
 
     /**
      *
@@ -94,27 +93,13 @@ class Match
      * @ORM\Column(name="archived", type="boolean")
      */
     protected $archived;
-    
+
     /**
      *
      * @var \DateTime
      * @ORM\Column(name="created_at", type="datetime") 
      */
     protected $createdAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;
 
     /**
      * Constructor
@@ -157,30 +142,6 @@ class Match
     public function getVersion()
     {
         return $this->version;
-    }
-
-    /**
-     * Set externalId
-     *
-     * @param string $externalId
-     *
-     * @return Match
-     */
-    public function setExternalId($externalId)
-    {
-        $this->externalId = $externalId;
-
-        return $this;
-    }
-
-    /**
-     * Get externalId
-     *
-     * @return string
-     */
-    public function getExternalId()
-    {
-        return $this->externalId;
     }
 
     /**
@@ -373,54 +334,6 @@ class Match
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return Match
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Match
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

@@ -63,7 +63,7 @@ class RestRequest extends AbstractRequest
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPGET, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        $responseData = json_decode(curl_exec($curl));
+        $responseData = json_decode(curl_exec($curl), true);
         $responseInfo = curl_getinfo($curl);
         curl_close($curl);
 

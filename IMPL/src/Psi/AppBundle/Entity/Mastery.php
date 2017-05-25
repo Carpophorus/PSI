@@ -2,6 +2,8 @@
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Psi\AppBundle\Entity\ExternalIdTrait;
+use Psi\AppBundle\Entity\MasteryPage;
 
 /**
  * Mastery
@@ -11,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Mastery
 {
+
+    use ExternalIdTrait;
 
     /**
      * @var string
@@ -23,36 +27,15 @@ class Mastery
 
     /**
      * @var MasteryPage
-     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\MasteryPage")
+     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\MasteryPage", inversedBy="masteries")
      */
-    protected $masterypage;
-
-    /**
-     * @var integer
-     * @ORM\Column(name="external_id", type="integer")
-     */
-    protected $external_id;
+    protected $masteryPage;
 
     /**
      * @var integer
      * @ORM\Column(name="rank", type="integer")
      */
     protected $rank;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;    
-
 
     /**
      * Get id
@@ -62,30 +45,6 @@ class Mastery
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set externalId
-     *
-     * @param integer $externalId
-     *
-     * @return Mastery
-     */
-    public function setExternalId($externalId)
-    {
-        $this->external_id = $externalId;
-
-        return $this;
-    }
-
-    /**
-     * Get externalId
-     *
-     * @return integer
-     */
-    public function getExternalId()
-    {
-        return $this->external_id;
     }
 
     /**
@@ -113,74 +72,26 @@ class Mastery
     }
 
     /**
-     * Set importedAt
+     * Set masteryPage
      *
-     * @param \DateTime $importedAt
+     * @param \Psi\AppBundle\Entity\MasteryPage $masteryPage
      *
      * @return Mastery
      */
-    public function setImportedAt($importedAt)
+    public function setMasterypage(\Psi\AppBundle\Entity\MasteryPage $masteryPage = null)
     {
-        $this->importedAt = $importedAt;
+        $this->masteryPage = $masteryPage;
 
         return $this;
     }
 
     /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Mastery
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Set masterypage
-     *
-     * @param \Psi\AppBundle\Entity\MasteryPage $masterypage
-     *
-     * @return Mastery
-     */
-    public function setMasterypage(\Psi\AppBundle\Entity\MasteryPage $masterypage = null)
-    {
-        $this->masterypage = $masterypage;
-
-        return $this;
-    }
-
-    /**
-     * Get masterypage
+     * Get masteryPage
      *
      * @return \Psi\AppBundle\Entity\MasteryPage
      */
     public function getMasterypage()
     {
-        return $this->masterypage;
+        return $this->masteryPage;
     }
 }

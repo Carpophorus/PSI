@@ -2,15 +2,19 @@
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Psi\AppBundle\Entity\ImportedAtTrait;
 
 /**
  * Participant
  *
  * @ORM\Entity()
  * @ORM\Table(name="participant",indexes={@ORM\Index(name="search_idx", columns={"summoner_id","team_id"})})
+ * @ORM\HasLifecycleCallbacks
  */
 class Participant
 {
+
+    use ImportedAtTrait;
 
     /**
      * @var string
@@ -55,12 +59,12 @@ class Participant
      * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\Team")
      */
     protected $team;
-    
+
     /**
      * @var Summoner 
      * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\Summoner")
      */
-    protected $summoner;    
+    protected $summoner;
 
     /**
      *
@@ -75,21 +79,6 @@ class Participant
      * @ORM\Column(name="achieved_season_tier", type="string")  
      */
     protected $highestAchievedSeasonTier;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;    
-
 
     /**
      * Get id
@@ -195,54 +184,6 @@ class Participant
     public function getHighestAchievedSeasonTier()
     {
         return $this->highestAchievedSeasonTier;
-    }
-
-    /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return Participant
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Participant
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
