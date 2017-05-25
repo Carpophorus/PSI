@@ -17,7 +17,6 @@ use Psi\ApiBundle\Request\LeaguePositionRequest;
 use Psi\ApiBundle\Request\ActiveGameSpecRequest;
 use Psi\ApiBundle\Request\FeaturedGamesRequest;
 use Psi\ApiBundle\Request\RankedStatsRequest;
-use Psi\ApiBundle\Request\RankedStatsRequest;
 use Psi\ApiBundle\Request\PlayerStatsSummaryRequest;
 use Psi\ApiBundle\Request\StaticDataChampionsRequest;
 use Psi\ApiBundle\Request\StaticDataChampionIdRequest;
@@ -137,6 +136,7 @@ class RequestFactory implements RequestFactoryInterface
     public function createStaticDataSummonerSpellidRequest($params): StaticDataSummonerSpellidRequest
     {
         $request = new StaticDataSummonerSpellidRequest($this->_authenthication, $params);
+        return $request;
     }
 
     public function createChampionMasteryRequest($params): ChampionMasteryRequest

@@ -124,7 +124,7 @@ class TestController extends Controller
     public function testPlayerStatsSummaryAction(Request $request)
     {
         $summonerName = $request->get('summoner_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createPlayerStatsSummaryRequest([
             "summonerId" => rawurlencode($summonerName)
@@ -150,7 +150,7 @@ class TestController extends Controller
     public function testStaticDataChampionsAction(Request $request)
     {
         $summonerName = $request->get('summoner_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataChampionsRequest([
             //"region" => rawurldecode($summonerRegion), "summonerId" => rawurlencode($summonerName)
@@ -176,7 +176,7 @@ class TestController extends Controller
     public function testStaticDataChampionIdAction(Request $request)
     {
         $championId = $request->get('champion_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataChampionIdRequest([
             "id" => rawurlencode($championId)
@@ -201,7 +201,7 @@ class TestController extends Controller
      */
     public function testStaticDataMasteriesAction(Request $request)
     {
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataMasteriesRequest([
         ]);
@@ -226,7 +226,7 @@ class TestController extends Controller
     public function testStaticDataMasteriesIdAction(Request $request)
     {
         $masteriesId = $request->get('masteries_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataMasteriesIdRequest([
             "id" => rawurlencode($masteriesId)
@@ -251,7 +251,7 @@ class TestController extends Controller
      */
     public function testStaticDataProfileIconsAction(Request $request)
     {
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataProfileIconsRequest([
         ]);
@@ -275,7 +275,7 @@ class TestController extends Controller
      */
     public function testStaticDataRunesAction(Request $request)
     {
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataRunesRequest([
         ]);
@@ -300,7 +300,7 @@ class TestController extends Controller
     public function testStaticDataRunesIdAction(Request $request)
     {
         $runesId = $request->get('runes_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataRunesIdRequest([
             "id" => rawurlencode($runesId)
@@ -325,7 +325,7 @@ class TestController extends Controller
      */
     public function testStaticDataSummonerSpellsAction(Request $request)
     {
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataSummonerSpellsRequest([
         ]);
@@ -350,7 +350,7 @@ class TestController extends Controller
     public function testStaticDataSummonerSpellidAction(Request $request)
     {
         $summonerspellId = $request->get('summonerspell_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createStaticDataSummonerSpellidRequest([
             "id" => rawurlencode($summonerspellId)
@@ -377,7 +377,7 @@ class TestController extends Controller
     {
         $summonerName = $request->get('summoner_id');
         $championName = $request->get('champion_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createChampionMasteryRequest([
             "summonerId" => rawurlencode($summonerName), "championId" => rawurlencode($championName)
@@ -403,7 +403,7 @@ class TestController extends Controller
     public function testMasteryScoreAction(Request $request)
     {
         $summonerName = $request->get('summoner_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createMasteryScoreRequest([
             "summonerId" => rawurlencode($summonerName)
@@ -429,7 +429,7 @@ class TestController extends Controller
     public function testMatchAction(Request $request)
     {
         $matchID = $request->get('match_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createMatchRequest([
             "matchId" => rawurlencode($matchID)
@@ -455,7 +455,7 @@ class TestController extends Controller
     public function testMatchListAction(Request $request)
     {
         $accountID = $request->get('account_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createMatchListRequest([
             "accountId" => rawurlencode($accountID)
@@ -481,7 +481,7 @@ class TestController extends Controller
     public function testRecentMatchListAction(Request $request)
     {
         $accountID = $request->get('account_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createRecentMatchListRequest([
             "accountId" => rawurlencode($accountID)
@@ -507,7 +507,7 @@ class TestController extends Controller
     public function testMatchTimelinesAction(Request $request)
     {
         $matchID = $request->get('match_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createMatchTimelinesRequest([
             "matchId" => rawurlencode($matchID)
@@ -533,7 +533,7 @@ class TestController extends Controller
     public function testLeaguesAction(Request $request)
     {
         $summonerName = $request->get('summoner_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createLeaguesRequest([
             "summonerId" => rawurlencode($summonerName)
@@ -559,7 +559,7 @@ class TestController extends Controller
     public function testLeaguePositionAction(Request $request)
     {
         $summonerName = $request->get('summoner_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createLeaguePositionRequest([
             "summonerId" => rawurlencode($summonerName)
@@ -585,7 +585,7 @@ class TestController extends Controller
     public function testActiveGameSpecAction(Request $request)
     {
         $summonerName = $request->get('summoner_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createActiveGameSpecRequest([
             "summonerId" => rawurlencode($summonerName)
@@ -611,7 +611,7 @@ class TestController extends Controller
     public function testFeaturedGamesAction(Request $request)
     {
         $summonerName = $request->get('summoner_id');
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createFeaturedGamesRequest([
             "summonerId" => rawurlencode($summonerName)
@@ -638,7 +638,7 @@ class TestController extends Controller
     {
         $summonerName = $request->get('summoner_id');
         $summonerRegion = "EUNE";
-        $requestFactory = $this->get('n2m.request.factory');
+        $requestFactory = $this->get('psi.app.request.factory');
 
         $apiRequest = $requestFactory->createRankedStatsRequest(["region" => rawurlencode($summonerRegion),
             "summonerId" => rawurlencode($summonerName)
