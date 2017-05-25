@@ -22,7 +22,7 @@ class TestController extends Controller
                 'router' => $this->container->get('router'),
         ]);
     }
-    
+
     /**
      * @Route("/test")
      */
@@ -33,7 +33,6 @@ class TestController extends Controller
                 'router' => $this->container->get('router'),
         ]);
     }
-    
 
     /**
      * Gets summoner runes.     
@@ -115,7 +114,260 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
-     /**
+
+    /**
+     * Gets player stats summary.     
+     *  
+     * @Route("/playerstatssummary", name="test_playerstatssummary_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testPlayerStatsSummaryAction(Request $request)
+    {
+        $summonerName = $request->get('summoner_id');
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createPlayerStatsSummaryRequest([
+            "summonerId" => rawurlencode($summonerName)
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets all champions.     
+     *  
+     * @Route("/staticdatachampions", name="test_staticdatachampions_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataChampionsAction(Request $request)
+    {
+        $summonerName = $request->get('summoner_id');
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataChampionsRequest([
+            //"region" => rawurldecode($summonerRegion), "summonerId" => rawurlencode($summonerName)
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets  champion by id.     
+     *  
+     * @Route("/staticdatachampionid", name="test_staticdatachampionid_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataChampionIdAction(Request $request)
+    {
+        $championId = $request->get('champion_id');
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataChampionIdRequest([
+            "id" => rawurlencode($championId)
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets all masteries.     
+     *  
+     * @Route("/staticdatamasteries", name="test_staticdatamasteries_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataMasteriesAction(Request $request)
+    {
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataMasteriesRequest([
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets masteries by id.     
+     *  
+     * @Route("/staticdatamasteriesid", name="test_staticdatamasteriesid_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataMasteriesIdAction(Request $request)
+    {
+        $masteriesId = $request->get('masteries_id');
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataMasteriesIdRequest([
+            "id" => rawurlencode($masteriesId)
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets all profile icons.     
+     *  
+     * @Route("/staticdataprofileicons", name="test_staticdataprofileicons_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataProfileIconsAction(Request $request)
+    {
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataProfileIconsRequest([
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets all runes.     
+     *  
+     * @Route("/staticdatarunes", name="test_staticdatarunes_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataRunesAction(Request $request)
+    {
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataRunesRequest([
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets all profile icons.     
+     *  
+     * @Route("/staticdatarunesid", name="test_staticdatarunesid_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataRunesIdAction(Request $request)
+    {
+        $runesId = $request->get('runes_id');
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataRunesIdRequest([
+            "id" => rawurlencode($runesId)
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets all summoner spells.     
+     *  
+     * @Route("/staticdatasummonerspells", name="test_staticdatasummonerspells_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataSummonerSpellsAction(Request $request)
+    {
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataSummonerSpellsRequest([
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
+     * Gets all profile icons.     
+     *  
+     * @Route("/staticdatasummonerspellid", name="test_staticdatasummonerspellid_action")      
+     * @Method({"GET", "POST"})          
+     */
+    public function testStaticDataSummonerSpellidAction(Request $request)
+    {
+        $summonerspellId = $request->get('summonerspell_id');
+        $requestFactory = $this->get('n2m.request.factory');
+
+        $apiRequest = $requestFactory->createStaticDataSummonerSpellidRequest([
+            "id" => rawurlencode($summonerspellId)
+        ]);
+
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
+
+    /**
      * Gets champion mastery.     
      *  
      * @Route("/championmasteries", name="test_championmastery_action")      
@@ -128,7 +380,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createChampionMasteryRequest([
-            "summonerId" => rawurlencode($summonerName),"championId" => rawurlencode($championName)
+            "summonerId" => rawurlencode($summonerName), "championId" => rawurlencode($championName)
         ]);
 
 
@@ -141,7 +393,8 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
-     /**
+
+    /**
      * Gets champion mastery.     
      *  
      * @Route("/masteryscore", name="test_championmasteryscore_action")      
@@ -153,7 +406,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createMasteryScoreRequest([
-           "summonerId" => rawurlencode($summonerName)
+            "summonerId" => rawurlencode($summonerName)
         ]);
 
 
@@ -166,7 +419,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
-    
+
     /**
      * Gets match.     
      *  
@@ -179,7 +432,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createMatchRequest([
-           "matchId" => rawurlencode($matchID)
+            "matchId" => rawurlencode($matchID)
         ]);
 
 
@@ -192,7 +445,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
-    
+
     /**
      * Gets matchlist.     
      *  
@@ -205,7 +458,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createMatchListRequest([
-           "accountId" => rawurlencode($accountID)
+            "accountId" => rawurlencode($accountID)
         ]);
 
 
@@ -218,6 +471,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
+
     /**
      * Gets recentmatchlist.     
      *  
@@ -230,7 +484,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createRecentMatchListRequest([
-           "accountId" => rawurlencode($accountID)
+            "accountId" => rawurlencode($accountID)
         ]);
 
 
@@ -243,6 +497,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
+
     /**
      * Gets matchtimelines.     
      *  
@@ -255,7 +510,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createMatchTimelinesRequest([
-           "matchId" => rawurlencode($matchID)
+            "matchId" => rawurlencode($matchID)
         ]);
 
 
@@ -268,6 +523,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
+
     /**
      * Gets leagues.     
      *  
@@ -280,7 +536,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createLeaguesRequest([
-           "summonerId" => rawurlencode($summonerName)
+            "summonerId" => rawurlencode($summonerName)
         ]);
 
 
@@ -293,6 +549,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
+
     /**
      * Gets league positions.     
      *  
@@ -305,7 +562,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createLeaguePositionRequest([
-           "summonerId" => rawurlencode($summonerName)
+            "summonerId" => rawurlencode($summonerName)
         ]);
 
 
@@ -318,7 +575,8 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
-     /**
+
+    /**
      * Gets current game information.     
      *  
      * @Route("/currentgame", name="test_activegamespec_action")      
@@ -330,7 +588,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createActiveGameSpecRequest([
-           "summonerId" => rawurlencode($summonerName)
+            "summonerId" => rawurlencode($summonerName)
         ]);
 
 
@@ -343,6 +601,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
+
     /**
      * Gets featured game information.     
      *  
@@ -355,7 +614,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createFeaturedGamesRequest([
-           "summonerId" => rawurlencode($summonerName)
+            "summonerId" => rawurlencode($summonerName)
         ]);
 
 
@@ -368,6 +627,7 @@ class TestController extends Controller
                 'response' => $apiResponse
         ]);
     }
+
     /**
      * Gets featured game information.     
      *  
@@ -381,7 +641,7 @@ class TestController extends Controller
         $requestFactory = $this->get('n2m.request.factory');
 
         $apiRequest = $requestFactory->createRankedStatsRequest(["region" => rawurlencode($summonerRegion),
-               "summonerId" => rawurlencode($summonerName)
+            "summonerId" => rawurlencode($summonerName)
         ]);
 
 
