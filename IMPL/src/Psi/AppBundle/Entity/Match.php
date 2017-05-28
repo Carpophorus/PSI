@@ -10,7 +10,7 @@ use Psi\AppBundle\Entity\ExternalIdTrait;
  * Match
  *
  * @ORM\Entity()
- * @ORM\Table(name="match",indexes={@ORM\Index(name="search_idx", columns={"external_id","created_at"})})
+ * @ORM\Table(name="game_match",indexes={@ORM\Index(name="search_idx", columns={"external_id","created_at"})})
  * @ORM\HasLifecycleCallbacks
  */
 class Match

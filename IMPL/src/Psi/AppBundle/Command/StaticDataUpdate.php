@@ -1,6 +1,6 @@
 <?php
 
-class StaticCacheUpdate
+class StaticDataUpdate
 {
     //put your code here
 }

@@ -9,7 +9,7 @@ trait ExternalIdTrait
     /**
      *
      * @var string
-     * @ORM\Column(name="external_id", type="bigint", unique=true) 
+     * @ORM\Column(name="external_id", type="bigint", nullable=true) 
      */
     protected $externalId;
 

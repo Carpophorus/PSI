@@ -18,4 +18,11 @@ class StaticDataRunesRequest extends RestRequest
         $this->_response = new StaticDataRunesResponse($responseData, $responseInfo);
     }    
     
+    public function getQueryParams()
+    {
+        return [
+            'runeListData' => 'image'
+        ];
+    }    
+    
 }

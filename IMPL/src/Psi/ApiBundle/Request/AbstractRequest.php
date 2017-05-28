@@ -43,4 +43,9 @@ abstract class AbstractRequest implements RequestInterface
     {
         $this->_params = $params;
     }
+
+    public function getQueryParams()
+    {
+        return [];
+    }
 }

@@ -162,4 +162,50 @@ class DenormalizeController extends Controller
                 'response' => $apiResponse
         ]);
     }
+
+    /**
+     * Denormalize match.     
+     *  
+     * @Route("/match", name="denormalize_match_action")      
+     * @Method({"GET", "POST"})        
+     */
+    public function testMatchAction(Request $request)
+    {
+        $matchId = 1170813669;
+
+        $requestFactory = $this->get('psi.app.request.factory');
+
+        $apiRequest = $requestFactory->createMatchRequest([
+            'matchId' => $matchId
+        ]);
+
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+        $em = $this->getDoctrine()->getManager();
+
+        $match = $em->getRepository("Psi\AppBundle\Entity\Match")->findOneBy(['externalId' => $matchId]);
+
+        if (!$match) {
+            $apiManager = $this->get('psi.app.manager.api.response.manager');
+            try {
+                $em->beginTransaction();
+                $match = $apiManager->processResponse($apiResponse);
+                echo "<pre>";
+                \Doctrine\Common\Util\Debug::dump($match, 3);
+                echo "</pre>";
+                $em->persist($match);
+                $em->flush();
+                $em->commit();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+                $em->rollback();
+            }
+        }
+
+        return $this->render(
+                'PsiAppBundle:Test:dump.html.php', [
+                'request' => $apiRequest,
+                'response' => $apiResponse
+        ]);
+    }
 }

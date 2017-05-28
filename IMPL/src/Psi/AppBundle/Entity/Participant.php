@@ -26,6 +26,12 @@ class Participant
     protected $id;
 
     /**
+     * @var Match 
+     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\Match", inversedBy="participants")
+     */
+    protected $match;
+
+    /**
      *
      * @var RunePage
      * @ORM\OneToOne(targetEntity="Psi\AppBundle\Entity\RunePage",cascade={"all"})
@@ -88,6 +94,30 @@ class Participant
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set match
+     *
+     * @param \Psi\AppBundle\Entity\Match $match
+     *
+     * @return Team
+     */
+    public function setMatch(\Psi\AppBundle\Entity\Match $match = null)
+    {
+        $this->match = $match;
+
+        return $this;
+    }
+
+    /**
+     * Get match
+     *
+     * @return \Psi\AppBundle\Entity\Match
+     */
+    public function getMatch()
+    {
+        return $this->match;
     }
 
     /**

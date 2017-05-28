@@ -41,7 +41,11 @@ class RestRequest extends AbstractRequest
         foreach ($params as $key => $value) {
             $url = str_replace('{' . $key . '}', $value, $url);
         }
-        return $this->_server . $url . "?api_key=" . $this->_authenthication->getApiKey();
+        $query = $this->_server . $url . "?api_key=" . $this->_authenthication->getApiKey();
+        foreach ($this->getQueryParams() as $name => $value) {
+            $query = $query . "&$name=" . urlencode($value);
+        }
+        return $query;
     }
 
     protected function constructResponse($responseData, $responseInfo)
