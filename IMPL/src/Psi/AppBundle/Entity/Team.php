@@ -27,7 +27,7 @@ class Team
 
     /**
      * @var Match 
-     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\Match")
+     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\Match", inversedBy="teams")
      */
     protected $match;
 
