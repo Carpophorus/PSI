@@ -1,6 +1,6 @@
 <?php
 
-class StaticCacheFlush
+class StaticDataFlush
 {
     //put your code here
 }

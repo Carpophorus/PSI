@@ -19,7 +19,12 @@ services:
     psi.app.denormalizer.masteryPage:
         class: Psi\AppBundle\Serializer\Denormalizer\MasteryPageDenormalizer
         arguments:
-            - "@doctrine.orm.entity_manager"            
+            - "@doctrine.orm.entity_manager"     
+            
+    psi.app.denormalizer.match:
+        class: Psi\AppBundle\Serializer\Denormalizer\MatchDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"               
 
 
     psi.app.manager.api.response.manager:
@@ -30,4 +35,7 @@ services:
                   - "@psi.app.denormalizer.runePage"
             - method: addResponseHandler
               arguments: 
-                  - "@psi.app.denormalizer.masteryPage"                  
+                  - "@psi.app.denormalizer.masteryPage"    
+            - method: addResponseHandler
+              arguments: 
+                  - "@psi.app.denormalizer.match"                     

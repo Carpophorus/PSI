@@ -7,7 +7,19 @@ class MatchConverter extends AbstractNameConverter
     public function getTranslations()
     {
         return [
-            'id' => 'externalId'
+            'gameId' => 'externalId',
+            'platformId' => 'region',
+            'gameDuration' => 'duration',
+            'seasonId' => 'season',
+            'gameType' => 'queueType',
+            'gameMode' => 'matchType',
+            'mapId' => 'mapId',
+            'gameVersion' => 'version',
+            'gameCreation' => 'createdAt',
+            'spell1Id' => 'spellId1',
+            'spell2Id' => 'spellId2',
+            'runes' => 'runePage',
+            'masteries' => 'masteryPage'
         ];
     }
 }
