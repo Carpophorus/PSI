@@ -75,14 +75,14 @@ class User
     /**
      * Register confirmation access token
      * @var AccessToken
-     * @ORM\OneToOne(targetEntity="Psi\UserBundle\Entity\AccessToken", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Psi\UserBundle\Entity\AccessToken")
      */
     protected $confirmationToken;
     
     /**
      * Last generated password reset access token
      * @var AccessToken
-     * @ORM\OneToOne(targetEntity="Psi\UserBundle\Entity\AccessToken", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Psi\UserBundle\Entity\AccessToken")
      */    
     protected $resetToken;
     

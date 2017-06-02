@@ -33,4 +33,9 @@ class AppController extends Controller
                 'router' => $this->container->get('router'),
         ]);
     }
+
+    public function viewAction(Request $request)
+    {
+        
+    }
 }

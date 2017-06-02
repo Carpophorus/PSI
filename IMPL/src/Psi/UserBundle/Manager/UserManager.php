@@ -13,6 +13,9 @@ use Psi\UserBundle\Manager\AccessTokenManagerInterface;
 class UserManager implements UserManagerInterface
 {
 
+    const AUTHENTHICATED_ROLE = "IS_AUTHENTICATED_FULLY";
+    const ADMIN_ROLE = "ROLE_ADMIN";
+
     /**
      *
      * @var ObjectManagerAwareUserProviderInterface
@@ -74,7 +77,7 @@ class UserManager implements UserManagerInterface
     {
 
         if ($this->findUser(['email' => $email])) {
-            throw new \Exception("User with specified email allready exists.");
+            throw new \Exception("User with specified email allready exists [$email].");
         }
 
 

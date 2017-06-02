@@ -5,6 +5,8 @@ parameters:
     psi.user.manager.class:     Psi\UserBundle\Manager\UserManager
     psi.user.access.token.manager.class:    Psi\UserBundle\Manager\AccessTokenManager
     psi.user.security.provider.class:       Psi\UserBundle\Security\UserProvider
+    psi.user.model.user.status.class:        Psi\UserBundle\Model\UserStatus
+    psi.user.data.fixtures.orm.loadUserRoles.class: Psi\UserBundle\DataFixtures\ORM\LoadUserRoles
 services:
 
     psi.user.model:
@@ -36,5 +38,11 @@ services:
         arguments:
             - "@psi.user.provider"
         
+    psi.user.model.user.status:
+        class: "%psi.user.model.user.status.class%"
+            
+        
+    psi.user.data.fixtures.orm.loadUserRoles:
+        class: "%psi.user.data.fixtures.orm.loadUserRoles.class%"
         
     

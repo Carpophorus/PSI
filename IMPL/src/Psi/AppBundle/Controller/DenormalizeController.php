@@ -13,8 +13,11 @@ use Psi\AppBundle\Serializer\NameConverter\RunePageConverter;
 use Psi\AppBundle\Entity\RunePage;
 use Psi\AppBundle\Entity\Rune;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 /**
  * @Route("/denormalize")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class DenormalizeController extends Controller
 {

@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Psi\AdminBundle\Form\LoginForm;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdminController extends Controller
@@ -19,6 +18,7 @@ class AdminController extends Controller
 
     /**
      * Renders dashboard
+     * 
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/dashboard", name="admin_dashboard_action")
      */
@@ -36,6 +36,8 @@ class AdminController extends Controller
      */
     public function loginAction(Request $request)
     {
+        ini_set('display_errors', 1);
+
         $loginForm = new LoginForm();
 
         $form = $this->createFormBuilder($loginForm)
@@ -57,16 +59,16 @@ class AdminController extends Controller
             $user = $manager->validateCredentials($email, $password);
             if ($user) {
                 $roles = $user->getRoles()->toArray();
-                $roles[] = "IS_AUTHENTICATED_FULLY";
-                $roles[] = "ROLE_ADMIN";
 
-                $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $roles);
-                $this->get("security.token_storage")->setToken($token);
+                if ($manager->hasAdminPrivileges($user)) {
+                    $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $roles);
+                    $this->get("security.token_storage")->setToken($token);
 
-                $event = new InteractiveLoginEvent($request, $token);
-                $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+                    $event = new InteractiveLoginEvent($request, $token);
+                    $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
-                return $this->redirectToRoute('admin_dashboard_action');
+                    return $this->redirectToRoute('admin_dashboard_action');
+                }
             } else {
                 
             }

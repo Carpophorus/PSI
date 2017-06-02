@@ -60,7 +60,7 @@ class AccountController extends Controller
             if ($user) {
                 $roles = $user->getRoles()->toArray();
                 $roles[] = "IS_AUTHENTICATED_FULLY";
-                
+
                 $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $roles);
                 $this->get("security.token_storage")->setToken($token);
 
@@ -164,23 +164,5 @@ class AccountController extends Controller
     public function resetPasswordAction(Request $request)
     {
         
-    }
-
-    /**
-     * Test:
-     * @Route("/delete/{id}")
-     */
-    public function deleteAction(Request $request)
-    {
-        $id = $request->get("id");
-
-        $userManager = $this->get("psi.user.manager");
-
-        $user = $userManager->findUser(['id' => $id]);
-        if ($user) {
-            $userManager->deleteUser($user);
-        }
-
-        return $this->redirectToRoute('user_register_action');
     }
 }
