@@ -4,10 +4,47 @@ services:
         class: "%psi.configuration.item.class%"
         arguments:
             - psi.admin.api.key
-            - psi.admin
+            - Api
             - Api Key
             - raw
             - "%psi.configuration.view.template.default%"
         tags:
             - { name: psi.configuration }   
 
+    psi.admin.configuration.api.version:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.admin.api.version
+            - Api
+            - Api Version
+            - raw
+            - "%psi.configuration.view.template.default%"
+            - 3.0
+        tags:
+            - { name: psi.configuration }   
+
+    psi.admin.configuration.user.status:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.admin.user.status
+            - Users
+            - Initial status
+            - raw
+            - "%psi.configuration.view.template.select%"
+            - ""
+            - "@psi.admin.provider.user.status.configuration"
+        tags:
+            - { name: psi.configuration }   
+
+
+    psi.admin.configuration.user.blocked:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.admin.user.blocked
+            - Users
+            - Block users on registration
+            - raw
+            - "%psi.configuration.view.template.checkbox%"
+            - 1
+        tags:
+            - { name: psi.configuration }   

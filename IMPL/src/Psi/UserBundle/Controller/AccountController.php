@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Psi\UserBundle\Form\LoginForm;
 use Psi\UserBundle\Form\RegisterForm;
+use Psi\UserBundle\Form\ResetForm;
 use Psi\UserBundle\Model\TokenStatus;
 use Psi\UserBundle\Model\UserStatus;
 use Psi\UserBundle\Entity\AccessToken;
@@ -28,9 +29,49 @@ class AccountController extends Controller
      */
     public function indexActon(Request $request)
     {
+        $loginForm = $this->createFormBuilder(new LoginForm())
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
+            ->add('save', SubmitType::class, array('label' => 'Login'))
+            ->getForm();
+
+        $registerForm = $this->createFormBuilder(new RegisterForm())
+            ->add('email', EmailType::class)
+            ->add('username', TextType::class)
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options' => array('label' => 'Password'),
+                'second_options' => array('label' => 'Repeat Password'),
+            ))
+            ->add('save', SubmitType::class, array('label' => 'Register'))
+            ->getForm();
+
+        $resetForm = $this->createFormBuilder(new RegisterForm())
+            ->add('email', EmailType::class)
+            ->getForm();
+
         return $this->render(
-                'PsiUserBundle:Account:index.html.php', [
+                'PsiUserBundle:Account:login.html.php', [
+                'router' => $this->container->get('router'),
+                'loginForm' => $loginForm->createView(),
+                'registerForm' => $registerForm->createView(),
+                'resetPasswordForm' => $resetForm->createView()
         ]);
+    }
+
+    public function resetAction(Request $request)
+    {
+        $resetForm = new ResetForm();
+        $form = $this->createFormBuilder($resetForm)
+            ->add('email', EmailType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $resetForm = $form->getData();
+            $userManager = $this->get('psi.user.manager');
+            //echo success message
+        }
     }
 
     /**
@@ -45,9 +86,7 @@ class AccountController extends Controller
             ->add('password', PasswordType::class)
             ->add('save', SubmitType::class, array('label' => 'Login'))
             ->getForm();
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $loginForm = $form->getData();
 
@@ -67,17 +106,11 @@ class AccountController extends Controller
                 $event = new InteractiveLoginEvent($request, $token);
                 $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
-                return $this->redirectToRoute('user_index_action');
+                // echo success message
             } else {
-                
+                // echo fail message
             }
         }
-
-        return $this->render(
-                'PsiUserBundle:Account:login.html.php', [
-                'router' => $this->container->get('router'),
-                'form' => $form->createView()
-        ]);
     }
 
     /**
@@ -86,7 +119,6 @@ class AccountController extends Controller
     public function registerAction(Request $request)
     {
         $registerForm = new RegisterForm();
-
         $form = $this->createFormBuilder($registerForm)
             ->add('email', EmailType::class)
             ->add('username', TextType::class)
@@ -97,9 +129,7 @@ class AccountController extends Controller
             ))
             ->add('save', SubmitType::class, array('label' => 'Register'))
             ->getForm();
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $registerForm = $form->getData();
 
@@ -111,17 +141,12 @@ class AccountController extends Controller
 
             $user = $userManager->newUser($username, $email, $password);
 
-            return $this->render(
-                    'PsiUserBundle:Account:register_success.html.php', [
-                    'router' => $this->container->get('router')
-            ]);
+            if ($user) {
+                // echo success message
+            } else {
+                // echo fail message
+            }
         }
-
-        return $this->render(
-                'PsiUserBundle:Account:register.html.php', [
-                'router' => $this->container->get('router'),
-                'form' => $form->createView()
-        ]);
     }
 
     /**
@@ -159,10 +184,5 @@ class AccountController extends Controller
         }
         // invalid token
         return $this->redirectToRoute('user_login_action');
-    }
-
-    public function resetPasswordAction(Request $request)
-    {
-        
     }
 }

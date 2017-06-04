@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php $view['UI']->output('title', 'Hello Application') ?></title>
+        <title><?php $view['UI']->output('title', 'N2M - Admin') ?></title>
         <?php $view['UI']->output('_styles'); ?>
         <?php $view['UI']->output('_scripts'); ?>
     </head>

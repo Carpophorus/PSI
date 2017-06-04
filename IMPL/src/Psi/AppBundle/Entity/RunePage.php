@@ -37,6 +37,7 @@ class RunePage
     /**
      * @var \Psi\AppBundle\Entity\Rune[]
      * @ORM\OneToMany(targetEntity="Psi\AppBundle\Entity\Rune", mappedBy="runePage",cascade={"all"})
+     * @ORM\OrderBy({"slotId" = "ASC"})
      */
     protected $runes;
 

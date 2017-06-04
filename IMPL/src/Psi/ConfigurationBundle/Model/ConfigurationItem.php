@@ -2,6 +2,7 @@
 namespace Psi\ConfigurationBundle\Model;
 
 use Psi\ConfigurationBundle\Model\ConfigurationItemInterface;
+use Psi\ConfigurationBundle\Provider\ConfigurationOptionProviderInterface;
 
 class ConfigurationItem implements ConfigurationItemInterface
 {
@@ -15,7 +16,7 @@ class ConfigurationItem implements ConfigurationItemInterface
      * @param string $value
      */
     public function __construct(
-    $name, $group, $label, $type, $viewTemplate = null, $value = null
+    $name, $group, $label, $type, $viewTemplate = null, $value = null, ConfigurationOptionProviderInterface $options = null
     )
     {
         $this->data = [];
@@ -25,6 +26,7 @@ class ConfigurationItem implements ConfigurationItemInterface
         $this->data['type'] = $type;
         $this->data['viewTemplate'] = $viewTemplate;
         $this->data['value'] = $value;
+        $this->data['options'] = $options;
     }
 
     public function getConfigurationData(): array

@@ -7,5 +7,21 @@
 <?php $view['UI']->stop(); ?>
 
 <?php $view['UI']->start('_content') ?>
-<?php echo $view['form']->form($form) ?>
-<?php $view['UI']->stop(); ?>
+<div id="lsp-bckgrnd"></div>
+<div class="lsp-container">
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="options" id="option1" checked>Log In</input>
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="option2">Sign Up</input>
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="option3">Password Change</input>
+        </label>
+    </div>
+    <?php echo $view->render("PsiUserBundle:Account:_partial/register.html.php", ['form' => $registerForm]); ?>
+    <?php echo $view->render("PsiUserBundle:Account:_partial/login.html.php", ['form' => $registerForm]); ?>
+    <?php echo $view->render("PsiUserBundle:Account:_partial/forgot_password.html.php", ['form' => $resetPasswordForm]); ?>
+    <?php $view['UI']->stop(); ?>
+</div>
