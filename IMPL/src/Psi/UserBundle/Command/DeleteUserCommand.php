@@ -12,7 +12,7 @@ class DeleteUserCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('psi:delete-user')
+            ->setName('psi:user:delete')
             ->setDescription('Deletes a user by id.');
 
         $this
@@ -28,8 +28,7 @@ class DeleteUserCommand extends ContainerAwareCommand
 
         if ($user = $manager->findUser(['id' => $userId])) {
             $manager->deleteUser($user);
+            $output->writeln('User deleted');
         }
-
-        $output->writeln('User deleted');
     }
 }

@@ -3,57 +3,55 @@ namespace Psi\ConfigurationBundle\Model;
 
 use Psi\ConfigurationBundle\Component\ConfigurationEncrypterInterface;
 use Psi\ConfigurationBundle\Component\ConfigurationSerializerInterface;
-use Psi\ConfigurationBundle\Entity\Configuration;
+use Psi\ConfigurationBundle\Entity\Configuration as ConfigurationEntity;
 use Doctrine\Common\Persistence\ObjectManager;
-
 
 class Configuration implements ConfigurationInterface
 {
-    
+
     /**
      * Supported configuration value types
      */
     const TYPE_SERIALIZED = "serialized";
     const TYPE_ENCRYPTED = "encrypted";
     const TYPE_RAW = "raw";
-    
 
     /**
      * Underlying entity object
      * @var \Psi\ConfigurationBundle\Entity\Configuration 
      */
     private $entity;
-    
+
     /**
      * Entity manager used for persisting the configuration object
      * @var Doctrine\Common\Persistence\ObjectManager
      */
     private $entityManager;
-    
+
     /**
      * Configuration value type indicator
      * @var string
-     */ 
+     */
     private $type;
-    
+
     /**
      * Serializer used for serialized values
      * @var ConfigurationSerializerInterface
      */
     private $serializer;
-    
+
     /**
      * Encrzpter used for encrypted values
      * @var ConfigurationEncrypterInterface
      */
     private $encrypter;
-    
+
     /**
      * Configuration default value
      * @var mixed
      */
     private $defaultValue;
-    
+
     /**
      * Configuration view template
      * @var string
@@ -69,7 +67,7 @@ class Configuration implements ConfigurationInterface
     /**
      * 
      * @param ObjectManager $entityManager
-     * @param Configuration $entity
+     * @param ConfigurationEntity $entity
      * @param string $type
      * @param ConfigurationSerializerInterface $serializer
      * @param ConfigurationEncrypterInterface $encrypter
@@ -77,14 +75,9 @@ class Configuration implements ConfigurationInterface
      * @param string $defaultValue
      */
     public function __construct(
-        ObjectManager $entityManager,
-        Configuration $entity,
-        $type,
-        ConfigurationSerializerInterface $serializer,
-        ConfigurationEncrypterInterface $encrypter,
-        $viewTemplate,
-        $defaultValue = null        
-    ) {
+    ObjectManager $entityManager, ConfigurationEntity $entity, $type, ConfigurationSerializerInterface $serializer, ConfigurationEncrypterInterface $encrypter, $viewTemplate, $defaultValue = null
+    )
+    {
         $this->entityManager = $entityManager;
         $this->entity = $entity;
         $this->type = $type;
@@ -101,6 +94,7 @@ class Configuration implements ConfigurationInterface
     public function persist()
     {
         $this->entityManager->persist($this->entity);
+        $this->_persisted = true;
         return $this;
     }
 
@@ -145,7 +139,7 @@ class Configuration implements ConfigurationInterface
     public function getValue()
     {
         $value = $this->entity->getValue();
-        switch($this->type) {
+        switch ($this->type) {
             case self::TYPE_SERIALIZED:
                 $value = $this->serializer->unserialize($value);
                 break;
@@ -166,7 +160,7 @@ class Configuration implements ConfigurationInterface
      */
     public function setValue($value)
     {
-        switch($this->type) {
+        switch ($this->type) {
             case self::TYPE_SERIALIZED:
                 $value = $this->serializer->serialize($value);
                 break;
@@ -182,7 +176,6 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
-    
     public function getDefaultValue()
     {
         return $this->defaultValue;

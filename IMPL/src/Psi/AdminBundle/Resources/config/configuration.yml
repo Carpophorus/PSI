@@ -1,0 +1,13 @@
+services:
+    
+    psi.admin.configuration.api.key:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.admin.api.key
+            - psi.admin
+            - Api Key
+            - raw
+            - "%psi.configuration.view.template.default%"
+        tags:
+            - { name: psi.configuration }   
+

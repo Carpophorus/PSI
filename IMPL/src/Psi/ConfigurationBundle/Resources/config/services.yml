@@ -1,7 +1,33 @@
-services:
-#    psi_configuration.example:
-#        class: Psi\ConfigurationBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+parameters:
+    psi.configuration.encrypter.class: Psi\ConfigurationBundle\Component\ConfigurationEncrypter
+    psi.configuration.serializer.class: Psi\ConfigurationBundle\Component\ConfigurationSerializer
+    psi.configuration.model.factory.class: Psi\ConfigurationBundle\Model\ConfigurationFactory
+    psi.configuration.item.class: Psi\ConfigurationBundle\Model\ConfigurationItem
+    psi.configuration.manager.registry.class: Psi\ConfigurationBundle\Manager\ConfigurationRegistry
+    psi.configuration.view.template.default: PsiConfigurationBundle:configuration:default.html.php
+    psi.configuration.view.template.date: PsiConfigurationBundle:configuration:default.html.php
+    psi.configuration.view.template.password: PsiConfigurationBundle:configuration:password.html.php
+    psi.configuration.view.template.select: PsiConfigurationBundle:configuration:select.html.php
+    psi.configuration.view.template.textarea: PsiConfigurationBundle:configuration:textarea.html.php
+    psi.configuration.view.template.checkbox: PsiConfigurationBundle:configuration:checkbox.html.php
 
-    psi.manager.configuration.registry:
-        class: Psi\ConfigurationBundle\Manager\ConfigurationRegistry
+services:
+    
+    psi.configuration.encrypter:
+        class: "%psi.configuration.encrypter.class%"
+        
+    psi.configuration.serializer:
+        class: "%psi.configuration.serializer.class%"
+        
+
+    psi.configuration.model.factory:
+        class: "%psi.configuration.model.factory.class%"
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@psi.configuration.serializer"
+            - "@psi.configuration.encrypter"
+
+    psi.configuration.manager.registry:
+        class: "%psi.configuration.manager.registry.class%"
+        arguments:
+            - "@psi.configuration.model.factory"

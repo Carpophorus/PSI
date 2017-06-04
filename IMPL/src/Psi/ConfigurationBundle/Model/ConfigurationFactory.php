@@ -5,51 +5,51 @@ use Psi\ConfigurationBundle\Model\ConfigurationFactoryInterface;
 use Psi\ConfigurationBundle\Model\Configuration;
 use Psi\ConfigurationBundle\Component\ConfigurationEncrypterInterface;
 use Psi\ConfigurationBundle\Component\ConfigurationSerializerInterface;
+use Psi\ConfigurationBundle\Entity\Configuration as ConfigurationEntity;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class ConfigurationFactory implements ConfigurationFactoryInterface
 {
-    
+
     /**
      *
      * @var ObjectManager 
      */
     private $entityManager;
-    
+
     /**
      *
      * @var ConfigurationSerializerInterface 
      */
     private $configurationSerializer;
-    
+
     /**
      *
      * @var ConfigurationEncrypterInterface 
      */
     private $configurationEncrypter;
-    
+
     public function __construct(
-        ObjectManager $entityManager,
-        ConfigurationSerializerInterface $serializer,  
-        ConfigurationEncrypterInterface $encrypter
-    ) {
+    ObjectManager $entityManager, ConfigurationSerializerInterface $serializer, ConfigurationEncrypterInterface $encrypter
+    )
+    {
         $this->entityManager = $entityManager;
         $this->configurationSerializer = $serializer;
         $this->configurationEncrypter = $encrypter;
     }
-    
+
     public function createFromArray($data): ConfigurationInterface
     {
-        if(($entity = $this->configurationRepostiroy->findOneBy(['name' => $data['name']])) !== null) {
-            return $this->createFromEntity($entity, $data['viewTemplate']);
+        if (($entity = $this->entityManager->getRepository(ConfigurationEntity::class)->findOneBy(['name' => $data['name']])) !== null) {
+            return $this->createFromEntity($entity, $data['type'], $data['viewTemplate']);
         }
-        
-        $entity = new Configuration();
-        $entity->setLabel($data['label']);
+
+        $entity = new ConfigurationEntity();
         $entity->setName($data['name']);
         $entity->setValue($data['value']);
-        
-        $configuration = $this->createFromEntity($entity, $data['type']);
+        $entity->setType($data['type']);
+
+        $configuration = $this->createFromEntity($entity, $data['type'], $data['viewTemplate']);
         $configuration->save();
         return $configuration;
     }
@@ -57,12 +57,12 @@ class ConfigurationFactory implements ConfigurationFactoryInterface
     public function createFromEntity($entity, $type, $viewTemplate): ConfigurationInterface
     {
         return new Configuration(
-            $this->entityManager,
-            $entity,
-            $type,
-            $this->configurationSerializer,            
-            $this->configurationEncrypter,
-            $viewTemplate
+            $this->entityManager
+            , $entity
+            , $type
+            , $this->configurationSerializer
+            , $this->configurationEncrypter
+            , $viewTemplate
         );
     }
 }

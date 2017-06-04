@@ -15,7 +15,7 @@ class NewAdminUserCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('psi:new-admin')
+            ->setName('psi:user:admin')
             ->setDescription('Creates a new admin user.')
             ->setHelp('This command allows you to create a user...');
 

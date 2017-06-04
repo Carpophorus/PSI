@@ -11,7 +11,7 @@ interface ConfigurationFactoryInterface
      * @param string $type
      * @return ConfigurationInterface
      */
-    public function createFromArray($data, $type);
+    public function createFromArray($data);
     
     /**
      * Returns a new ConfigurationInterface from passed entity

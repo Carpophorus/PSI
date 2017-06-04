@@ -34,7 +34,7 @@ class Configuration
 
     /**
      * @var string
-     * @ORM\Column(name="value", type="string")
+     * @ORM\Column(name="value", type="string", nullable=true)
      */
     protected $value;
 

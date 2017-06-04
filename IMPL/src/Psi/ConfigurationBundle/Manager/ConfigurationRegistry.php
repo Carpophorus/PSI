@@ -3,6 +3,7 @@ namespace Psi\ConfigurationBundle\Manager;
 
 use Psi\ConfigurationBundle\Model\ConfigurationInterface;
 use Psi\ConfigurationBundle\Model\ConfigurationFactoryInterface;
+use Psi\ConfigurationBundle\Model\ConfigurationItemInterface;
 
 class ConfigurationRegistry
 {
@@ -44,15 +45,16 @@ class ConfigurationRegistry
 
     /**
      * Adds configuration to the registry.
-     * @param array $data
+     * @param ConfigurationItemInterface $item
      * @throws \Exception
      */
-    public function addConfiguration($data)
+    public function addConfiguration(ConfigurationItemInterface $item)
     {
+        $data = $item->getConfigurationData();
         if (!$this->validateConfiguration($data)) {
             throw new \Exception("Configuration not valid. Please check your YAML configuration file.");
         }
-        $configuration = $this->configurationFactory->createFromArray($data, $data['type']);
+        $configuration = $this->configurationFactory->createFromArray($data);
         $this->configurations[$data['name']] = $configuration;
         $this->configurationGroups[$data['group']][$data['name']] = $configuration;
     }

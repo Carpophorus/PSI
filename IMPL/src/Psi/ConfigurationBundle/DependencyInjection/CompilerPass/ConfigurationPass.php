@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 class ConfigurationPass implements CompilerPassInterface
 {
 
-    const MANAGER_ID = 'psi.manager.configuration.registry';
+    const MANAGER_ID = 'psi.configuration.manager.registry';
     const CONFIGURATION_TAG_NAME = 'psi.configuration';
 
     /**
