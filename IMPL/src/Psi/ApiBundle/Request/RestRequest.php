@@ -72,5 +72,7 @@ class RestRequest extends AbstractRequest
         curl_close($curl);
 
         $this->constructResponse($responseData, $responseInfo);
+
+        return $this;
     }
 }

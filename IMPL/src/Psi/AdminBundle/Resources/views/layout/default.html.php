@@ -10,8 +10,19 @@
         <header>
             <?php $view['UI']->output('_header'); ?>
         </header>
-        <div class="main">
-            <?php $view['UI']->output('_content'); ?>            
+        <div class="container">
+            <div id="main-content">
+                <div class="messages">
+                    <?php foreach ($view['session']->getFlashes() as $type => $flash_messages): ?>
+                        <?php foreach ($flash_messages as $flash_message): ?>
+                            <div class="flash-<?php echo $type ?>">
+                                <?php echo $flash_message ?>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>      
+                </div>
+                <?php $view['UI']->output('_content'); ?>            
+            </div>
         </div>
         <footer>
             <?php $view['UI']->output('_footer'); ?>

@@ -4,11 +4,16 @@ services:
 
     psi.app.request.static.authenthication:
         class: Psi\AppBundle\Request\StaticAuthentication
+        
+    psi.app.request.configuration.authenthication:
+        class: Psi\AppBundle\Request\ConfigurationAuthentication        
+        arguments:
+            - "@psi.configuration.manager.registry"
 
     psi.app.request.factory:
         class: Psi\ApiBundle\Request\Factory\RequestFactory
         arguments:
-            - "@psi.app.request.static.authenthication"
+            - "@psi.app.request.configuration.authenthication"
 
     
     psi.app.denormalizer.runePage:
@@ -38,4 +43,22 @@ services:
                   - "@psi.app.denormalizer.masteryPage"    
             - method: addResponseHandler
               arguments: 
-                  - "@psi.app.denormalizer.match"                     
+                  - "@psi.app.denormalizer.match"         
+
+    psi.app.provider.static.data.provider:
+        class: Psi\AppBundle\Provider\StaticDataProvider
+        arguments:
+            - "@psi.app.request.factory"
+            - "@doctrine.orm.entity_manager"
+            - "@psi.configuration.manager.registry"
+                
+    psi.app.manager.static.file.manager:
+        class: Psi\AppBundle\Manager\StaticFileManager
+        arguments:
+
+                  
+    psi.app.manager.static.data.manager:
+        class: Psi\AppBundle\Manager\StaticDataManager
+        arguments:
+            - "@psi.app.manager.static.file.manager"
+            - "@doctrine.orm.entity_manager"

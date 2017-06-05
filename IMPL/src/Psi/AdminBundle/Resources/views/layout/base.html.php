@@ -14,8 +14,38 @@
 
 <?php $view['UI']->start('_header') ?>
 <div class="header">
-    <nav class="">
-        <?php $view['UI']->output('_menu'); ?>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#adminNav" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">N2M Admin</a>
+            </div>
+            <div class="collapse navbar-collapse" id="adminNav">
+                <ul class="nav navbar-nav">
+                    <?php
+                    $links = [
+                        'dashboard' => $router->generate('admin_dashboard_action'),
+                        'system configuration' => $router->generate('configuration_index_action'),
+                        'system statistics' => $router->generate('configuration_index_action'),
+                        'edit user information' => $router->generate('configuration_index_action'),
+                        'display users' => $router->generate('configuration_index_action'),
+                        'new user' => $router->generate('configuration_index_action')
+                    ];
+
+                    ?>
+                    <?php foreach ($links as $label => $href): ?>
+                        <li>
+                            <a href="#" onclick="AdminUI.load('<?php echo $href; ?>')"><?php echo $label; ?></a>
+                        </li>                    
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     </nav>
 </div>
 <?php $view['UI']->stop(); ?>

@@ -13,6 +13,15 @@
             <?php $view['UI']->output('_header'); ?>
         </header>
         <div id="main-content">
+            <div class="messages">
+                <?php foreach ($view['session']->getFlashes() as $type => $flash_messages): ?>
+                    <?php foreach ($flash_messages as $flash_message): ?>
+                        <div class="flash-<?php echo $type ?>">
+                            <?php echo $flash_message ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>      
+            </div>
             <?php $view['UI']->output('_content'); ?>            
         </div>
         <footer id="footer" class="panel-footer">

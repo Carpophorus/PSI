@@ -53,6 +53,8 @@ class AdminController extends Controller
 
             $email = $loginForm->getEmail();
             $password = $loginForm->getPassword();
+            
+            $this->generateUrl($route);
 
             $manager = $this->get('psi.admin.user.manager');
 

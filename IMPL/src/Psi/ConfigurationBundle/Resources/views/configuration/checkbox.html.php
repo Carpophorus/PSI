@@ -1,14 +1,15 @@
 <div class="input-group">
-    <span class="form-control" id="configuration-<?php echo $configuration->getName(); ?>">
+    <span class="input-group-addon" id="configuration-<?php echo $configuration->getName(); ?>">
         <?php echo $configuration->getLabel(); ?>
-    </span>    
+    </span>
     <span class="input-group-addon">
-        <input 
-            type="checkbox" 
-            <?php echo ($configuration->getValue()) ? "checked='checked'" : ""; ?>
-            value="<?php echo $configuration->getValue(); ?>" 
+        <select 
+            autocomplete="off"
             name="configuration[<?php echo $configuration->getName(); ?>]"
-            class="configuration-field-text"
-            />
+            class="configuration-field-text form-control"
+            >
+            <option <?php echo ($configuration->getValue() > 0) ? "selected='true'" : ""; ?> value="1">Yes</option>
+            <option <?php echo ($configuration->getValue() > 0) ? "" : "selected='true'"; ?> value="0">No</option>
+        </select>  
     </span>    
 </div>

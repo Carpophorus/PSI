@@ -59,12 +59,27 @@ class StaticDataManager
             $cacheTagName = $this->getCacheTagname($namespace, $name);
             $cacheTag = $this->objectManager->getRepository(CacheTag::class)->findOneBy(['tag' => $cacheTagName]);
             if ($cacheTag) {
+                $this->objectManager->remove($cacheTag->getCache());
                 $this->objectManager->remove($cacheTag);
             }
         } else {
+            $select = $this->objectManager->createQuery('SELECT partial ct.{id, cache} FROM Psi\AppBundle\Entity\CacheTag ct WHERE ct.tag LIKE :tagname');
+            $select->setParameter('tagname', $this->getCacheTagname($namespace, "%"));
+            $result = $select->getResult();
+
+            $removeIds = [];
+            foreach ($result as $partialTag) {
+                $removeIds[] = $partialTag->getCache()->getId();
+            }
+
             $query = $this->objectManager->createQuery('DELETE FROM Psi\AppBundle\Entity\CacheTag ct WHERE ct.tag LIKE :tagname');
             $query->setParameter('tagname', $this->getCacheTagname($namespace, "%"));
             $query->execute();
+
+            if (count($removeIds) > 0) {
+                $query = $this->objectManager->createQuery('DELETE FROM Psi\AppBundle\Entity\Cache c WHERE c.id IN (' . implode(',', $removeIds) . ')');
+                $query->execute();
+            }
         }
     }
 

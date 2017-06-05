@@ -1,6 +1,7 @@
 <?php
 namespace Psi\AppBundle\Entity;
 
+use Psi\AppBundle\Entity\ImportedAtTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -8,47 +9,35 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity()
  * @ORM\Table(name="champion_cache")
+ * @ORM\HasLifecycleCallbacks
  */
 class ChampionCache
 {
-    
+
+    use ImportedAtTrait;
+
     /**
      * @var string
      *
      * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     */   
+     */
     protected $id;
-    
+
     /**
      *
      * @var integer 
      * @ORM\Column(name="champion_id", type="integer")
      */
     protected $championId;
-    
+
     /**
      *
      * @var string
      * @ORM\Column(name="cache_tag", type="string") 
      */
     protected $cacheTag;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="imported_at", type="datetime")
-     */
-    protected $importedAt;
-    
-    /**
-     *
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    protected $updatedAt;    
-    
 
     /**
      * Get id
@@ -106,53 +95,5 @@ class ChampionCache
     public function getCacheTag()
     {
         return $this->cacheTag;
-    }
-
-    /**
-     * Set importedAt
-     *
-     * @param \DateTime $importedAt
-     *
-     * @return ChampionCache
-     */
-    public function setImportedAt($importedAt)
-    {
-        $this->importedAt = $importedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get importedAt
-     *
-     * @return \DateTime
-     */
-    public function getImportedAt()
-    {
-        return $this->importedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return ChampionCache
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 }

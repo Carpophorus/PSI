@@ -7,7 +7,6 @@ use Psi\ConfigurationBundle\Entity\Configuration as ConfigurationEntity;
 use Doctrine\Common\Persistence\ObjectManager;
 use Psi\ConfigurationBundle\Provider\ConfigurationOptionProviderInterface;
 
-
 class Configuration implements ConfigurationInterface
 {
 
@@ -71,7 +70,7 @@ class Configuration implements ConfigurationInterface
      * @var boolean 
      */
     private $_persisted;
-    
+
     /**
      *
      * @var ConfigurationOptionProviderInterface
@@ -166,7 +165,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getValue()
     {
-        if (!$this->entity->getValue()) {
+        if (is_null($this->entity->getValue())) {
             return $this->getDefaultValue();
         }
 

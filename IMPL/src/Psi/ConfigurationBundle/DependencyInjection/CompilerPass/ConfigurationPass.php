@@ -33,9 +33,9 @@ class ConfigurationPass implements CompilerPassInterface
      */
     protected function processConfigurations(Definition $managerDefinition, ContainerBuilder $container)
     {
-        $navigations = $container->findTaggedServiceIds(self::CONFIGURATION_TAG_NAME);
+        $configurations = $container->findTaggedServiceIds(self::CONFIGURATION_TAG_NAME);
 
-        foreach ($navigations as $serviceId => $tags) {
+        foreach ($configurations as $serviceId => $tags) {
             $ref = new Reference($serviceId);
             $managerDefinition->addMethodCall('addConfiguration', [$ref]);
         }

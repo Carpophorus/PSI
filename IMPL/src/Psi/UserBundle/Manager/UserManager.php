@@ -112,6 +112,7 @@ class UserManager implements UserManagerInterface
             $encodedPassword = $encoder->encodePassword($password, $salt);
 
             $model->updatePassword($encodedPassword, $salt);
+            $this->saveUser($model);
         }
     }
 
@@ -135,8 +136,6 @@ class UserManager implements UserManagerInterface
             $model = $this->provider->getEntityUserModel($user);
             $encoder = $this->encoderFactory->getEncoder($model->getEntity());
             $salt = $model->getSalt();
-
-            $encodedPassword = $encoder->encodePassword($password, $salt);
 
             if ($encoder->isPasswordValid($model->getPassword(), $password, $salt)) {
                 return $model;

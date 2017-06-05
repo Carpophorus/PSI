@@ -29,7 +29,8 @@ class ConfigurationController extends Controller
         return $this->render(
                 'PsiAdminBundle:Configuration:configuration.html.php', [
                 'configurationRegistry' => $configurationRegistry,
-                'router' => $this->container->get('router')
+                'router' => $this->get('router'),
+                'action' => $this->generateUrl('configuration_update_action')
         ]);
     }
 
@@ -38,8 +39,21 @@ class ConfigurationController extends Controller
      * 
      * @Route("/update", name="configuration_update_action")
      */
-    public function updateAction()
+    public function updateAction(Request $request)
     {
+        $configurationData = $request->get('configuration');
         
+        if ($configurationData) {
+            foreach ($configurationData as $name => $value) {
+                $configurationRegistry = $this->get('psi.configuration.manager.registry');
+                $configuration = $configurationRegistry->getConfiguration($name);
+                $configuration->setValue($value);
+                $configuration->save();
+            }
+
+            $this->addFlash('success', "Updated system configuration.");
+        }
+
+        return $this->redirectToRoute('configuration_index_action');
     }
 }

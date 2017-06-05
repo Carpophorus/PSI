@@ -1,7 +1,9 @@
 <?php
 namespace Psi\AppBundle\Manager;
 
-class StaticFileManager
+use Psi\AppBundle\Manager\StaticFileManagerInterface;
+
+class StaticFileManager implements StaticFileManagerInterface
 {
 
     public function __construct()
