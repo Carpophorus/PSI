@@ -40,7 +40,7 @@ class NewAdminUserCommand extends ContainerAwareCommand
         $enabledStatus = $this->getContainer()->get('psi.user.model.user.status')->getStatusByCode(UserStatus::STATUS_ENABLED);
         $adminRole = $em->getRepository(Role::class)->findOneBy(['name' => UserManager::ADMIN_ROLE]);
         if (!$adminRole) {
-            $this->get('psi.user.data.fixtures.orm.loadUserRoles')->load($em);
+            $this->get()->getContainer('psi.user.data.fixtures.orm.loadUserRoles')->load($em);
             $adminRole = $em->getRepository(Role::class)->findOneBy(['name' => UserManager::ADMIN_ROLE]);
         }
         $admin = $manager->newUser($username, $email, $password)->getEntity();

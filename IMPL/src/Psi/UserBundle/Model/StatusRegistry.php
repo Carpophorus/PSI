@@ -41,4 +41,14 @@ class StatusRegistry
     {
         return $this->statuses;
     }
+
+    public function toFormOptions()
+    {
+        $options = [];
+        foreach ($this->statuses as $status) {
+            $options[$status['label']] = $status['code'];
+        }
+
+        return $options;
+    }
 }

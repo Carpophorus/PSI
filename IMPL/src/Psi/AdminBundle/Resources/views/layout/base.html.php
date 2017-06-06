@@ -3,11 +3,13 @@
 <?php $view['UI']->start('_styles'); ?>
 <link href="<?php echo $view['assets']->getUrl('css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $view['assets']->getUrl('css/bootstrap-theme.min.css') ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo $view['assets']->getUrl('css/pace.css') ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $view['assets']->getUrl('css/app.css') ?>" rel="stylesheet" type="text/css" />
 <?php $view['UI']->stop(); ?>
 
 <?php $view['UI']->start('_scripts'); ?>
 <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery-3.2.1.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/pace.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/bootstrap.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/app.js') ?>"></script>
 <?php $view['UI']->stop(); ?>
@@ -32,15 +34,14 @@
                         'dashboard' => $router->generate('admin_dashboard_action'),
                         'system configuration' => $router->generate('configuration_index_action'),
                         'system statistics' => $router->generate('configuration_index_action'),
-                        'edit user information' => $router->generate('configuration_index_action'),
-                        'display users' => $router->generate('configuration_index_action'),
-                        'new user' => $router->generate('configuration_index_action')
+                        'display users' => $router->generate('admin_user_list_action'),
+                        'new user' => $router->generate('admin_user_new_action')
                     ];
 
                     ?>
                     <?php foreach ($links as $label => $href): ?>
                         <li>
-                            <a href="#" onclick="AdminUI.load('<?php echo $href; ?>')"><?php echo $label; ?></a>
+                            <a href="#" onclick="AdminUI.loadContent('<?php echo $href; ?>')"><?php echo $label; ?></a>
                         </li>                    
                     <?php endforeach; ?>
                 </ul>

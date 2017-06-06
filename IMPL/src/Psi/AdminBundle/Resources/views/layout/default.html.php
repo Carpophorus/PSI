@@ -13,9 +13,17 @@
         <div class="container">
             <div id="main-content">
                 <div class="messages">
+                    <?php
+                    $typeTranslation = [
+                        'notice' => 'info',
+                        'success' => 'success',
+                        'error' => 'danger'
+                    ];
+
+                    ?>
                     <?php foreach ($view['session']->getFlashes() as $type => $flash_messages): ?>
                         <?php foreach ($flash_messages as $flash_message): ?>
-                            <div class="flash-<?php echo $type ?>">
+                            <div class="alert alert-<?php echo $typeTranslation[$type] ?>">
                                 <?php echo $flash_message ?>
                             </div>
                         <?php endforeach; ?>
@@ -27,6 +35,37 @@
         <footer>
             <?php $view['UI']->output('_footer'); ?>
             <?php $view['UI']->output('_footer_scripts'); ?>
+
+            <script type="text/javascript">
+                window.AdminUI = {
+                    loadContent: function (url) {
+                        $.ajax(url, {
+
+                        }).done(function (data) {
+                            var newContent = $(data).find('#main-content');
+                            $("#main-content").html(newContent.html());
+                        });
+                        return false;
+                    },
+                    submitForm: function (form) {
+                        var url = $(form).attr('action');
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: $(form).serialize(),
+                            success: function (data)
+                            {
+                                var newContent = $(data).find('#main-content');
+                                $("#main-content").html(newContent.html());
+                            }
+                        });
+                        return false;
+                    }
+                };
+                $(document).ajaxStart(function () {
+                    Pace.restart();
+                });
+            </script>
         </footer>
     </body>
 </html>

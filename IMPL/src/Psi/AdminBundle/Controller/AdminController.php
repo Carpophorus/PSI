@@ -36,8 +36,6 @@ class AdminController extends Controller
      */
     public function loginAction(Request $request)
     {
-        ini_set('display_errors', 1);
-
         $loginForm = new LoginForm();
 
         $form = $this->createFormBuilder($loginForm)
@@ -53,8 +51,6 @@ class AdminController extends Controller
 
             $email = $loginForm->getEmail();
             $password = $loginForm->getPassword();
-            
-            $this->generateUrl($route);
 
             $manager = $this->get('psi.admin.user.manager');
 

@@ -87,9 +87,9 @@ class User
     protected $resetToken;
     
     /**
-     * Administrator user notes
+     * Additional serialized data
      * @var string
-     * @ORM\Column(name="additional_data", type="string", length=512, nullable=true)
+     * @ORM\Column(name="additional_data", type="text", nullable=true)
      */    
     protected $additionalData;
 

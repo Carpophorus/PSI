@@ -5,7 +5,7 @@
 <?php $view['UI']->start('_content') ?>
 
 <?php $configurationData = $configurationRegistry->getConfigurationGroups(); ?>
-<form action="<?php echo $action; ?>" method="POST">
+<form action="<?php echo $action; ?>" method="POST" onSubmit="AdminUI.submitForm(this); return false;">
     <button type="submit">Update configuration</button>
     <div class="configuration-wrapper">
         <ul class="nav nav-tabs" role="tablist">
