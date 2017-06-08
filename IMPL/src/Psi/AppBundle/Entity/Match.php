@@ -37,7 +37,7 @@ class Match
     /**
      *
      * @var string
-     *  @ORM\Column(name="version", type="string") 
+     *  @ORM\Column(name="version", type="string", nullable=true) 
      */
     protected $version;
 
@@ -50,14 +50,14 @@ class Match
 
     /**
      * @var string
-     * @ORM\Column(name="duration", type="bigint")
+     * @ORM\Column(name="duration", type="bigint", nullable=true)
      */
     protected $duration;
 
     /**
      *
      * @var string
-     * @ORM\Column(name="season", type="string")
+     * @ORM\Column(name="season", type="string", nullable=true)
      */
     protected $season;
 

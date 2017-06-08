@@ -106,11 +106,16 @@ class AccountController extends Controller
                 $event = new InteractiveLoginEvent($request, $token);
                 $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
+                $this->addFlash('success', "You have been logged in.");
+                return $this->redirect('');
                 // echo success message
             } else {
                 // echo fail message
+                $this->addFlash('error', "Invalid login information.");
             }
         }
+
+        return $this->redirectToRoute('user_index_action');
     }
 
     /**

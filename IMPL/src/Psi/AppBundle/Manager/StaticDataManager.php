@@ -20,6 +20,18 @@ class StaticDataManager
      */
     private $objectManager;
 
+    /**
+     * In memory cache to reduce DB calls
+     * @var array
+     */
+    private $_cache = [];
+
+    /**
+     * In memory file cache to reduce disk file lookups
+     * @var array
+     */
+    protected $_fileCache = [];
+
     public function __construct(StaticFileManagerInterface $fileManager, ObjectManager $objectManager)
     {
         $this->fileManager = $fileManager;
@@ -33,10 +45,15 @@ class StaticDataManager
 
     public function getStaticData($namespace, $name)
     {
+        if (isset($this->_cache[$namespace][$name])) {
+            return $this->_cache[$namespace][$name];
+        }
+
         $cacheTagName = $this->getCacheTagname($namespace, $name);
         $cacheTag = $this->objectManager->getRepository(CacheTag::class)->findOneBy(['tag' => $cacheTagName]);
         if ($cacheTag) {
-            $data = unserialize($cacheTag->getCache()->getData());
+            $data = unserialize(stream_get_contents($cacheTag->getCache()->getData()));
+            $this->_cache[$namespace][$name] = $data;
             return $data;
         }
     }
@@ -50,11 +67,17 @@ class StaticDataManager
             $cache->setData(serialize($data));
             $this->objectManager->persist($cache);
             $this->objectManager->flush();
+
+            $this->_cache[$namespace][$name] = $data;
         }
     }
 
     public function flushStaticData($namespace, $name = null)
     {
+        if (isset($this->_cache[$namespace][$name])) {
+            unset($this->_cache[$namespace][$name]);
+        }
+
         if ($name) {
             $cacheTagName = $this->getCacheTagname($namespace, $name);
             $cacheTag = $this->objectManager->getRepository(CacheTag::class)->findOneBy(['tag' => $cacheTagName]);
@@ -85,15 +108,22 @@ class StaticDataManager
 
     public function getStaticFileData($namespace, $name)
     {
+        if (isset($this->_fileCache[$namespace][$name])) {
+            return $this->_fileCache[$namespace][$name];
+        }
+
         $file = $this->fileManager->getFile($namespace, $name);
+        $this->_fileCache[$namespace][$name] = $file;
         return $file;
     }
 
     public function flushStaticFileData($namespace, $name = null)
     {
         if (!$name) {
+            unset($this->_fileCache[$namespace]);
             return $this->fileManager->deleteFilesInNamespace($namespace);
         }
+        unset($this->_fileCache[$namespace][$name]);
         return $this->fileManager->deleteFile($namespace, $name);
     }
 }

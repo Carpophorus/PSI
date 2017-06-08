@@ -10,5 +10,9 @@ class RestResponse extends AbstractResponse
         $this->_status = $responseInfo;
     }
     
+    public function setHeader($header) {
+        $this->_header = $header;
+    }
+    
     
 }

@@ -32,9 +32,40 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository(User::class);
 
+        $page = $request->get('page') ? $request->get('page') : 1;
+        $pageSize = 30;
+
+        /*$users = $repository->findBy(
+            [], ['id' => 'ASC'], $pageSize, $page * $pageSize
+        );*/
+        
+        $users = $repository->findAll();
+
+        $data = [];
+
+        foreach ($users as $user) {
+            if($user->getAdditionalData()) {
+                $additional = unserialize($user->getAdditionalData());                
+            } else {
+                $additional['summonerName'] = "";
+                $additional['firstname'] = "";
+                $additional['lastname'] = "";
+            } 
+
+            $_data = [];
+            $_data['id'] = $user->getId();
+            $_data['email'] = $user->getEmail();
+            $_data['summonerName'] = $additional['summonerName'];
+            $_data['firstname'] = $additional['firstname'];
+            $_data['lastname'] = $additional['lastname'];
+            $_data['status'] = $user->getStatus();
+
+            $data[] = $_data;
+        }
+
         return $this->render(
                 'PsiAdminBundle:User:list.html.php', [
-                'repository' => $repository,
+                'userData' => $data,
                 'router' => $this->container->get('router')
         ]);
     }
@@ -61,17 +92,18 @@ class UserController extends Controller
     protected function buildUserForm(UserForm $userForm, $statusRegistry)
     {
         return $this->createFormBuilder($userForm)
-                ->add('email', EmailType::class)
-                ->add('firstname', TextType::class)
-                ->add('lastname', TextType::class)
-                ->add('password', PasswordType::class)
+                ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
+                ->add('firstname', TextType::class, ['attr' => ['class' => 'form-control']])
+                ->add('lastname', TextType::class, ['attr' => ['class' => 'form-control']])
+                ->add('password', PasswordType::class, ['attr' => ['class' => 'form-control']])
                 ->add('status', ChoiceType::class, [
-                    'choices' => $statusRegistry->toFormOptions()
+                    'choices' => $statusRegistry->toFormOptions(),
+                    'attr' => ['class' => 'form-control']
                 ])
-                ->add('summonerName', TextType::class)
-                ->add('purchaseOrderNumber', TextType::class)
-                ->add('additionalData', TextareaType::class)
-                ->add('save', SubmitType::class, array('label' => 'Save'))
+                ->add('summonerName', TextType::class, ['attr' => ['class' => 'form-control']])
+                ->add('purchaseOrderNumber', TextType::class, ['attr' => ['class' => 'form-control']])
+                ->add('additionalData', TextareaType::class, ['attr' => ['class' => 'form-control']])
+                ->add('save', SubmitType::class, ['label' => 'Save', 'attr' => ['class' => 'btn btn-primary']])
                 ->getForm();
     }
 
@@ -109,7 +141,7 @@ class UserController extends Controller
             $user->getEntity()
                 ->setStatus($userForm->getStatus())
                 ->setAdditionalData($additionalData);
-            
+
             $manager->saveUser($user);
 
             $this->addFlash('success', 'User added.');

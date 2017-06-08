@@ -33,7 +33,7 @@
                     $links = [
                         'dashboard' => $router->generate('admin_dashboard_action'),
                         'system configuration' => $router->generate('configuration_index_action'),
-                        'system statistics' => $router->generate('configuration_index_action'),
+                        'system statistics' => $router->generate('statistics_list_action'),
                         'display users' => $router->generate('admin_user_list_action'),
                         'new user' => $router->generate('admin_user_new_action')
                     ];

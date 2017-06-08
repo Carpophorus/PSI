@@ -15,6 +15,12 @@ class DataTableHelper extends Helper
     {
         return 'datatable';
     }
+    
+    protected $templating;
+    
+    public function __construct($templating) {
+        $this->templating = $templating;
+    }
 
     public function renderTable($heading, $data, $cssId, $cssClass, $actions)
     {
