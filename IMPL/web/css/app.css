@@ -31,6 +31,12 @@ header
     top: 0;
 
     height: 8vh;
+
+    text-align: right;
+
+    background: url('../img/N2M.svg') no-repeat;
+    background-position: 10% center;
+    background-size: 13vh 13vh;
 }
 
 footer
@@ -76,7 +82,8 @@ a span
 input:focus,
 select:focus,
 textarea:focus,
-button:focus {
+button:focus
+{
     outline: none;
 }
 
@@ -111,7 +118,8 @@ button:focus {
     background-color: transparent;
 }
 
-#main-content > div
+#main-content > div,
+#main-content > form
 {
     position: relative;
 }
