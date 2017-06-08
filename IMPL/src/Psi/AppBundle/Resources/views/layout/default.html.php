@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="NOOB 2 MASTER: your road to LoL mastery">
         <title><?php $view['UI']->output('title', 'N2M') ?></title>
+        <link href="https://fonts.googleapis.com/css?family=Bangers|Oswald" rel="stylesheet">
         <?php $view['UI']->output('_styles'); ?>
         <?php $view['UI']->output('_scripts'); ?>
     </head>
@@ -20,11 +21,11 @@
                             <?php echo $flash_message ?>
                         </div>
                     <?php endforeach; ?>
-                <?php endforeach; ?>      
+                <?php endforeach; ?>
             </div>
-            <?php $view['UI']->output('_content'); ?>            
+            <?php $view['UI']->output('_content'); ?>
         </div>
-        <footer id="footer" class="panel-footer">
+        <footer>
             <?php $view['UI']->output('_footer'); ?>
             <?php $view['UI']->output('_footer_scripts'); ?>
         </footer>
