@@ -33,7 +33,7 @@
         <div class="sc-label">Enter Summoner Name:</div>
         <input type="text" name="summoner" class="sc-input" placeholder="Example: Doublelift" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Example: Doublelift'">
         </input>
-        <button class="sc-button button">Search</button>
+        <button class="sc-button button"></button>
     </div>
 </form>
 <div id="search-results"></div>
