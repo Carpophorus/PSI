@@ -1,3 +1,233 @@
-body {
-    background: #cecece;
+/*font-family: 'Bangers', cursive;*/
+
+/*GENERAL*/
+
+body
+{
+    font-family: 'Oswald', sans-serif;
+    font-size: 3vh;
+
+    position: relative;
+}
+
+header,
+footer
+{
+    position: fixed;
+    z-index: 1000;
+
+    width: 100%;
+    padding: 0;
+
+    color: #696969;
+    background: #f7f9f9;
+}
+
+header
+{
+    font-size: 4vh;
+    line-height: 8vh;
+
+    top: 0;
+
+    height: 8vh;
+}
+
+footer
+{
+    font-size: 1.2vh;
+    line-height: 2.5vh;
+
+    bottom: 0;
+
+    height: 2.5vh;
+
+    text-align: center;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited
+{
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+a:hover
+{
+    font-size: 120%;
+}
+
+a span
+{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+::-webkit-input-placeholder
+{
+    color: #b0b0b0;
+}
+
+:-ms-input-placeholder
+{
+    color: #b0b0b0;
+}
+
+::-moz-placeholder
+{
+    color: #b0b0b0;
+}
+
+:-moz-placeholder
+{
+    color: #b0b0b0;
+}
+
+#main-content
+{
+    position: relative;
+
+    min-height: 100vh;
+    padding-top: 8vh;
+
+    color: #f7f9f9;
+    background-color: transparent;
+}
+
+#main-content > div
+{
+    position: relative;
+}
+
+/*BACKGROUNDS*/
+
+#main-content [id$=bckgrnd]
+{
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#lsp-bckgrnd
+{
+    background: url('../img/1.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#runes-bckgrnd
+{
+    background: url('../img/2.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#masteries-bckgrnd
+{
+    background: url('../img/3.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#lp-bckgrnd
+{
+    background: url('../img/4.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#s-bckgrnd
+{
+    background: url('../img/5.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+/*#lp-bckgrnd
+{
+    background: url('../img/6.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}*/
+
+/*#lp-bckgrnd
+{
+    background: url('../img/7.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}*/
+
+/*SEARCH*/
+
+.search-container
+{
+    padding-top: 30vh;
+}
+
+.search-container .sc-label
+{
+    display: block;
+
+    text-align: center;
+}
+
+.search-container input
+{
+    line-height: 6vh;
+
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    width: 40%;
+    height: 6vh;
+    margin: auto;
+    margin-top: 5vh;
+
+    text-align: center;
+
+    border: none;
+    border-radius: 3vh;
+    background: rgba(0,0,0,.2);
+}
+
+.search-container .sc-button
+{
+    position: absolute;
+    top: 39.2vh;
+    right: 30vw;
+
+    width: 7vh;
+    height: 6vh;
+    margin: auto;
+
+    border: none;
+    border-radius: 3vh;
+    background: url('../img/search.svg') no-repeat;
+    background-position: center;
+    background-size: 4vh 4vh;
+}
+
+.search-container .sc-button:hover
+{
+    background-color: rgba(0,0,0,.15);
 }
