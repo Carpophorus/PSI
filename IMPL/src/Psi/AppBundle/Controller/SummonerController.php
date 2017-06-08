@@ -44,6 +44,7 @@ class SummonerController extends Controller
      */
     public function masteriesAction(Request $request)
     {
+        
         return $this->render(
                 'PsiAppBundle:Summoner:masteries.html.php', [
                 'router' => $this->container->get('router'),

@@ -30,7 +30,7 @@ class DenormalizeController extends Controller
      */
     public function testSummonerActon(Request $request)
     {
-        $summonerName = "Kingz";
+        $summonerName = "Kingq";
 
         $requestFactory = $this->get('psi.app.request.factory');
 
@@ -52,8 +52,8 @@ class DenormalizeController extends Controller
         if ($existing = $em->getRepository(get_class($summoner))->findOneBy(['externalId' => $responseData['id']])) {
             $summoner = $existing;
         }
-        $serializer->denormalize($apiResponse->getData(), "Psi\AppBundle\Entity\Summoner", 'json', ['object_to_populate' => $summoner]);
-
+        $serializer->denormalize($responseData, "Psi\AppBundle\Entity\Summoner", 'json', ['object_to_populate' => $summoner]);
+        $summoner->setExternalId($responseData['id']);
         $summoner->setUpdatedAt(new \DateTime());
         $summoner->setImportedAt(new \DateTime());
         $this->getDoctrine()->getEntityManager()->persist($summoner);

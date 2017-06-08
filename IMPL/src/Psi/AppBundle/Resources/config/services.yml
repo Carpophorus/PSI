@@ -14,7 +14,13 @@ services:
         class: Psi\ApiBundle\Request\Factory\RequestFactory
         arguments:
             - "@psi.app.request.configuration.authenthication"
+            - "@event_dispatcher"
 
+    
+    psi.app.denormalizer.summoner:
+        class: Psi\AppBundle\Serializer\Denormalizer\SummonerDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"     
     
     psi.app.denormalizer.runePage:
         class: Psi\AppBundle\Serializer\Denormalizer\RunePageDenormalizer
@@ -29,12 +35,21 @@ services:
     psi.app.denormalizer.match:
         class: Psi\AppBundle\Serializer\Denormalizer\MatchDenormalizer
         arguments:
-            - "@doctrine.orm.entity_manager"               
+            - "@doctrine.orm.entity_manager"    
+            
+    psi.app.denormalizer.active.match:
+        class: Psi\AppBundle\Serializer\Denormalizer\ActiveMatchDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"         
+            - "@service_container"
 
 
     psi.app.manager.api.response.manager:
         class: Psi\AppBundle\Manager\ApiResponseManager
         calls:
+            - method: addResponseHandler
+              arguments: 
+                  - "@psi.app.denormalizer.summoner"            
             - method: addResponseHandler
               arguments: 
                   - "@psi.app.denormalizer.runePage"
@@ -43,7 +58,10 @@ services:
                   - "@psi.app.denormalizer.masteryPage"    
             - method: addResponseHandler
               arguments: 
-                  - "@psi.app.denormalizer.match"         
+                  - "@psi.app.denormalizer.match"        
+            - method: addResponseHandler
+              arguments: 
+                  - "@psi.app.denormalizer.active.match"                        
 
     psi.app.provider.static.data.provider:
         class: Psi\AppBundle\Provider\StaticDataProvider
@@ -55,6 +73,8 @@ services:
     psi.app.manager.static.file.manager:
         class: Psi\AppBundle\Manager\StaticFileManager
         arguments:
+            - "%kernel.root_dir%"
+            - "@templating.helper.assets"
 
                   
     psi.app.manager.static.data.manager:
@@ -62,3 +82,10 @@ services:
         arguments:
             - "@psi.app.manager.static.file.manager"
             - "@doctrine.orm.entity_manager"
+            
+    psi.app.request.helper:
+        class: Psi\AppBundle\Request\Helper
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@psi.app.request.factory"
+            - "@psi.app.manager.api.response.manager"

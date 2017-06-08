@@ -9,7 +9,19 @@ services:
             - raw
             - "%psi.configuration.view.template.default%"
         tags:
-            - { name: psi.configuration }    
+            - { name: psi.configuration }   
+            
+    psi.app.configuration.api.delay:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.app.api.delay
+            - Api
+            - Request delay time
+            - raw
+            - "%psi.configuration.view.template.default%"
+            - 0
+        tags:
+            - { name: psi.configuration }                
             
     psi.app.configuration.cache.duration:
         class: "%psi.configuration.item.class%"

@@ -14,7 +14,7 @@ class MasteryPageDenormalizer extends AbstractResponseDenormalizer
     public function denormalizeResponse(\Psi\ApiBundle\Response\AbstractResponse $response)
     {
         $data = $response->getData();
-
+        
         $masteryPages = [];
         $normalizer = new ObjectNormalizer(null, new MasteryPageConverter(), null, new ReflectionExtractor());
         $serializer = new Serializer([$normalizer, new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer()]);

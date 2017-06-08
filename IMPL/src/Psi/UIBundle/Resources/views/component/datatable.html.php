@@ -1,33 +1,33 @@
-<div 
-    class="data-table <?php echo $class; ?>" 
-    <?php echo $attributes; ?>
+<table 
+    class="table table-hover data-table <?php echo $class; ?>" 
+    <?php echo isset($attributes) ? $attributes : ""; ?>
     id="<?php echo $id; ?>">
-    <div class="data-table-heading">
+    <thead class="data-table-heading">
         <?php $heading[] = "actions"; ?>
         <?php foreach ($heading as $th): ?>
-            <div>
+            <th>
                 <span><?php echo $th; ?></span>
-            </div>
+            </th>
         <?php endforeach; ?>
-    </div>
-    <div class="data-table-content">
+    </thead>
+    <tbody class="data-table-content">
         <?php foreach ($data as $row): ?>
-            <div class="data-table-row">
+            <tr class="data-table-row">
                 <?php foreach ($row as $td): ?>
-                    <div>
+                    <td>
                         <span><?php echo $td; ?></span>
-                    </div>
+                    </td>
                 <?php endforeach; ?>
-                <div class="row-actions">
+                <td class="row-actions">
                     <?php foreach ($actions as $action): ?>
                         <div class="action-<?php echo $action['name']; ?>">
-                            <button onclick="<?php echo $action['jsMethod']; ?>(this);">
+                            <button onclick="<?php echo $action['jsMethod']; ?>(<?php echo $row[$action['data']] ?>);">
                                 <?php echo $action['label']; ?>
                             </button>
                         </div>
                     <?php endforeach; ?>
-                </div>
-            </div>
+                </td>
+            </tr>
         <?php endforeach; ?>
-    </div>
-</div>
+    </tbody>
+</table>

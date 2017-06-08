@@ -18,12 +18,13 @@ class SummonerDenormalizer extends AbstractResponseDenormalizer
         $serializer = new Serializer([$normalizer, new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer()]);
         $externalId = $data['id'];
 
-        $summoner = $this->manager->getRepository(Summoner::class)->findOneBy(['external_id' => $externalId]);
+        $summoner = $this->manager->getRepository(Summoner::class)->findOneBy(['externalId' => $externalId]);
         if (!$summoner) {
             $summoner = new Summoner();
         }
 
         $serializer->denormalize($data, Summoner::class, 'json', ['object_to_populate' => $summoner]);
+        $summoner->setExternalId($data['id']);
 
         return $summoner;
     }

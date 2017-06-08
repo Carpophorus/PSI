@@ -37,7 +37,7 @@ class MasteryPage
     /**
      * @var Mastery[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="Psi\AppBundle\Entity\Mastery", mappedBy="masteryPage",cascade={"all"})
-     * @ORM\OrderBy({"endDate" = "DESC"})
+     * @ORM\OrderBy({"externalId" = "DESC"})
      */
     protected $masteries;
 

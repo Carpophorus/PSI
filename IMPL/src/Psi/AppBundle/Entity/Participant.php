@@ -34,14 +34,14 @@ class Participant
     /**
      *
      * @var RunePage
-     * @ORM\OneToOne(targetEntity="Psi\AppBundle\Entity\RunePage",cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\RunePage",cascade={"all"})
      */
     protected $runepage;
 
     /**
      *
      * @var MasteryPage
-     * @ORM\OneToOne(targetEntity="Psi\AppBundle\Entity\MasteryPage",cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Psi\AppBundle\Entity\MasteryPage",cascade={"all"})
      */
     protected $masteryPage;
 
@@ -82,7 +82,7 @@ class Participant
     /**
      *
      * @var string
-     * @ORM\Column(name="achieved_season_tier", type="string")  
+     * @ORM\Column(name="achieved_season_tier", type="string", nullable=true)  
      */
     protected $highestAchievedSeasonTier;
 

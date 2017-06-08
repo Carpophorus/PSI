@@ -10,6 +10,10 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+/**
+ * @Route("/statistics")
+ * @Security("has_role('ROLE_ADMIN')")
+ */
 class StatisticsController extends Controller
 {
 

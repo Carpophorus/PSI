@@ -2,6 +2,7 @@
 namespace Psi\ApiBundle\Request;
 
 use Psi\ApiBundle\Response\ResponseInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 abstract class AbstractRequest implements RequestInterface
 {
@@ -17,6 +18,12 @@ abstract class AbstractRequest implements RequestInterface
      * @var ResponseInterface 
      */
     protected $_response;
+
+    /**
+     *
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
 
     /**
      * Default parameters
@@ -47,5 +54,15 @@ abstract class AbstractRequest implements RequestInterface
     public function getQueryParams()
     {
         return [];
+    }
+
+    public function setEventDispatcher(EventDispatcherInterface $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
+    }
+
+    public function getEventDispatcher()
+    {
+        return $this->dispatcher;
     }
 }
