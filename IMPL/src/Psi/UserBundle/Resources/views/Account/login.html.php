@@ -7,17 +7,29 @@
 <?php $view['UI']->stop(); ?>
 
 <?php $view['UI']->start('_content') ?>
+
+<script type="text/javascript">
+    
+    window.toggleSection = function(section) {
+        $(".section-tab").hide(0);
+        var $section = $("." + section + "-container");
+        $section.stop().show(0);
+        $section.removeClass("hidden");
+    }
+
+</script>
+
 <div id="lsp-bckgrnd"></div>
 <div class="lsp-container">
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary active">
-            <input type="radio" name="options" id="option1" checked>Log In</input>
+        <label onclick="toggleSection('login');" class="btn btn-primary active">
+            <input  type="radio" name="options" id="option1" checked>Log In</input>
         </label>
-        <label class="btn btn-primary">
-            <input type="radio" name="options" id="option2">Sign Up</input>
+        <label onclick="toggleSection('signup');" class="btn btn-primary">
+            <input  type="radio" name="options" id="option2">Sign Up</input>
         </label>
-        <label class="btn btn-primary">
-            <input type="radio" name="options" id="option3">Password Change</input>
+        <label onclick="toggleSection('passchange');" class="btn btn-primary">
+            <input  type="radio" name="options" id="option3">Password Change</input>
         </label>
     </div>
     <?php echo $view->render("PsiUserBundle:Account:_partial/register.html.php", ['form' => $registerForm]); ?>

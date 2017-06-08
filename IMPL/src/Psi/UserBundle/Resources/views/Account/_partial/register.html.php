@@ -1,4 +1,4 @@
-<div class="signup-container hidden">
+<div class="signup-container hidden section-tab">
     <?php $view['form']->start($form); ?>
     <div class="lsp-label">First Name:</div>
     <input type="text" name="name" id="lsp-name"></input>

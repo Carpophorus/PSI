@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container section-tab">
     <?php $view['form']->start($form); ?>
     <div class="lsp-label">Enter E-mail Address:</div>
     <input type="email" name="email" id="lsp-email"></input>
