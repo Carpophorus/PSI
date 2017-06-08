@@ -34,6 +34,10 @@ foreach ($masteries as $_mastery) {
                     <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
                 <?php endif; ?>
                 <span><?php echo "$rank / $maxRank"; ?></span>
+                <div class="hvr-mastery-data">
+                    <?php $descriptionRank = isset($staticData[$masteryId]['description'][$rank]) ? $rank : 0; ?>
+                    <?php echo $staticData[$masteryId]['description'][$descriptionRank]; ?>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
@@ -50,6 +54,10 @@ foreach ($masteries as $_mastery) {
                     <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
                 <?php endif; ?>
                 <span><?php echo "$rank / $maxRank"; ?></span>
+                <div class="hvr-mastery-data">
+                    <?php $descriptionRank = isset($staticData[$masteryId]['description'][$rank]) ? $rank : 0; ?>
+                    <?php echo $staticData[$masteryId]['description'][$descriptionRank]; ?>
+                </div>             
             </div>        
         <?php endforeach; ?>
     </div>
@@ -66,6 +74,10 @@ foreach ($masteries as $_mastery) {
                     <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
                 <?php endif; ?>
                 <span><?php echo "$rank / $maxRank"; ?></span>
+                <div class="hvr-mastery-data">
+                    <?php $descriptionRank = isset($staticData[$masteryId]['description'][$rank]) ? $rank : 0; ?>
+                    <?php echo $staticData[$masteryId]['description'][$descriptionRank]; ?>
+                </div>               
             </div>        
         <?php endforeach; ?>
     </div>
