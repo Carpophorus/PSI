@@ -2,7 +2,7 @@
 <?php $blueTeam = $teams->get(0); ?>
 <?php $redTeam = $teams->get(1); ?>
 <div id="s-bckgrnd"></div>
-<a href="<?php echo $router->generate('app_match_action', ['match' => $match->getId()]); ?>">    
+<a href="<?php echo $router->generate('app_match_action', ['match' => $match->getId()]); ?>">
     <div class="teams-container">
         <div class="blue-team-container">
             <?php foreach ($match->getParticipants() as $participant): ?>
@@ -24,7 +24,7 @@
             <div class="red-team-member-container">
                 <?php foreach ($match->getParticipants() as $participant): ?>
                     <?php if ($participant->getTeam() !== $redTeam): ?>
-                        <div class="blue-team-member">
+                        <div class="red-team-member">
                             <div class="grayscale-champion-icon">
                                 <img src="<?php echo $static['file']['champion'][$participant->getChampionId()]; ?>" />
                             </div>

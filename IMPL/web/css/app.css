@@ -51,6 +51,23 @@ footer
     text-align: center;
 }
 
+#main-content .messages
+{
+    font-size: 2vh;
+    line-height: 5vh;
+
+    position: absolute;
+    z-index: 1000;
+    bottom: 2.5vh;
+
+    width: 100%;
+    height: 5vh;
+
+    text-align: center;
+
+    background: rgba(27,188,155,.6);
+}
+
 a,
 a:hover,
 a:focus,
@@ -61,11 +78,6 @@ a:visited
     text-decoration: none;
 
     color: inherit;
-}
-
-a:hover
-{
-    font-size: 120%;
 }
 
 a span
@@ -141,19 +153,19 @@ button:focus
     background-size: 100% auto;
 }
 
-#runes-bckgrnd
+/*#runes-bckgrnd
 {
     background: url('../img/2.png') no-repeat;
     background-position: center;
     background-size: 100% auto;
-}
+}*/
 
-#masteries-bckgrnd
+/*#masteries-bckgrnd
 {
     background: url('../img/3.png') no-repeat;
     background-position: center;
     background-size: 100% auto;
-}
+}*/
 
 #lp-bckgrnd
 {
@@ -187,7 +199,9 @@ button:focus
 
 .search-container
 {
-    padding-top: 30vh;
+    padding-top: 20vh;
+
+    text-align: center;
 }
 
 .search-container .sc-label
@@ -209,7 +223,7 @@ button:focus
     width: 40%;
     height: 6vh;
     margin: auto;
-    margin-top: 5vh;
+    margin-top: 1.5vh;
 
     text-align: center;
 
@@ -220,22 +234,258 @@ button:focus
 
 .search-container .sc-button
 {
-    position: absolute;
-    top: 39.2vh;
-    right: 30vw;
-
-    width: 7vh;
+    width: 15%;
     height: 6vh;
-    margin: auto;
+    margin-top: 6vh;
 
     border: none;
     border-radius: 3vh;
-    background: url('../img/search.svg') no-repeat;
+    background-color: rgba(255,255,255,.15);
+    background-image: url('../img/search.svg');
+    background-repeat: no-repeat;
     background-position: center;
     background-size: 4vh 4vh;
 }
 
 .search-container .sc-button:hover
 {
-    background-color: rgba(0,0,0,.15);
+    background-color: rgba(255,255,255,.35);
+}
+
+/*ACCOUNT*/
+
+.lsp-container
+{
+    padding-top: 20vh;
+
+    text-align: center;
+}
+
+.btn-group
+{
+    display: inline-block;
+
+    height: 6vh;
+    margin-bottom: 5vh;
+
+    border-radius: 3vh;
+}
+
+.btn
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    padding: 0 5vh;
+
+    border: none;
+    border-radius: 3vh;
+}
+
+.btn-primary
+{
+    background-color: rgba(255,255,255,.15);
+}
+
+.btn-primary.active,
+.btn-primary:active,
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active.hover,
+.btn-primary.active:hover,
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:active.hover,
+.btn-primary:active:hover,
+.btn-primary.hover,
+.btn-primary:hover,
+.btn-primary.focus,
+.btn-primary:focus
+{
+    outline: none;
+    background-color: rgba(255,255,255,.35);
+    box-shadow: none;
+}
+
+.lsp-container .lsp-label
+{
+    margin-top: 3vh;
+
+    text-align: center;
+}
+
+.lsp-container input
+{
+    line-height: 6vh;
+
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    width: 40%;
+    height: 6vh;
+    margin: auto;
+    margin-top: 1.5vh;
+
+    text-align: center;
+
+    border: none;
+    border-radius: 3vh;
+    background: rgba(0,0,0,.2);
+}
+
+.section-tab button
+{
+    line-height: 6vh;
+
+    width: 15%;
+    height: 6vh;
+    margin-top: 6vh;
+    padding: 0;
+
+    border: none;
+    border-radius: 3vh;
+    background: rgba(255,255,255,.15);
+}
+
+.section-tab button:hover
+{
+    background: rgba(255,255,255,.35);
+}
+
+.signup-container button
+{
+    margin-bottom: 20vh;
+}
+
+/*MATCH INFO ON SEARCH*/
+
+#search-results #s-bckgrnd
+{
+    background: none;
+}
+
+#search-results .blue-team-container,
+#search-results .red-team-container
+{
+    float: left;
+
+    width: 50%;
+    margin-top: 8vh;
+}
+
+#search-results .blue-team-member,
+#search-results .red-team-member
+{
+    font-size: 70%;
+
+    position: relative;
+
+    height: 6vh;
+    margin-bottom: 1vh;
+
+    background: rgba(0,0,0,.2);
+}
+
+#search-results .blue-team-member
+{
+    margin-right: 2.5%;
+
+    border-radius: 0 3vh 3vh 0;
+}
+
+#search-results .red-team-member
+{
+    margin-left: 2.5%;
+
+    border-radius: 3vh 0 0 3vh;
+}
+
+#search-results .grayscale-champion-icon img
+{
+    width: 5vh;
+    height: 5vh;
+
+    border-radius: 2.5vh;
+
+    -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+}
+
+#search-results .blue-team-member .grayscale-champion-icon
+{
+    position: absolute;
+    top: .45vh;
+    right: .5vh;
+}
+
+#search-results .blue-team-member .champion-icon-tint
+{
+    position: absolute;
+    top: .4vh;
+    right: .5vh;
+
+    width: 5vh;
+    height: 5vh;
+
+    border-radius: 2.5vh;
+    background: rgba(75,142,203,.4);
+}
+
+#search-results .red-team-member .grayscale-champion-icon
+{
+    position: absolute;
+    top: .45vh;
+    left: .5vh;
+}
+
+#search-results .red-team-member .champion-icon-tint
+{
+    position: absolute;
+    top: .4vh;
+    left: .5vh;
+
+    width: 5vh;
+    height: 5vh;
+
+    border-radius: 2.5vh;
+    background: rgba(204,82,79,.4);
+}
+
+#search-results .blue-team-member .champion-name,
+#search-results .blue-team-member .summoner-name
+{
+    line-height: 6vh;
+
+    position: absolute;
+    right: 7vh;
+
+    height: 6vh;
+}
+
+#search-results .blue-team-member .summoner-name
+{
+    right: 30%;
+}
+
+#search-results .red-team-member .champion-name,
+#search-results .red-team-member .summoner-name
+{
+    line-height: 6vh;
+
+    position: absolute;
+    left: 7vh;
+
+    height: 6vh;
+}
+
+#search-results .red-team-member .summoner-name
+{
+    left: 30%;
+}
+
+#search-results .champion-mastery-icon
+{
+    visibility: hidden;
 }
