@@ -1,4 +1,4 @@
-/*font-family: 'Bangers', cursive;*/
+/* Marko Mrkonjić 3139/2016 */
 
 /*GENERAL*/
 
@@ -25,6 +25,7 @@ footer
 
 header
 {
+    font-family: 'Bangers', cursive;
     font-size: 4vh;
     line-height: 8vh;
 
@@ -37,6 +38,43 @@ header
     background: url('../img/N2M.svg') no-repeat;
     background-position: 10% center;
     background-size: 13vh 13vh;
+}
+
+header nav
+{
+    float: right;
+
+    max-width: 80%;
+    height: 8vh;
+    min-height: 0;
+}
+
+.navbar
+{
+    min-height: 0;
+    margin: 0;
+}
+
+.navbar-nav
+{
+    position: absolute;
+    right: 5vw;
+}
+
+.navbar-default
+{
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav li a
+{
+    font-size: inherit;
+    line-height: inherit;
+
+    padding: 0 2.5vw 0 2.5vw;
+
+    color: #696969;
 }
 
 footer
@@ -529,14 +567,14 @@ button:focus
 
 .blue-team-member-container
 {
-    margin-right: 2.5%;
+    margin-right: 2vh;
 
     border-radius: 0 6vh 6vh 0;
 }
 
 .red-team-member-container
 {
-    margin-left: 2.5%;
+    margin-left: 2vh;
 
     border-radius: 6vh 0 0 6vh;
 }
@@ -648,7 +686,6 @@ button:focus
     height: 4vh;
 
     border-radius: 2vh;
-    background: rgba(0,0,0,.5);
 }
 
 .summoner-icon img,
@@ -657,6 +694,8 @@ button:focus
 {
     width: 4vh;
     height: 4vh;
+
+    vertical-align: top;
 
     border-radius: 2vh;
 }
@@ -700,28 +739,24 @@ button:focus
 {
     position: absolute;
 
-    width: 5vh;
-    height: 5vh;
-
-    background: rgba(0,0,0,.5);
+    width: 6vh;
+    height: 6vh;
 }
 
 .champion-mastery-icon img
 {
-    width: 5vh;
-    height: 5vh;
+    width: 6vh;
+    height: 6vh;
 }
 
 .blue-team-member-container .champion-mastery-icon
 {
-    top: -1vh;
-    right: 8vh;
+    right: 7.5vh;
 }
 
 .red-team-member-container .champion-mastery-icon
 {
-    top: -1vh;
-    left: 8vh;
+    left: 7.5vh;
 }
 
 .masteries-icon,
@@ -734,22 +769,70 @@ button:focus
 
 .blue-team-member-container .masteries-icon
 {
-    right: 50vh;
+    right: 55%;
 }
 
 .blue-team-member-container .runes-icon
 {
-    right: 57vh;
+    right: 64%;
 }
 
 .red-team-member-container .masteries-icon
 {
-    left: 50vh;
+    left: 55%;
 }
 
 .red-team-member-container .runes-icon
 {
-    left: 57vh;
+    left: 64%;
+}
+
+.blue-team-member-container:nth-child(1) .masteries-icon,
+.blue-team-member-container:nth-child(5) .masteries-icon
+{
+    right: 42%;
+}
+
+.blue-team-member-container:nth-child(1) .runes-icon,
+.blue-team-member-container:nth-child(5) .runes-icon
+{
+    right: 51%;
+}
+
+.red-team-member-container:nth-child(1) .masteries-icon,
+.red-team-member-container:nth-child(5) .masteries-icon
+{
+    left: 42%;
+}
+
+.red-team-member-container:nth-child(1) .runes-icon,
+.red-team-member-container:nth-child(5) .runes-icon
+{
+    left: 51%;
+}
+
+.blue-team-member-container:nth-child(2) .masteries-icon,
+.blue-team-member-container:nth-child(4) .masteries-icon
+{
+    right: 53%;
+}
+
+.blue-team-member-container:nth-child(2) .runes-icon,
+.blue-team-member-container:nth-child(4) .runes-icon
+{
+    right: 62%;
+}
+
+.red-team-member-container:nth-child(2) .masteries-icon,
+.red-team-member-container:nth-child(4) .masteries-icon
+{
+    left: 53%;
+}
+
+.red-team-member-container:nth-child(2) .runes-icon,
+.red-team-member-container:nth-child(4) .runes-icon
+{
+    left: 62%;
 }
 
 .masteries-icon button,
@@ -787,18 +870,92 @@ button:focus
 }
 
 div[id^='summoner-runes-'],
-div[id*='summoner-runes-'],
-div[id^='summoner-masteries-'],
-div[id*='summoner-masteries-']
+div[id^='summoner-masteries-']
 {
-    float: left;
     position: absolute;
     z-index: 800;
     top: 13.3vh;
 
-    width: 80vh;
+    float: left;
+
+    width: 109%;
     height: 80vh;
 
-    border-radius: 45vh;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
     background: rgba(255,255,255,.1);
+
+    /*display: none;*/
+}
+
+.blue-team-member-container:nth-child(1) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(1) div[id^='summoner-masteries-']
+{
+    top: -5vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(2) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(2) div[id^='summoner-masteries-']
+{
+    top: -20vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(3) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(3) div[id^='summoner-masteries-']
+{
+    top: -35vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(4) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(4) div[id^='summoner-masteries-']
+{
+    top: -50vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(5) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(5) div[id^='summoner-masteries-']
+{
+    top: -65vh;
+    left: 47.5%;
+}
+
+.red-team-member-container:nth-child(1) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(1) div[id^='summoner-masteries-']
+{
+    top: -5vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(2) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(2) div[id^='summoner-masteries-']
+{
+    top: -20vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(3) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(3) div[id^='summoner-masteries-']
+{
+    top: -35vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(4) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(4) div[id^='summoner-masteries-']
+{
+    top: -50vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(5) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(5) div[id^='summoner-masteries-']
+{
+    top: -65vh;
+    right: 47.5%;
 }
