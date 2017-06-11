@@ -17,10 +17,10 @@ $renderAdvanced = true;
     <div class="summoner-name"><?php echo $participant->getSummoner()->getName(); ?></div>
     <?php if (isset($renderAdvanced) && $renderAdvanced): ?>
         <div class="masteries-icon">
-            <button onclick="App.getMasteries(<?php echo $participant->getId(); ?>);">Masteries</button>
+            <button onclick="App.getMasteries(<?php echo $participant->getId(); ?>);"></button>
         </div>
         <div class="runes-icon">
-            <button onclick="App.getRunes(<?php echo $participant->getId(); ?>);">Runes</button>
+            <button onclick="App.getRunes(<?php echo $participant->getId(); ?>);"></button>
         </div>
     <?php endif; ?>
     <div id="summoner-runes-<?php echo $participant->getId(); ?>"></div>

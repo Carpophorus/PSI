@@ -56,9 +56,9 @@ footer
     font-size: 2vh;
     line-height: 5vh;
 
-    position: absolute;
+    position: fixed;
     z-index: 1000;
-    bottom: 2.5vh;
+    top: 8vh;
 
     width: 100%;
     height: 5vh;
@@ -636,4 +636,169 @@ button:focus
     left: 12vh;
 
     height: 4vh;
+}
+
+.summoner-icon,
+.summoner-spell-1,
+.summoner-spell-2
+{
+    position: absolute;
+
+    width: 4vh;
+    height: 4vh;
+
+    border-radius: 2vh;
+    background: rgba(0,0,0,.5);
+}
+
+.summoner-icon img,
+.summoner-spell-1 img,
+.summoner-spell-2 img
+{
+    width: 4vh;
+    height: 4vh;
+
+    border-radius: 2vh;
+}
+
+.blue-team-member-container .summoner-icon
+{
+    top: 7.5vh;
+    right: 0;
+}
+
+.red-team-member-container .summoner-icon
+{
+    top: 7.5vh;
+}
+
+.blue-team-member-container .summoner-spell-1
+{
+    top: 1.5vh;
+    right: 20vh;
+}
+
+.red-team-member-container .summoner-spell-1
+{
+    top: 1.5vh;
+    left: 20vh;
+}
+
+.blue-team-member-container .summoner-spell-2
+{
+    top: 1.5vh;
+    right: 25vh;
+}
+
+.red-team-member-container .summoner-spell-2
+{
+    top: 1.5vh;
+    left: 25vh;
+}
+
+.champion-mastery-icon
+{
+    position: absolute;
+
+    width: 5vh;
+    height: 5vh;
+
+    background: rgba(0,0,0,.5);
+}
+
+.champion-mastery-icon img
+{
+    width: 5vh;
+    height: 5vh;
+}
+
+.blue-team-member-container .champion-mastery-icon
+{
+    top: -1vh;
+    right: 8vh;
+}
+
+.red-team-member-container .champion-mastery-icon
+{
+    top: -1vh;
+    left: 8vh;
+}
+
+.masteries-icon,
+.runes-icon
+{
+    position: absolute;
+    z-index: 900;
+    top: 3vh;
+}
+
+.blue-team-member-container .masteries-icon
+{
+    right: 50vh;
+}
+
+.blue-team-member-container .runes-icon
+{
+    right: 57vh;
+}
+
+.red-team-member-container .masteries-icon
+{
+    left: 50vh;
+}
+
+.red-team-member-container .runes-icon
+{
+    left: 57vh;
+}
+
+.masteries-icon button,
+.runes-icon button
+{
+    width: 6vh;
+    height: 6vh;
+
+    border: none;
+    border-radius: 3vh;
+}
+
+.masteries-icon button:hover,
+.runes-icon button:hover
+{
+    background-color: rgba(255,255,255,.5);
+}
+
+.masteries-icon button
+{
+    background-color: rgba(255,255,255,.15);
+    background-image: url('../img/masteries-button.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+.runes-icon button
+{
+    background-color: rgba(255,255,255,.15);
+    background-image: url('../img/runes-button.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+div[id^='summoner-runes-'],
+div[id*='summoner-runes-'],
+div[id^='summoner-masteries-'],
+div[id*='summoner-masteries-']
+{
+    float: left;
+    position: absolute;
+    z-index: 800;
+    top: 13.3vh;
+
+    width: 80vh;
+    height: 80vh;
+
+    border-radius: 45vh;
+    background: rgba(255,255,255,.1);
 }
