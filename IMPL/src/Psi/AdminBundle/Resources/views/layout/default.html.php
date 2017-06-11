@@ -60,6 +60,10 @@
                             }
                         });
                         return false;
+                    },
+                    editUser: function(id) {
+                        var baseUrl = "<?php echo $view['router']->path('admin_user_edit_action'); ?>";
+                        window.location = baseUrl + "/" + id;
                     }
                 };
                 $(document).ajaxStart(function () {

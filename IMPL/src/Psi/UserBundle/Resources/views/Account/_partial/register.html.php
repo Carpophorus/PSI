@@ -1,7 +1,7 @@
 <div class="signup-container hidden section-tab">
-    <?php echo $view['form']->start($form); ?>
+    <form action="<?php echo $action; ?>" method="POST">
     <div class="lsp-label">First Name:</div>
-    <input type="text" name="name" id="lsp-name"></input>
+    <input type="text" name="firstname" id="lsp-name"></input>
     <div class="lsp-label">Last Name:</div>
     <input type="text" name="lastname" id="lsp-summ"></input>
     <div class="lsp-label">Enter E-mail Address:</div>

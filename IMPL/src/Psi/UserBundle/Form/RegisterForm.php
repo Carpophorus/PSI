@@ -23,7 +23,13 @@ class RegisterForm
      * @Assert\NotBlank()
      * @var string
      */
-    protected $username;
+    protected $firstname;
+
+    /**
+     * @Assert\NotBlank()
+     * @var string
+     */
+    protected $lastname;
 
     public function getEmail()
     {
@@ -45,13 +51,23 @@ class RegisterForm
         $this->password = $password;
     }
 
-    public function getUsername()
+    public function getFirstname()
     {
-        return $this->username;
+        return $this->firstname;
     }
 
-    public function setUsername($username)
+    public function getLastname()
     {
-        $this->username = $username;
+        return $this->lastname;
+    }
+
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
     }
 }

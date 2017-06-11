@@ -1,0 +1,45 @@
+nav {
+    font-size: 0.7em;
+}
+
+body {
+    background: #666;
+}
+
+header {
+    background-color: #fff;
+}
+
+.table-hover > tbody > tr:hover {
+    background: #666;
+    color: #000;
+}
+
+.row-actions button {
+    color: #000;
+}
+
+#main-content {
+    background: #333;
+    padding: 0.5em;
+    margin-top: 20vh;
+}
+
+.btn-primary {
+    margin: 0.5em 0;
+}
+
+.nav-tabs > li > a:hover {
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: red;
+}
+
+#main-content .messages {
+    position: absolute;
+    top: -10vh;
+    left: 0;
+    background: transparent;
+}

@@ -35,28 +35,23 @@ class UserController extends Controller
 
         $page = $request->get('page') ? $request->get('page') : 1;
         $pageSize = 30;
-
-        /*$users = $repository->findBy(
-            [], ['id' => 'ASC'], $pageSize, $page * $pageSize
-        );*/
-        
         $users = $repository->findAll();
 
         $data = [];
 
         foreach ($users as $user) {
-            if($user->getAdditionalData()) {
-                $additional = unserialize($user->getAdditionalData());                
+            if ($user->getAdditionalData()) {
+                $additional = unserialize($user->getAdditionalData());
             } else {
                 $additional['summonerName'] = "";
                 $additional['firstname'] = "";
                 $additional['lastname'] = "";
-            } 
+            }
 
             $_data = [];
             $_data['id'] = $user->getId();
             $_data['email'] = $user->getEmail();
-            $_data['summonerName'] = $additional['summonerName'];
+            $_data['summonerName'] = isset($additional['summonerName']) ? $additional['summonerName'] : "";
             $_data['firstname'] = $additional['firstname'];
             $_data['lastname'] = $additional['lastname'];
             $_data['status'] = $user->getStatus();
@@ -71,39 +66,26 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Renders user view
-     * 
-     * @Route("/view/{user}", name="admin_user_view_action", requirements={"user": "\d+"})
-     */
-    public function viewAction(Request $request)
+    protected function buildUserForm(UserForm $userForm, $statusRegistry, $isNew = true, $action)
     {
-        $em = $this->getDoctrine()->getManager();
-        $manager = $this->get('psi.user.manager');
-
-        $user = $manager->findUser(['id' => $request->get('user')]);
-
-        return $this->render(
-                'PsiAdminBundle:User:view.html.php', [
-                'user' => $user,
-                'router' => $this->container->get('router')
-        ]);
-    }
-
-    protected function buildUserForm(UserForm $userForm, $statusRegistry)
-    {
-        return $this->createFormBuilder($userForm)
-                ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
-                ->add('firstname', TextType::class, ['attr' => ['class' => 'form-control']])
-                ->add('lastname', TextType::class, ['attr' => ['class' => 'form-control']])
-                ->add('password', PasswordType::class, ['attr' => ['class' => 'form-control']])
+        $formBuilder = $this->createFormBuilder($userForm)
+            ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
+            ->add('firstname', TextType::class, ['attr' => ['class' => 'form-control']])
+            ->add('lastname', TextType::class, ['attr' => ['class' => 'form-control']]);
+        if ($isNew) {
+            $formBuilder->setAction($this->generateUrl('admin_user_new_action'));
+            $formBuilder->add('password', PasswordType::class, ['attr' => ['class' => 'form-control']]);
+        } else {
+            $formBuilder->setAction($action);
+        }
+        return $formBuilder
                 ->add('status', ChoiceType::class, [
                     'choices' => $statusRegistry->toFormOptions(),
                     'attr' => ['class' => 'form-control']
                 ])
-                ->add('summonerName', TextType::class, ['attr' => ['class' => 'form-control']])
-                ->add('purchaseOrderNumber', TextType::class, ['attr' => ['class' => 'form-control']])
-                ->add('additionalData', TextareaType::class, ['attr' => ['class' => 'form-control']])
+                ->add('summonerName', TextType::class, ['required' => false, 'attr' => ['class' => 'form-control']])
+                ->add('purchaseOrderNumber', TextType::class, ['required' => false, 'attr' => ['class' => 'form-control']])
+                ->add('additionalData', TextareaType::class, ['required' => false, 'attr' => ['class' => 'form-control']])
                 ->add('save', SubmitType::class, ['label' => 'Save', 'attr' => ['class' => 'btn btn-primary']])
                 ->getForm();
     }
@@ -137,16 +119,22 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $userForm = $form->getData();
 
-            $additionalData = $this->extractAdditionalData($userForm);
-            $user = $manager->newUser($userForm->getEmail(), $userForm->getEmail(), $userForm->getPassword());
-            $user->getEntity()
-                ->setStatus($userForm->getStatus())
-                ->setAdditionalData($additionalData);
+            if (!$userForm->getPassword()) {
+                $this->addFlash('error', "Password is mandatory.");
+            } else {
+                $additionalData = $this->extractAdditionalData($userForm);
+                $user = $manager->newUser($userForm->getEmail(), $userForm->getEmail(), $userForm->getPassword());
+                $user->getEntity()
+                    ->setStatus($userForm->getStatus())
+                    ->setAdditionalData($additionalData);
 
-            $manager->saveUser($user);
+                $manager->saveUser($user);
 
-            $this->addFlash('success', 'User added.');
-            return $this->redirectToRoute('admin_user_edit_action', ['user' => $user->getId()]);
+                $this->addFlash('success', 'User added.');
+                return $this->redirectToRoute('admin_user_edit_action', ['user' => $user->getId()]);
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', $form->getErrors());
         }
 
         return $this->render(
@@ -159,12 +147,18 @@ class UserController extends Controller
     /**
      * User edit action
      * 
-     * @Route("/edit/{user}", name="admin_user_edit_action", requirements={"user": "\d+"})
+     * @Route("/edit/{user}", name="admin_user_edit_action", defaults={"user" = 0})
      */
     public function editAction(Request $request)
     {
         $manager = $this->get('psi.user.manager');
         $statusRegistry = $this->get('psi.user.model.user.status');
+
+        if (!$request->get('user')) {
+            $this->addFlash('error', "Requested user doesn't exist");
+            return $this->redirectToRoute('admin_user_list_action');
+        }
+
         $user = $manager->findUser(['id' => $request->get('user')]);
 
         if (!$user || !$user->getId()) {
@@ -177,14 +171,14 @@ class UserController extends Controller
         $additionalData = unserialize($user->getEntity()->getAdditionalData());
 
         $userForm->setEmail($user->getEmail())
-            ->setFirstname($additionalData['firstname'])
-            ->setLastname($additionalData['lastname'])
+            ->setFirstname(isset($additionalData['firstname']) ? $additionalData['firstname'] : "")
+            ->setLastname(isset($additionalData['lastname']) ? $additionalData['lastname'] : "")
             ->setStatus($user->getStatus())
-            ->setPurchaseOrderNumber($additionalData['purchaseOrderNumber'])
-            ->setAdditionalData($additionalData['additional'])
-            ->setSummonerName($additionalData['summonerName']);
+            ->setPurchaseOrderNumber(isset($additionalData['purchaseOrderNumber']) ? $additionalData['purchaseOrderNumber'] : "")
+            ->setAdditionalData(isset($additionalData['additional']) ? $additionalData['additional'] : "")
+            ->setSummonerName(isset($additionalData['summonerName']) ? $additionalData['summonerName'] : "");
 
-        $form = $this->buildUserForm($userForm, $statusRegistry);
+        $form = $this->buildUserForm($userForm, $statusRegistry, false, $this->generateUrl('admin_user_edit_action', ['user' => $request->get('user')]));
 
         $form->handleRequest($request);
 
@@ -199,9 +193,11 @@ class UserController extends Controller
                 ->setStatus($userForm->getStatus())
                 ->setAdditionalData($additionalData);
 
-            $manager->updatePassword($user, $userForm->getPassword());
-
-            $this->addFlash('success', 'User updated.');
+            if ($manager->saveUser($user)) {
+                $this->addFlash('success', 'User updated.');
+            } else {
+                $this->addFlash('error', "Couldn't update user.");
+            }
         }
 
 

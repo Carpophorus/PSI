@@ -22,6 +22,10 @@ class AppController extends Controller
      */
     public function indexAction(Request $request)
     {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_search_action');
+        }
+
         return $this->render(
                 'PsiAppBundle:App:index.html.php', [
                 'router' => $this->container->get('router'),

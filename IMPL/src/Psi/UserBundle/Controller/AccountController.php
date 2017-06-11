@@ -28,38 +28,21 @@ class AccountController extends Controller
      * @param Request $request
      * @Route("/", name="user_index_action")
      */
-    public function indexActon(Request $request)
+    public function indexAction(Request $request)
     {
-        $loginForm = $this->createFormBuilder(new LoginForm())
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('save', SubmitType::class, array('label' => 'Login'))
-            ->getForm();
-
-        $registerForm = $this->createFormBuilder(new RegisterForm())
-            ->add('email', EmailType::class)
-            ->add('username', TextType::class)
-            ->add('password', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-            ))
-            ->add('save', SubmitType::class, array('label' => 'Sign up'))
-            ->getForm();
-
-        $resetForm = $this->createFormBuilder(new RegisterForm())
-            ->add('email', EmailType::class)
-            ->getForm();
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_search_action');
+        }
 
         return $this->render(
                 'PsiUserBundle:Account:login.html.php', [
-                'router' => $this->container->get('router'),
-                'loginForm' => $loginForm->createView(),
-                'registerForm' => $registerForm->createView(),
-                'resetPasswordForm' => $resetForm->createView()
+                'router' => $this->container->get('router')
         ]);
     }
 
+    /**
+     * @Route("/reset", name="user_reset_action")
+     */
     public function resetAction(Request $request)
     {
         $resetForm = new ResetForm();
@@ -68,11 +51,16 @@ class AccountController extends Controller
             ->getForm();
 
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isSubmitted() && $form->isValid()) {
             $resetForm = $form->getData();
             $userManager = $this->get('psi.user.manager');
             //echo success message
+        } else {
+            $this->addFlash('error', (string) $form->getErrors());
         }
+
+        return $this->indexAction($request);
     }
 
     /**
@@ -88,6 +76,7 @@ class AccountController extends Controller
             ->add('save', SubmitType::class, array('label' => 'Login'))
             ->getForm();
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isSubmitted() && $form->isValid()) {
             $loginForm = $form->getData();
 
@@ -107,16 +96,20 @@ class AccountController extends Controller
                 $event = new InteractiveLoginEvent($request, $token);
                 $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
-                $this->addFlash('success', "You have been logged in.");
-                return $this->redirect('');
-                // echo success message
+                return $this->render(
+                        'PsiUserBundle:Account:success.html.php', [
+                        'router' => $this->container->get('router'),
+                        'message' => "You have been logged in.",
+                ]);
             } else {
                 // echo fail message
                 $this->addFlash('error', "Invalid login information.");
             }
+        } elseif (!$form->isValid()) {
+            $this->addFlash('error', (string) $form->getErrors());
         }
 
-        return $this->redirectToRoute('user_index_action');
+        return $this->indexAction($request);
     }
 
     /**
@@ -126,33 +119,56 @@ class AccountController extends Controller
     {
         $registerForm = new RegisterForm();
         $form = $this->createFormBuilder($registerForm)
+            ->add('firstname', TextType::class)
+            ->add('lastname', TextType::class)
             ->add('email', EmailType::class)
-            ->add('username', TextType::class)
-            ->add('password', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-            ))
+            ->add('password', PasswordType::class)
             ->add('save', SubmitType::class, array('label' => 'Register'))
             ->getForm();
+
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isSubmitted() && $form->isValid()) {
             $registerForm = $form->getData();
 
             $userManager = $this->get('psi.user.manager');
 
-            $username = $registerForm->getUsername();
+            $firstname = $registerForm->getFirstname();
+            $lastname = $registerForm->getLastname();
             $email = $registerForm->getEmail();
+            $username = $email;
             $password = $registerForm->getPassword();
 
-            $user = $userManager->newUser($username, $email, $password);
+            try {
+                $user = $userManager->newUser($username, $email, $password);
+            } catch (\Exception $e) {
+                $user = false;
+            }
 
             if ($user) {
+                $additionalData = serialize([
+                    'firstname' => $firstname,
+                    'lastname' => $lastname
+                ]);
+                $user->getEntity()
+                    ->setAdditionalData($additionalData);
+                $userManager->saveUser($user);
+
                 // echo success message
+                $this->addFlash('success', "Your account has been registered. We will contact you on your email address further instructions.");
+                return $this->render(
+                        'PsiUserBundle:Account:success.html.php', [
+                        'router' => $this->container->get('router'),
+                        'message' => "Your account has been registered. Please wait further instructions.",
+                ]);
             } else {
                 // echo fail message
+                $this->addFlash('error', "A user with this email allready exists.");
             }
+        } else {
+            $this->addFlash('error', (string) $form->getErrors());
         }
+        return $this->indexAction($request);
     }
 
     /**
@@ -184,11 +200,15 @@ class AccountController extends Controller
             $manager->persist($user);
             $manager->flush();
 
-            $this->addFlash('success', "Your account has been activated. You may now login.");
+            return $this->render(
+                    'PsiUserBundle:Account:success.html.php', [
+                    'router' => $this->container->get('router'),
+                    'message' => "Your account has been activated. You may now login.",
+            ]);
         } else {
             $this->addFlash('error', "The confirmation url you used is no longer valid.");
         }
         // invalid token
-        return $this->redirectToRoute('user_login_action');
+        return $this->indexAction($request);
     }
 }

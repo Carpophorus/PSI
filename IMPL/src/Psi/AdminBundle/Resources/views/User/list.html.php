@@ -1,7 +1,5 @@
 <?php $view->extend('PsiAdminBundle:layout:base.html.php') ?>
 
-<?php $view['UI']->set('title', 'Edit User') ?>
-
 <?php //renderTable($heading, $data, $cssId, $cssClass, $actions) ?>
 
 <?php $view['UI']->start('_content') ?>
@@ -13,7 +11,7 @@ echo $view['datatable']->renderTable(
     $heading, $userData, 'userListTable', 'data-table', [ 
         'edit' => [
             'name' => "edit",
-            'jsMethod' => "AdminUi.editUser",
+            'jsMethod' => "AdminUI.editUser",
             'label' => "Edit",
             'data' => "id"
         ]

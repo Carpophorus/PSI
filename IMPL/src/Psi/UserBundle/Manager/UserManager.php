@@ -96,12 +96,15 @@ class UserManager implements UserManagerInterface
 
     public function saveUser(UserInterface $user)
     {
+
         $model = $this->provider->getEntityUserModel($user);
         if ($model) {
             $entity = $model->getEntity();
             $this->provider->getObjectManager()->persist($entity);
             $this->provider->getObjectManager()->flush();
+            return true;
         }
+        return false;
     }
 
     public function updatePassword(UserInterface $user, $password)

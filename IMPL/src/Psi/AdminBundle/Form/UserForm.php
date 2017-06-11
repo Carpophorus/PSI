@@ -27,7 +27,6 @@ class UserForm
     protected $lastname;
 
     /**
-     * @Assert\NotBlank()
      * @var string
      */
     protected $password;
@@ -51,7 +50,6 @@ class UserForm
     protected $additionalData;
 
     /**
-     * @Assert\NotBlank()
      * @var string 
      */
     protected $summonerName;

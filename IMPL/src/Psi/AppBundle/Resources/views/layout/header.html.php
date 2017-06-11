@@ -12,10 +12,14 @@
             <ul class="nav navbar-nav">
                 <?php
                 $links = [
-                    'home' => $view['router']->path('app_index_action'),                    
-                    'login' => $view['router']->path('user_login_action'),
-                    'search' => $view['router']->path('app_search_action')
+                    'home' => $view['router']->path('app_index_action')
                 ];
+                if(!$view['security']->isGranted('IS_AUTHENTICATED_FULLY')) {
+                    $links['login'] = $view['router']->path('user_login_action');
+                } else {
+                    $links['logout'] = $view['router']->path('logout');
+                }
+                $links['search'] = $view['router']->path('app_search_action');
 
                 ?>
                 <?php foreach ($links as $label => $href): ?>

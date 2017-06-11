@@ -5,6 +5,7 @@
 <link href="<?php echo $view['assets']->getUrl('css/bootstrap-theme.min.css') ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $view['assets']->getUrl('css/pace.css') ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $view['assets']->getUrl('css/app.css') ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo $view['assets']->getUrl('css/admin.css') ?>" rel="stylesheet" type="text/css" />
 <?php $view['UI']->stop(); ?>
 
 <?php $view['UI']->start('_scripts'); ?>
@@ -25,7 +26,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">N2M Admin</a>
             </div>
             <div class="collapse navbar-collapse" id="adminNav">
                 <ul class="nav navbar-nav">
@@ -33,7 +33,7 @@
                     $links = [
                         'dashboard' => $router->generate('admin_dashboard_action'),
                         'system configuration' => $router->generate('configuration_index_action'),
-                        'system statistics' => $router->generate('statistics_list_action'),
+                        //'system statistics' => $router->generate('statistics_list_action'),
                         'display users' => $router->generate('admin_user_list_action'),
                         'new user' => $router->generate('admin_user_new_action')
                     ];

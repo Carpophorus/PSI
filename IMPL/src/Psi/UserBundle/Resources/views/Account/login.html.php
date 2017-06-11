@@ -1,4 +1,4 @@
-<?php $view->extend('PsiUserBundle:layout:base.html.php') ?>
+<?php $view->extend('PsiAppBundle:layout:base.html.php') ?>
 
 <?php $view['UI']->set('title', 'Login') ?>
 
@@ -31,8 +31,8 @@
             <input  type="radio" name="options" id="option3">Password Change</input>
         </label>
     </div>
-    <?php echo $view->render("PsiUserBundle:Account:_partial/register.html.php", ['form' => $registerForm]); ?>
-    <?php echo $view->render("PsiUserBundle:Account:_partial/login.html.php", ['form' => $loginForm]); ?>
-    <?php echo $view->render("PsiUserBundle:Account:_partial/forgot_password.html.php", ['form' => $resetPasswordForm]); ?>
+    <?php echo $view->render("PsiUserBundle:Account:_partial/register.html.php", ['action' => $router->generate('user_register_action')]); ?>
+    <?php echo $view->render("PsiUserBundle:Account:_partial/login.html.php", ['action' => $router->generate('user_login_action')]); ?>
+    <?php echo $view->render("PsiUserBundle:Account:_partial/forgot_password.html.php", ['action' => $router->generate('user_reset_action')]); ?>
     <?php $view['UI']->stop(); ?>
 </div>

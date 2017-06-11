@@ -25,9 +25,11 @@ class AdminController extends Controller
      */
     public function dashboardAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render(
                 'PsiAdminBundle:Admin:dashboard.html.php', [
-                'router' => $this->container->get('router')
+                'router' => $this->container->get('router'),
+                'user' => $user,
         ]);
     }
 
@@ -37,6 +39,10 @@ class AdminController extends Controller
      */
     public function loginAction(Request $request)
     {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin_dashboard_action');
+        }
+        
         $loginForm = new LoginForm();
 
         $form = $this->createFormBuilder($loginForm)
