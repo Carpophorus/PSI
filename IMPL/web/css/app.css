@@ -191,19 +191,33 @@ button:focus
     background-size: 100% auto;
 }
 
-/*#runes-bckgrnd
+#main-content #runes-bckgrnd
 {
-    background: url('../img/2.png') no-repeat;
-    background-position: center;
-    background-size: 100% auto;
-}*/
+    width: 52.8vw;
+    height: 80vh;
 
-/*#masteries-bckgrnd
-{
-    background: url('../img/3.png') no-repeat;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    background: url('../img/9.png') no-repeat;
     background-position: center;
-    background-size: 100% auto;
-}*/
+    background-size: 100% 100%;
+}
+
+#main-content #masteries-bckgrnd
+{
+    width: 52.8vw;
+    height: 80vh;
+
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    background: url('../img/8.png') no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
 
 #lp-bckgrnd
 {
@@ -876,6 +890,7 @@ div[id^='summoner-masteries-']
     z-index: 800;
     top: 13.3vh;
 
+    display: none;
     float: left;
 
     width: 109%;
@@ -886,8 +901,6 @@ div[id^='summoner-masteries-']
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
     background: rgba(255,255,255,.1);
-
-    /*display: none;*/
 }
 
 .blue-team-member-container:nth-child(1) div[id^='summoner-runes-'],
