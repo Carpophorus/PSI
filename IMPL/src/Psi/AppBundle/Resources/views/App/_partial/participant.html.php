@@ -10,6 +10,9 @@ $renderAdvanced = true;
     <div class="champion-icon-tint">
     </div>
     <div class="champion-mastery-icon"></div>
+    <div class="summoner-icon"></div>
+    <div class="summoner-spell-1"></div>
+    <div class="summoner-spell-2"></div>
     <div class="champion-name"><?php echo $static['champion'][$participant->getChampionId()]['name']; ?></div>
     <div class="summoner-name"><?php echo $participant->getSummoner()->getName(); ?></div>
     <?php if (isset($renderAdvanced) && $renderAdvanced): ?>

@@ -60,13 +60,11 @@
         <?php endforeach; ?>
     </div>
     <div class="red-team-container">
-        <div class="red-team-member-container">
             <?php foreach ($match->getParticipants() as $participant): ?>
                 <?php if ($participant->getTeam() !== $redTeam): ?>
                     <?php echo $view->render("PsiAppBundle:App:_partial/participant.html.php", ['participant' => $participant, 'wrapperClass' => "red-team-member-container", 'static' => $staticData]); ?>
                 <?php endif; ?>
             <?php endforeach; ?>
-        </div>
     </div>
 </div>
 <?php $view['UI']->stop() ?>

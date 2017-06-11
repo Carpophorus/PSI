@@ -504,3 +504,136 @@ button:focus
 
     color: rgba(255,255,255,.15);
 }
+
+/*MATCH INFO*/
+
+.blue-team-container,
+.red-team-container
+{
+    float: left;
+
+    width: 50%;
+    margin-top: 9vh;
+}
+
+.blue-team-member-container,
+.red-team-member-container
+{
+    position: relative;
+
+    height: 12vh;
+    margin-bottom: 3vh;
+
+    background: rgba(0,0,0,.2);
+}
+
+.blue-team-member-container
+{
+    margin-right: 2.5%;
+
+    border-radius: 0 6vh 6vh 0;
+}
+
+.red-team-member-container
+{
+    margin-left: 2.5%;
+
+    border-radius: 6vh 0 0 6vh;
+}
+
+.grayscale-champion-icon img
+{
+    width: 10vh;
+    height: 10vh;
+
+    border-radius: 5vh;
+
+    -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+}
+
+.blue-team-member-container .grayscale-champion-icon
+{
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+}
+
+.blue-team-member-container .champion-icon-tint
+{
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+
+    width: 10vh;
+    height: 10vh;
+
+    border-radius: 5vh;
+    background: rgba(75,142,203,.4);
+}
+
+.red-team-member-container .grayscale-champion-icon
+{
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+}
+
+.red-team-member-container .champion-icon-tint
+{
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+
+    width: 10vh;
+    height: 10vh;
+
+    border-radius: 5vh;
+    background: rgba(204,82,79,.4);
+}
+
+.blue-team-member-container .champion-name
+{
+    font-size: 60%;
+    line-height: 3vh;
+
+    position: absolute;
+    top: 5vh;
+    right: 12vh;
+
+    height: 3vh;
+}
+
+.blue-team-member-container .summoner-name
+{
+    line-height: 4vh;
+
+    position: absolute;
+    top: 7vh;
+    right: 12vh;
+
+    height: 4vh;
+}
+
+.red-team-member-container .champion-name
+{
+    font-size: 60%;
+    line-height: 3vh;
+
+    position: absolute;
+    top: 5vh;
+    left: 12vh;
+
+    height: 3vh;
+}
+
+.red-team-member-container .summoner-name
+{
+    line-height: 4vh;
+
+    position: absolute;
+    top: 7vh;
+    left: 12vh;
+
+    height: 4vh;
+}
