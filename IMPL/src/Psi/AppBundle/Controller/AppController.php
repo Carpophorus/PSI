@@ -9,6 +9,7 @@ use Psi\AppBundle\Entity\Match;
 use Psi\AppBundle\Entity\Participant;
 use Psi\AppBundle\Entity\CacheTag;
 use Psi\AppBundle\Helper\StaticMasteryHelper;
+use Psi\AppBundle\Entity\ChampionMastery;
 
 class AppController extends Controller
 {
@@ -56,9 +57,6 @@ class AppController extends Controller
         try {
             $em->beginTransaction();
             $match = $apiManager->processResponse($apiResponse);
-            //echo "<pre>";
-            //\Doctrine\Common\Util\Debug::dump($match, 3);
-            //echo "</pre>";
             $em->persist($match);
             $em->flush();
             $em->commit();
@@ -69,9 +67,44 @@ class AppController extends Controller
         }
     }
 
+    protected function getChampionMastery($requestFactory, Participant $participant)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $existing = $em->getRepository(ChampionMastery::class)->findOneBy(['summoner' => $participant->getSummoner()]);
+        if ($existing) {
+            return $existing;
+        }
+        $apiManager = $this->get('psi.app.manager.api.response.manager');
+
+        // fetch active match data
+        $apiRequest = $requestFactory->createChampionMasteryRequest([
+            "summonerId" => rawurlencode($participant->getSummoner()->getExternalId()),
+            "championId" => $participant->getChampionId()
+        ]);
+        $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->getResponse();
+        $responseData = $apiResponse->getData();
+
+        if (!isset($responseData['championLevel'])) {
+            return;
+        }
+
+        try {
+            $em->beginTransaction();
+            $championMastery = $apiManager->processResponse($apiResponse);
+            $em->persist($championMastery);
+            $em->flush();
+            $em->commit();
+            return $championMastery;
+        } catch (\Exception $e) {
+            $em->rollback();
+        }
+    }
+
     protected function getMessagesHtml()
     {
-        return $this->render(
+        return $this->renderView(
                 'PsiAppBundle:App:_partial/messages.html.php', [
                 'router' => $this->container->get('router'),
         ]);
@@ -104,7 +137,7 @@ class AppController extends Controller
                 $this->addFlash('error', "Couldn't find a summoner with specified name.");
                 return $this->json([
                         'success' => false,
-                        'messages' => [$e->getMessage(), $e->getTraceAsString()] //$this->getMessagesHtml()
+                        'messages' => $this->getMessagesHtml()
                 ]);
             }
         }
@@ -144,25 +177,32 @@ class AppController extends Controller
                     'static' => $staticData,
                     'router' => $this->container->get('router'),
                 ]);
+
+
+
+                // attempt to load champion mastery, allow silent fail
+                foreach ($match->getParticipants() as $participant) {
+                    $this->getChampionMastery($requestFactory, $participant);
+                }
+
                 return $this->json([
                         'success' => true,
                         'messages' => $this->getMessagesHtml(),
                         'content' => $content
                 ]);
             } catch (\Exception $e) {
-                $this->addFlash('error', "Couldn't find an active match for summoner.");
+                $this->addFlash('error', "An error occured processing your request.");
                 return $this->json([
                         'success' => false,
-                        'messages' => [$e->getMessage(), $e->getTraceAsString()]//$this->getMessagesHtml()
+                        'messages' => $this->getMessagesHtml()
                 ]);
             }
         }
 
+        $this->addFlash('error', "Couldn't find an active match for summoner.");
         return $this->json([
                 'success' => false,
-                'messages' => ['No such summoner.'],
-                'response' => $responseData,
-                'summoner' => $summoner->getId()
+                'messages' => $this->getMessagesHtml(),
         ]);
     }
 
@@ -188,6 +228,16 @@ class AppController extends Controller
 
         foreach ($match->getParticipants() as $participant) {
             $championId = $participant->getChampionId();
+
+
+            $championMastery = $em->getRepository(ChampionMastery::class)->findOneBy([
+                'externalId' => $championId,
+                'summoner' => $participant->getSummoner()
+            ]);
+            $staticData['championMastery'][$participant->getId()] = ($championMastery ? $championMastery->getChampionLevel() : 1);
+            
+            $staticData['spell'][$participant->getId()]['1'] = $staticManager->getStaticFileData('spell', $participant->getSpellId1() . ".png");
+            $staticData['spell'][$participant->getId()]['2'] = $staticManager->getStaticFileData('spell', $participant->getSpellId2() . ".png");
 
             // skip duplicates
             if (isset($staticData['champion'][$championId])) {

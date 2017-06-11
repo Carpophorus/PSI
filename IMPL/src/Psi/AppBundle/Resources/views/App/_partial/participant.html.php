@@ -9,10 +9,17 @@ $renderAdvanced = true;
     </div>
     <div class="champion-icon-tint">
     </div>
-    <div class="champion-mastery-icon"></div>
+    <div class="champion-mastery-icon">
+        <?php $championMasteryBaseUrl = $view['assets']->getUrl('img/Champ_Mastery_'); ?>
+        <img src="<?php echo $championMasteryBaseUrl . $static['championMastery'][$participant->getId()]; ?>.png" />
+    </div>
     <div class="summoner-icon"></div>
-    <div class="summoner-spell-1"></div>
-    <div class="summoner-spell-2"></div>
+    <div class="summoner-spell-1">
+        <img src="<?php echo $static['spell'][$participant->getId()]['1']; ?>" />
+    </div>
+    <div class="summoner-spell-2">
+        <img src="<?php echo $static['spell'][$participant->getId()]['2']; ?>" />
+    </div>
     <div class="champion-name"><?php echo $static['champion'][$participant->getChampionId()]['name']; ?></div>
     <div class="summoner-name"><?php echo $participant->getSummoner()->getName(); ?></div>
     <?php if (isset($renderAdvanced) && $renderAdvanced): ?>
