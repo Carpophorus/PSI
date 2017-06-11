@@ -2,6 +2,11 @@ nav {
     font-size: 0.7em;
 }
 
+#main-content input, #main-content button {
+    color: #333;
+    background: #fff;
+}
+
 body {
     background: #666;
 }
