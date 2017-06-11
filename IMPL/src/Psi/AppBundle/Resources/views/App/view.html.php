@@ -12,17 +12,18 @@
     var loadedRunes = [];
 
     window.App.getMasteries = function (id, btn) {
+        var wasActive = $(btn).hasClass("rm-active");
         $(".rm-active").removeClass("rm-active");
-        $(btn).addClass("rm-active");   
-        
+        if(!wasActive) $(btn).addClass("rm-active");
+
         var url = "<?php echo $router->generate('app_participant_mastery_action') ?>?id=" + id;
         var container = "#summoner-masteries-" + id;
-        
-        $(".summoner-masteries-wrapper").stop().hide(250);
-        $(".summoner-runes-wrapper").stop().hide(250);
+
+        $(".summoner-masteries-wrapper").stop().fadeOut(250);
+        $(".summoner-runes-wrapper").stop().fadeOut(250);
 
         if (loadedMasteries[id]) {
-            $(container).stop().toggle(250);
+            $(container).stop().fadeToggle(250);
             return false;
         }
 
@@ -30,7 +31,7 @@
         }).done(function (data) {
             var newContent = data.content;
             $(container).html(newContent);
-            $(container).stop(true).toggle(250);
+            $(container).stop(true).fadeToggle(250);
             $('[data-toggle="tooltip"]').tooltip();
 
             loadedMasteries[id] = true;
@@ -39,17 +40,18 @@
     }
 
     window.App.getRunes = function (id, btn) {
+        var wasActive = $(btn).hasClass("rm-active");
         $(".rm-active").removeClass("rm-active");
-        $(btn).addClass("rm-active");        
-        
+        if(!wasActive) $(btn).addClass("rm-active");
+
         var url = "<?php echo $router->generate('app_participant_rune_action') ?>?id=" + id;
         var container = "#summoner-runes-" + id;
-        
-        $(".summoner-masteries-wrapper").stop().hide(250);
-        $(".summoner-runes-wrapper").stop().hide(250);
+
+        $(".summoner-masteries-wrapper").stop().fadeOut(250);
+        $(".summoner-runes-wrapper").stop().fadeOut(250);
 
         if (loadedRunes[id]) {
-            $(container).stop().toggle(250);
+            $(container).stop().fadeToggle(250);
             return false;
         }
 
@@ -59,7 +61,7 @@
             var newContent = data.content;
             $(container).html(newContent);
             $('[data-toggle="tooltip"]').tooltip();
-            $(container).stop(true).toggle(250);
+            $(container).stop(true).fadeToggle(250);
 
             loadedRunes[id] = true;
         });

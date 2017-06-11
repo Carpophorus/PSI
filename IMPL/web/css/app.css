@@ -193,7 +193,7 @@ button:focus
 
 #main-content #runes-bckgrnd
 {
-    width: 52.8vw;
+    width: 53.4vw;
     height: 80vh;
 
     border-top-left-radius: 50% 50%;
@@ -207,7 +207,7 @@ button:focus
 
 #main-content #masteries-bckgrnd
 {
-    width: 52.8vw;
+    width: 53.4vw;
     height: 80vh;
 
     border-top-left-radius: 50% 50%;
@@ -865,6 +865,12 @@ button:focus
     background-color: rgba(255,255,255,.5);
 }
 
+.masteries-icon .rm-active,
+.runes-icon .rm-active
+{
+    background-color: rgba(255,255,255,.5);
+}
+
 .masteries-icon button
 {
     background-color: rgba(255,255,255,.15);
@@ -971,4 +977,185 @@ div[id^='summoner-masteries-']
 {
     top: -65vh;
     right: 47.5%;
+}
+
+.masteries-container > div
+{
+    position: relative;
+
+    float: left;
+
+    width: 30%;
+    height: 80vh;
+}
+
+.ferocity-container
+{
+    margin-left: 5%;
+}
+
+.resolve-container
+{
+    margin-right: 5%;
+}
+
+.masteries-container > div > div
+{
+    position: absolute;
+    z-index: 950;
+
+    width: 2vw;
+    height: 2vw;
+
+    text-align: center;
+}
+
+.masteries-container > div > div > img
+{
+    width: 2vw;
+    height: 2vw;
+}
+
+.masteries-container > div > div > span
+{
+    font-size: 1.5vh;
+    line-height: 2vh;
+
+    display: block;
+
+    margin-top: -.3vh;
+}
+
+.masteries-container > div > .mastery-points
+{
+    top: 12vh;
+
+    width: 100%;
+
+    color: rgba(255,255,255,.5);
+}
+
+.masteries-container > div > .mastery-points > span
+{
+    font-size: 4vh;
+}
+
+.f11,
+.c11,
+.r11
+{
+    top: 17vh;
+    left: 3vw;
+}
+
+.f12,
+.c12,
+.r12
+{
+    top: 17vh;
+    right: 3vw;
+}
+
+.f21,
+.c21,
+.r21
+{
+    top: 25vh;
+    left: 3vw;
+}
+
+.f22,
+.c22,
+.r22
+{
+    top: 25vh;
+    left: 7vw;
+}
+
+.f23,
+.c23,
+.r23
+{
+    top: 25vh;
+    right: 3vw;
+}
+
+.f31,
+.c31,
+.r31
+{
+    top: 33vh;
+    left: 3vw;
+}
+
+.f32,
+.c32,
+.r32
+{
+    top: 33vh;
+    right: 3vw;
+}
+
+.f41,
+.c41,
+.r41
+{
+    top: 41vh;
+    left: 3vw;
+}
+
+.f42,
+.c42,
+.r42
+{
+    top: 41vh;
+    left: 7vw;
+}
+
+.f43,
+.c43,
+.r43
+{
+    top: 41vh;
+    right: 3vw;
+}
+
+.f51,
+.c51,
+.r51
+{
+    top: 49vh;
+    left: 3vw;
+}
+
+.f52,
+.c52,
+.r52
+{
+    top: 49vh;
+    right: 3vw;
+}
+
+.f61,
+.c61,
+.r61
+{
+    top: 57vh;
+    left: 3vw;
+}
+
+.f62,
+.c62,
+.r62
+{
+    top: 57vh;
+    left: 7vw;
+}
+
+.f63,
+.c63,
+.r63
+{
+    top: 57vh;
+    right: 3vw;
 }
