@@ -1,8 +1,3 @@
-<?php
-/* @todo: refactor */
-$renderAdvanced = true;
-
-?>
 <div class="<?php echo $wrapperClass; ?>">
     <div class="grayscale-champion-icon">
         <img src="<?php echo $static['file']['champion'][$participant->getChampionId()]; ?>" />
