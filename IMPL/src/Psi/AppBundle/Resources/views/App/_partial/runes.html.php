@@ -4,12 +4,12 @@
         <?php
         if ($slotId < 10) {
             $class = "mark-" . $slotId;
-        } elseif ($slotId >= 10 && $slotId < 20) {
-            $class = "glyph-" . ($slotId - 10);
-        } elseif ($slotId >= 20 && $slotId < 30) {
-            $class = "seal-" . ($slotId - 20);
+        } elseif ($slotId >= 10 && $slotId < 19) {
+            $class = "glyph-" . ($slotId - 9);
+        } elseif ($slotId >= 19 && $slotId < 28) {
+            $class = "seal-" . ($slotId - 18);
         } else {
-            $class = "quint-" . ($slotId - 30);
+            $class = "quint-" . ($slotId - 27);
         }
 
         ?>
@@ -18,4 +18,3 @@
         </div>
     <?php endforeach; ?>
 </div>
-

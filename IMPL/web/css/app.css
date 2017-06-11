@@ -906,7 +906,6 @@ div[id^='summoner-masteries-']
     border-top-right-radius: 50% 50%;
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
-    background: rgba(255,255,255,.1);
 }
 
 .blue-team-member-container:nth-child(1) div[id^='summoner-runes-'],
@@ -1010,6 +1009,16 @@ div[id^='summoner-masteries-']
     text-align: center;
 }
 
+.masteries-container > div > div > .tooltip
+{
+    position: absolute;
+    z-index: 960;
+
+    width: 30vw;
+
+    text-align: center;
+}
+
 .masteries-container > div > div > img
 {
     width: 2vw;
@@ -1022,8 +1031,6 @@ div[id^='summoner-masteries-']
     line-height: 2vh;
 
     display: block;
-
-    margin-top: -.3vh;
 }
 
 .masteries-container > div > .mastery-points
@@ -1158,4 +1165,213 @@ div[id^='summoner-masteries-']
 {
     top: 57vh;
     right: 3vw;
+}
+
+.runes-container > div
+{
+    position: absolute;
+
+    width: 7vh;
+    height: 7vh;
+}
+
+.runes-container > div > img
+{
+    width: 7vh;
+    height: 7vh;
+}
+
+.runes-container > div > .tooltip
+{
+    width: 30vw;
+
+    text-align: center;
+}
+
+.mark-1
+{
+    top: 15vh;
+    left: 17vw;
+}
+
+.mark-2
+{
+    top: 15vh;
+    left: 21vw;
+}
+
+.mark-3
+{
+    top: 15vh;
+    left: 25vw;
+}
+
+.mark-4
+{
+    top: 15vh;
+    left: 29vw;
+}
+
+.mark-5
+{
+    top: 15vh;
+    left: 33vw;
+}
+
+.mark-6
+{
+    top: 21vh;
+    left: 19vw;
+}
+
+.mark-7
+{
+    top: 21vh;
+    left: 23vw;
+}
+
+.mark-8
+{
+    top: 21vh;
+    left: 27vw;
+}
+
+.mark-9
+{
+    top: 21vh;
+    left: 31vw;
+}
+
+.glyph-1
+{
+    top: 29vh;
+    left: 17vw;
+}
+
+.glyph-2
+{
+    top: 29vh;
+    left: 21vw;
+}
+
+.glyph-3
+{
+    top: 29vh;
+    left: 25vw;
+}
+
+.glyph-4
+{
+    top: 29vh;
+    left: 29vw;
+}
+
+.glyph-5
+{
+    top: 29vh;
+    left: 33vw;
+}
+
+.glyph-6
+{
+    top: 35vh;
+    left: 19vw;
+}
+
+.glyph-7
+{
+    top: 35vh;
+    left: 23vw;
+}
+
+.glyph-8
+{
+    top: 35vh;
+    left: 27vw;
+}
+
+.glyph-9
+{
+    top: 35vh;
+    left: 31vw;
+}
+
+.seal-1
+{
+    top: 43vh;
+    left: 17vw;
+}
+
+.seal-2
+{
+    top: 43vh;
+    left: 21vw;
+}
+
+.seal-3
+{
+    top: 43vh;
+    left: 25vw;
+}
+
+.seal-4
+{
+    top: 43vh;
+    left: 29vw;
+}
+
+.seal-5
+{
+    top: 43vh;
+    left: 33vw;
+}
+
+.seal-6
+{
+    top: 49vh;
+    left: 19vw;
+}
+
+.seal-7
+{
+    top: 49vh;
+    left: 23vw;
+}
+
+.seal-8
+{
+    top: 49vh;
+    left: 27vw;
+}
+
+.seal-9
+{
+    top: 49vh;
+    left: 31vw;
+}
+
+.runes-container .quint-1 > img,
+.runes-container .quint-2 > img,
+.runes-container .quint-3 > img
+{
+    width: 8vh;
+    height: 8vh;
+}
+
+.quint-1
+{
+  top:58vh;
+  left: 19.7vw;
+}
+
+.quint-2
+{
+  top:58vh;
+  left: 24.7vw;
+}
+
+.quint-3
+{
+  top:58vh;
+  left: 29.7vw;
 }
