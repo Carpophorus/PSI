@@ -4,23 +4,28 @@
 <script type="text/javascript">
     var SearchForm = {
         submit: function (form) {
+            var myloader = new loader($("#main-content"));
+            
             var data = new FormData(form);
             var url = $(form).attr('action') + "/" + data.get('summoner')
             console.log(url);
+            myloader.start();
             $.ajax(url, {
                 type: "POST",
                 url: url,
                 success: function (data)
                 {
-                    var messages = data.messages;
+                    var messages = $(data.messages).html();
                     if (data.success) {
                         var newContent = data.content;
                         $("#search-results").html(newContent);
                     } else {
-
+                        $("#search-results").html("");
                     }
                     $(".messages").html(messages);
                 }
+            }).always(function(){
+                myloader.stop();                
             });
             return false;
         }

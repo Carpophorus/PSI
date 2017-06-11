@@ -20,5 +20,18 @@
 <?php $view['UI']->stop() ?>
 
 <?php $view['UI']->start('_footer_scripts') ?>
+<?php echo $view->render('PsiUIBundle:component:loader/js.html.php', []) ?>
+<script type="text/javascript">
+    var cleanMessages = function () {
+        $(".messages").html("");
+    }
 
+    $(document).ready(function () {
+        setTimeout(cleanMessages, 6000);
+    });
+    
+    $(document).ajaxComplete(function() {
+        setTimeout(cleanMessages, 6000);
+    });
+</script>
 <?php $view['UI']->stop() ?>
