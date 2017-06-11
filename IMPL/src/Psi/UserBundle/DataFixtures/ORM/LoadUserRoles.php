@@ -1,4 +1,5 @@
 <?php
+// Viktor Galindo - 655/2013
 namespace Psi\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;

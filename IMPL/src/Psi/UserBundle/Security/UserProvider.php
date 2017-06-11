@@ -1,4 +1,5 @@
 <?php
+// Nemanja Djokic - 496/2013
 namespace Psi\UserBundle\Security;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;

@@ -1,4 +1,5 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\UserBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;

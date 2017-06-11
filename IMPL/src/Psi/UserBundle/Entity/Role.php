@@ -1,4 +1,5 @@
 <?php
+// Viktor Galindo - 655/2013
 namespace Psi\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

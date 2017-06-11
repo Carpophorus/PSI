@@ -1,4 +1,5 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\UserBundle\Manager;
 
 use Psi\UserBundle\Manager\UserManagerInterface;

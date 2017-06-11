@@ -1,4 +1,5 @@
 <?php
+// Nemanja Djokic - 496/2013
 namespace Psi\UserBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
