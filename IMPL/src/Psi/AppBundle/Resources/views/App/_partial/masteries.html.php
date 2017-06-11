@@ -4,15 +4,18 @@ $cunningCounter = 0;
 $resolveCounter = 0;
 $ferocityCounter = 0;
 foreach ($masteries as $_mastery) {
+    if(!isset($_mastery['entity'])) {
+        continue;
+    }
     switch ($_mastery['data']['masteryTree']) {
         case "Ferocity":
-            $ferocityCounter++;
+            $ferocityCounter += $_mastery['entity']->getRank();
             break;
         case "Cunning":
-            $cunningCounter++;
+            $cunningCounter += $_mastery['entity']->getRank();
             break;
         case "Resolve":
-            $resolveCounter;
+            $resolveCounter += $_mastery['entity']->getRank();
             break;
         default:
             break;
