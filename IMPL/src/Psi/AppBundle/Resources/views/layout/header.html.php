@@ -1,9 +1,3 @@
-<style>
-    header > nav {
-        max-width: 80%;
-        float: right;
-    }
-</style>
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -27,7 +21,7 @@
                 <?php foreach ($links as $label => $href): ?>
                     <li>
                         <a href="<?php echo $href; ?>"><?php echo $label; ?></a>
-                    </li>                    
+                    </li>
                 <?php endforeach; ?>
             </ul>
         </div>
