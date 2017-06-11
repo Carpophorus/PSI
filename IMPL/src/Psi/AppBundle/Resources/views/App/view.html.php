@@ -11,38 +11,55 @@
     var loadedMasteries = [];
     var loadedRunes = [];
 
-    window.App.getMasteries = function (id) {
+    window.App.getMasteries = function (id, btn) {
+        $(".rm-active").removeClass("rm-active");
+        $(btn).addClass("rm-active");   
+        
         var url = "<?php echo $router->generate('app_participant_mastery_action') ?>?id=" + id;
         var container = "#summoner-masteries-" + id;
+        
+        $(".summoner-masteries-wrapper").stop().hide(250);
+        $(".summoner-runes-wrapper").stop().hide(250);
 
         if (loadedMasteries[id]) {
-            $(container).toggle(500);
+            $(container).stop().toggle(250);
+            return false;
         }
 
         $.ajax(url, {
         }).done(function (data) {
-            var newContent = data.content
+            var newContent = data.content;
             $(container).html(newContent);
+            $(container).stop(true).toggle(250);
+            $('[data-toggle="tooltip"]').tooltip();
 
             loadedMasteries[id] = true;
         });
         return false;
     }
 
-    window.App.getRunes = function (id) {
+    window.App.getRunes = function (id, btn) {
+        $(".rm-active").removeClass("rm-active");
+        $(btn).addClass("rm-active");        
+        
         var url = "<?php echo $router->generate('app_participant_rune_action') ?>?id=" + id;
         var container = "#summoner-runes-" + id;
-
+        
+        $(".summoner-masteries-wrapper").stop().hide(250);
+        $(".summoner-runes-wrapper").stop().hide(250);
 
         if (loadedRunes[id]) {
-            $(container).toggle(500);
+            $(container).stop().toggle(250);
+            return false;
         }
 
 
         $.ajax(url, {
         }).done(function (data) {
-            var newContent = data.content
+            var newContent = data.content;
             $(container).html(newContent);
+            $('[data-toggle="tooltip"]').tooltip();
+            $(container).stop(true).toggle(250);
 
             loadedRunes[id] = true;
         });
@@ -55,14 +72,14 @@
     <div class="blue-team-container">
         <?php foreach ($match->getParticipants() as $participant): ?>
             <?php if ($participant->getTeam() !== $blueTeam): ?>
-                <?php echo $view->render("PsiAppBundle:App:_partial/participant.html.php", ['participant' => $participant, 'wrapperClass' => "blue-team-member-container", 'static' => $staticData]); ?>
+                <?php echo $view->render("PsiAppBundle:App:_partial/participant.html.php", ['participant' => $participant, 'renderAdvanced' => $isLoggedIn, 'wrapperClass' => "blue-team-member-container", 'static' => $staticData]); ?>
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
     <div class="red-team-container">
             <?php foreach ($match->getParticipants() as $participant): ?>
                 <?php if ($participant->getTeam() !== $redTeam): ?>
-                    <?php echo $view->render("PsiAppBundle:App:_partial/participant.html.php", ['participant' => $participant, 'wrapperClass' => "red-team-member-container", 'static' => $staticData]); ?>
+                    <?php echo $view->render("PsiAppBundle:App:_partial/participant.html.php", ['participant' => $participant, 'renderAdvanced' => $isLoggedIn, 'wrapperClass' => "red-team-member-container", 'static' => $staticData]); ?>
                 <?php endif; ?>
             <?php endforeach; ?>
     </div>

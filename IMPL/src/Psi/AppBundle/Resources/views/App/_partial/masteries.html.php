@@ -26,18 +26,24 @@ foreach ($masteries as $_mastery) {
             <span><?php echo $ferocityCounter; ?></span>
         </div>
         <?php foreach ($binding['ferocity'] as $class => $masteryId): ?>
+            <?php $rank = 0; ?>
+            <?php $maxRank = $staticData[$masteryId]['ranks']; ?>
+            <?php if (isset($masteries[$masteryId])): ?>
+                <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
+            <?php endif; ?>                      
+            <?php
+            if ($rank > 0) {
+                $descriptionRank = isset($staticData[$masteryId]['description'][$rank - 1]) ? $rank - 1 : 0;
+                $description = $staticData[$masteryId]['description'][$descriptionRank];
+                $tooltip = "data-toggle='tooltip' data-placement='right' title='$description'";
+            } else {
+                $tooltip = "";
+            }
+
+            ?>
             <div class="f<?php echo $class; ?>">
-                <img src="<?php echo $fileData[$masteryId]; ?>" />
-                <?php $rank = 0; ?>
-                <?php $maxRank = $staticData[$masteryId]['ranks']; ?>
-                <?php if (isset($masteries[$masteryId])): ?>
-                    <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
-                <?php endif; ?>
+                <img src="<?php echo $fileData[$masteryId]; ?>" <?php echo $tooltip; ?> />
                 <span><?php echo "$rank / $maxRank"; ?></span>
-                <div class="hvr-mastery-data">
-                    <?php $descriptionRank = isset($staticData[$masteryId]['description'][$rank]) ? $rank : 0; ?>
-                    <?php echo $staticData[$masteryId]['description'][$descriptionRank]; ?>
-                </div>
             </div>
         <?php endforeach; ?>
     </div>
@@ -46,18 +52,24 @@ foreach ($masteries as $_mastery) {
             <span><?php echo $cunningCounter; ?></span>
         </div>
         <?php foreach ($binding['cunning'] as $class => $masteryId): ?>
+            <?php $rank = 0; ?>
+            <?php $maxRank = $staticData[$masteryId]['ranks']; ?>
+            <?php if (isset($masteries[$masteryId])): ?>
+                <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
+            <?php endif; ?>                
+            <?php
+            if ($rank > 0) {
+                $descriptionRank = isset($staticData[$masteryId]['description'][$rank - 1]) ? $rank - 1 : 0;
+                $description = $staticData[$masteryId]['description'][$descriptionRank];
+                $tooltip = "data-toggle='tooltip' data-placement='right' title='$description'";
+            } else {
+                $tooltip = "";
+            }
+
+            ?>      
             <div class="c<?php echo $class; ?>">
-                <img src="<?php echo $fileData[$masteryId]; ?>" />
-                <?php $rank = 0; ?>
-                <?php $maxRank = $staticData[$masteryId]['ranks']; ?>
-                <?php if (isset($masteries[$masteryId])): ?>
-                    <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
-                <?php endif; ?>
-                <span><?php echo "$rank / $maxRank"; ?></span>
-                <div class="hvr-mastery-data">
-                    <?php $descriptionRank = isset($staticData[$masteryId]['description'][$rank]) ? $rank : 0; ?>
-                    <?php echo $staticData[$masteryId]['description'][$descriptionRank]; ?>
-                </div>             
+                <img src="<?php echo $fileData[$masteryId]; ?>" <?php echo $tooltip; ?> />
+                <span><?php echo "$rank / $maxRank"; ?></span>        
             </div>        
         <?php endforeach; ?>
     </div>
@@ -66,18 +78,24 @@ foreach ($masteries as $_mastery) {
             <span><?php echo $resolveCounter; ?></span>
         </div>
         <?php foreach ($binding['resolve'] as $class => $masteryId): ?>
+            <?php $rank = 0; ?>
+            <?php $maxRank = $staticData[$masteryId]['ranks']; ?>
+            <?php if (isset($masteries[$masteryId])): ?>
+                <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
+            <?php endif; ?>                     
+            <?php
+            if ($rank > 0) {
+                $descriptionRank = isset($staticData[$masteryId]['description'][$rank - 1]) ? $rank - 1 : 0;
+                $description = $staticData[$masteryId]['description'][$descriptionRank];
+                $tooltip = "data-toggle='tooltip' data-placement='right' title='$description'";
+            } else {
+                $tooltip = "";
+            }
+
+            ?>
             <div class="r<?php echo $class; ?>">
-                <img src="<?php echo $fileData[$masteryId]; ?>" />
-                <?php $rank = 0; ?>
-                <?php $maxRank = $staticData[$masteryId]['ranks']; ?>
-                <?php if (isset($masteries[$masteryId])): ?>
-                    <?php $rank = $masteries[$masteryId]['entity']->getRank(); ?>
-                <?php endif; ?>
-                <span><?php echo "$rank / $maxRank"; ?></span>
-                <div class="hvr-mastery-data">
-                    <?php $descriptionRank = isset($staticData[$masteryId]['description'][$rank]) ? $rank : 0; ?>
-                    <?php echo $staticData[$masteryId]['description'][$descriptionRank]; ?>
-                </div>               
+                <img src="<?php echo $fileData[$masteryId]; ?>" <?php echo $tooltip; ?> />
+                <span><?php echo "$rank / $maxRank"; ?></span>           
             </div>        
         <?php endforeach; ?>
     </div>

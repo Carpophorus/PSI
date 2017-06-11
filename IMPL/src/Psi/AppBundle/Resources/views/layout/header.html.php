@@ -18,9 +18,9 @@
             <ul class="nav navbar-nav">
                 <?php
                 $links = [
+                    'home' => $view['router']->path('app_index_action'),                    
                     'login' => $view['router']->path('user_login_action'),
-                    'search' => $view['router']->path('app_search_action'),
-                    'about' => $view['router']->path('app_search_action'),
+                    'search' => $view['router']->path('app_search_action')
                 ];
 
                 ?>

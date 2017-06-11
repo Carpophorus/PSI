@@ -15,14 +15,14 @@
                 url: url,
                 success: function (data)
                 {
-                    var messages = $(data.messages).html();
+                    var messages = $(data.messages);
                     if (data.success) {
                         var newContent = data.content;
                         $("#search-results").html(newContent);
                     } else {
                         $("#search-results").html("");
                     }
-                    $(".messages").html(messages);
+                    messages.hide(0).prependTo("#main-content").fadeIn(500);
                 }
             }).always(function(){
                 myloader.stop();                

@@ -23,15 +23,34 @@
 <?php echo $view->render('PsiUIBundle:component:loader/js.html.php', []) ?>
 <script type="text/javascript">
     var cleanMessages = function () {
-        $(".messages").html("");
-    }
+        $(".messages").fadeOut(250).queue(function (nxt) {
+            $(this).remove();
+            nxt();
+        });
+    };
 
     $(document).ready(function () {
-        setTimeout(cleanMessages, 6000);
+        $(".messages").each(function(index, elem) {
+            setTimeout(function () {
+                $(elem).fadeOut(250).queue(function (nxt) {
+                    $(this).remove();
+                    nxt();
+                });
+            }, 6000);
+        });
+        $('[data-toggle="tooltip"]').tooltip();
     });
-    
-    $(document).ajaxComplete(function() {
-        setTimeout(cleanMessages, 6000);
+
+    $(document).ajaxComplete(function () {
+        $(".messages").each(function(index, elem) {
+            setTimeout(function () {
+                $(elem).fadeOut(250).queue(function (nxt) {
+                    $(this).remove();
+                    nxt();
+                });
+            }, 6000);
+        });
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 <?php $view['UI']->stop() ?>

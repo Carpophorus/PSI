@@ -20,15 +20,18 @@
             <?php $view['UI']->output('_header'); ?>
         </header>
         <div id="main-content">
-            <div class="messages">
-                <?php foreach ($view['session']->getFlashes() as $type => $flash_messages): ?>
-                    <?php foreach ($flash_messages as $flash_message): ?>
-                        <div class="flash-<?php echo $type ?>">
-                            <?php echo $flash_message ?>
-                        </div>
+            <?php $messages = $view['session']->getFlashes(); ?>
+            <?php if ($messages && count($messages)): ?>
+                <div class="messages">
+                    <?php foreach ($messages as $type => $flash_messages): ?>
+                        <?php foreach ($flash_messages as $flash_message): ?>
+                            <div class="flash-<?php echo $type ?>">
+                                <?php echo $flash_message ?>
+                            </div>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endif; ?>
             <?php $view['UI']->output('_content'); ?>
         </div>
         <footer>

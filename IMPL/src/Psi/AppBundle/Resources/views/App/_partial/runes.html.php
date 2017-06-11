@@ -14,12 +14,7 @@
 
         ?>
         <div class="<?php echo $class; ?>">
-            <img src="<?php echo $rune['file']; ?>" />
-            <div class="rune-hvr-data">
-                <span class="description">
-                    <?php echo $rune['data']['description']; ?>
-                </span>
-            </div>
+            <img src="<?php echo $rune['file']; ?>" data-toggle="tooltip" data-placement="right" title="<?php echo $rune['data']['description']; ?>" />
         </div>
     <?php endforeach; ?>
 </div>

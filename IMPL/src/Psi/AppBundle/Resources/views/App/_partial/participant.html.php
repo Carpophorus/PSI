@@ -24,14 +24,14 @@ $renderAdvanced = true;
     <div class="summoner-name"><?php echo $participant->getSummoner()->getName(); ?></div>
     <?php if (isset($renderAdvanced) && $renderAdvanced): ?>
         <div class="masteries-icon">
-            <button onclick="App.getMasteries(<?php echo $participant->getId(); ?>);"></button>
+            <button onclick="App.getMasteries(<?php echo $participant->getId(); ?>, this);"></button>
         </div>
         <div class="runes-icon">
-            <button onclick="App.getRunes(<?php echo $participant->getId(); ?>);"></button>
+            <button onclick="App.getRunes(<?php echo $participant->getId(); ?>, this);"></button>
         </div>
     <?php endif; ?>
-    <div id="summoner-runes-<?php echo $participant->getId(); ?>"></div>
-    <div id="summoner-masteries-<?php echo $participant->getId(); ?>"></div>
+    <div class="summoner-runes-wrapper" id="summoner-runes-<?php echo $participant->getId(); ?>"></div>
+    <div class="summoner-masteries-wrapper" id="summoner-masteries-<?php echo $participant->getId(); ?>"></div>
     <?php /*
       <div class="rank-solo"></div>
       <div class="rank-flex"></div>

@@ -44,7 +44,7 @@ class AccountController extends Controller
                 'first_options' => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-            ->add('save', SubmitType::class, array('label' => 'Register'))
+            ->add('save', SubmitType::class, array('label' => 'Sign up'))
             ->getForm();
 
         $resetForm = $this->createFormBuilder(new RegisterForm())

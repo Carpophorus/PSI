@@ -236,7 +236,7 @@ class AppController extends Controller
                 'summoner' => $participant->getSummoner()
             ]);
             $staticData['championMastery'][$participant->getId()] = ($championMastery ? $championMastery->getChampionLevel() : 1);
-            
+
             $staticData['spell'][$participant->getId()]['1'] = $staticManager->getStaticFileData('spell', $participant->getSpellId1() . ".png");
             $staticData['spell'][$participant->getId()]['2'] = $staticManager->getStaticFileData('spell', $participant->getSpellId2() . ".png");
 
@@ -253,6 +253,7 @@ class AppController extends Controller
                 'PsiAppBundle:App:view.html.php', [
                 'match' => $match,
                 'staticData' => $staticData,
+                'isLoggedIn' => $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'),
                 'router' => $this->container->get('router'),
         ]);
     }

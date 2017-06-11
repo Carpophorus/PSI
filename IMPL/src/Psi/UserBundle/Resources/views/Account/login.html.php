@@ -7,7 +7,6 @@
 <?php $view['UI']->stop(); ?>
 
 <?php $view['UI']->start('_content') ?>
-
 <script type="text/javascript">
     
     window.toggleSection = function(section) {
@@ -33,7 +32,7 @@
         </label>
     </div>
     <?php echo $view->render("PsiUserBundle:Account:_partial/register.html.php", ['form' => $registerForm]); ?>
-    <?php echo $view->render("PsiUserBundle:Account:_partial/login.html.php", ['form' => $registerForm]); ?>
+    <?php echo $view->render("PsiUserBundle:Account:_partial/login.html.php", ['form' => $loginForm]); ?>
     <?php echo $view->render("PsiUserBundle:Account:_partial/forgot_password.html.php", ['form' => $resetPasswordForm]); ?>
     <?php $view['UI']->stop(); ?>
 </div>
