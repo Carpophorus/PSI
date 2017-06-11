@@ -3,6 +3,7 @@
 <?php $redTeam = $teams->get(1); ?>
 <div id="s-bckgrnd"></div>
 <a href="<?php echo $router->generate('app_match_action', ['match' => $match->getId()]); ?>">
+    <span id="match-found-overlay">MATCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOUND</span>
     <div class="teams-container">
         <div class="blue-team-container">
             <?php foreach ($match->getParticipants() as $participant): ?>

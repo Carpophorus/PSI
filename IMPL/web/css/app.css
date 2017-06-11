@@ -489,3 +489,18 @@ button:focus
 {
     visibility: hidden;
 }
+
+#search-results #match-found-overlay
+{
+    font-family: 'Bangers', cursive;
+    font-size: 25vh;
+    line-height: 45vh;
+
+    width: 100%;
+    height: 40vh;
+    margin-top: 3vh;
+
+    text-align: center;
+
+    color: rgba(255,255,255,.15);
+}
