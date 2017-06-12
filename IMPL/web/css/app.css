@@ -202,7 +202,7 @@ button:focus
     border-top-right-radius: 50% 50%;
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
-    background: url('../img/9.png') no-repeat;
+    background: url('../img/runes.png') no-repeat;
     background-position: center;
     background-size: 100% 100%;
 }
@@ -216,7 +216,7 @@ button:focus
     border-top-right-radius: 50% 50%;
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
-    background: url('../img/8.png') no-repeat;
+    background: url('../img/masteries.png') no-repeat;
     background-position: center;
     background-size: 100% 100%;
 }
