@@ -3,7 +3,7 @@
 <?php $view['UI']->start('_content') ?>
 
 <div class="index-left">
-  <a href="search">
+  <a href="<?php echo $view['router']->path('app_search_action'); ?>">
     <span></span>
     <div class="index-text">
       SEARCH
@@ -11,7 +11,7 @@
   </a>
 </div>
 <div class="index-right">
-  <a href="login">
+  <a href="<?php echo $view['router']->path('user_login_action'); ?>">
     <span></span>
     <div class="index-text">
       LOGIN
