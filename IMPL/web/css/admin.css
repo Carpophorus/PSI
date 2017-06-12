@@ -2,11 +2,6 @@
     font-size: 0.7em;
 }
 
-#main-content input, #main-content button {
-    color: #333;
-    background: #fff;
-}
-
 body {
     background: #666;
 }
@@ -259,6 +254,13 @@ label
     background-size: 100% auto;
 }
 
+#ac-bckgrnd
+{
+    background: url('../img/8.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
 /*LOGIN*/
 
 #main-content > form > div
@@ -361,4 +363,92 @@ label
 #ad-menu > div:hover
 {
     background: rgba(255,255,255,.35);
+}
+
+/*SYSTEM CONFIGURATION*/
+
+#main-content > form > button
+{
+    position: absolute;
+
+    width: 15%;
+    margin-top: 10vh;
+    margin-left: 42.5%;
+
+    border: none;
+    background: rgba(255,255,255,.15);
+    box-shadow: none;
+}
+
+#main-content > form > button:hover
+{
+    background: rgba(255,255,255,.35);
+}
+
+.configuration-wrapper
+{
+    margin: 0 10% 0 10%;
+}
+
+.configuration-wrapper .nav-tabs
+{
+    border: none;
+}
+
+.nav-tabs li
+{
+    background: rgba(255,255,255,.15);
+}
+
+.nav-tabs > li > a
+{
+    margin: 0;
+}
+
+.nav-tabs > li.active > a
+{
+    color: #f7f9f9;
+    border: none;
+    border-radius: 0;
+    background: rgba(255,255,255,.35);
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a:hover
+{
+    color: #f7f9f9;
+    border: none;
+    border-radius: 0;
+    background: rgba(255,255,255,.35);
+}
+
+.tab-content .tab-pane .configuration-field .input-group .input-group-addon
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    color: #f7f9f9;
+    border: none;
+    border-radius: 0;
+    background: rgba(255,255,255,.35);
+}
+.tab-content .tab-pane .configuration-field .input-group input
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    border: none;
+    border-radius: 0;
+    background: #f7f9f9;
+}
+
+.form-control
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    height: 8vh;
+
+    border: none;
+    border-radius: 0;
 }

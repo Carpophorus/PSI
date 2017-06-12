@@ -4,6 +4,7 @@
 
 <?php $view['UI']->start('_content') ?>
 
+<div id="ac-bckgrnd"></div>
 <?php $configurationData = $configurationRegistry->getConfigurationGroups(); ?>
 <form action="<?php echo $action; ?>" method="POST" onSubmit="AdminUI.submitForm(this); return false;">
     <button class="btn btn-primary" type="submit">Update configuration</button>
