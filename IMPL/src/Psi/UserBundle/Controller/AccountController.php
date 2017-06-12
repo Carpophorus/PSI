@@ -55,6 +55,28 @@ class AccountController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $resetForm = $form->getData();
             $userManager = $this->get('psi.user.manager');
+
+            $user = $userManager->findUser(['email' => $resetForm->getEmail()]);
+            if ($user) {
+                $password = bin2hex(openssl_random_pseudo_bytes(4));
+                $userManager->updatePassword($user, $password);
+
+                $message = new \Swift_Message(null);
+                $message->setSubject('N2M Reset password');
+                $message->setFrom('support@n2m.psi.test.com')
+                    ->setTo($resetForm->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'PsiUserBundle:Account:_partial/reset_email.html.php', array('password' => $password)
+                        ), 'text/html'
+                );
+                if (!$this->get('mailer')->send($message, $failures)) {}
+
+                $this->addFlash('success', "An email with your new password has been sent.");
+            } else {
+                $this->addFlash('error', "A user with the specified email address doesn't exist.");
+            }
+
             //echo success message
         } else {
             $errors = $form->getErrors();
