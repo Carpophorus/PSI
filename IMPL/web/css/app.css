@@ -65,6 +65,8 @@ header nav
 {
     border: none;
     background-color: transparent;
+    background-image: none;
+    box-shadow: none;
 }
 
 .navbar-default .navbar-nav li a
@@ -233,20 +235,6 @@ button:focus
     background-size: 100% auto;
 }
 
-/*#lp-bckgrnd
-{
-    background: url('../img/6.png') no-repeat;
-    background-position: center;
-    background-size: 100% auto;
-}*/
-
-/*#lp-bckgrnd
-{
-    background: url('../img/7.png') no-repeat;
-    background-position: center;
-    background-size: 100% auto;
-}*/
-
 /*SEARCH*/
 
 .search-container
@@ -302,6 +290,15 @@ button:focus
 .search-container .sc-button:hover
 {
     background-color: rgba(255,255,255,.35);
+}
+
+#main-content .loader
+{
+    height: 92vh;
+    margin-top: 8vh;
+    padding-top: 63vh;
+
+    background: rgba(255,255,255,.15);
 }
 
 /*ACCOUNT*/
@@ -1360,18 +1357,18 @@ div[id^='summoner-masteries-']
 
 .quint-1
 {
-  top:58vh;
-  left: 19.7vw;
+    top: 58vh;
+    left: 19.7vw;
 }
 
 .quint-2
 {
-  top:58vh;
-  left: 24.7vw;
+    top: 58vh;
+    left: 24.7vw;
 }
 
 .quint-3
 {
-  top:58vh;
-  left: 29.7vw;
+    top: 58vh;
+    left: 29.7vw;
 }

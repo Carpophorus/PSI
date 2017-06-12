@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     /**
      * Renders dashboard
-     * 
+     *
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/dashboard", name="admin_dashboard_action")
      */
@@ -42,13 +42,13 @@ class AdminController extends Controller
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('admin_dashboard_action');
         }
-        
+
         $loginForm = new LoginForm();
 
         $form = $this->createFormBuilder($loginForm)
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
-            ->add('save', SubmitType::class, array('label' => 'Login'))
+            ->add('save', SubmitType::class, array('label' => 'Log In'))
             ->getForm();
 
         $form->handleRequest($request);
@@ -75,7 +75,7 @@ class AdminController extends Controller
                     return $this->redirectToRoute('admin_dashboard_action');
                 }
             } else {
-                
+
             }
         }
 
