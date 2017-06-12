@@ -1,49 +1,3 @@
-/*nav {
-    font-size: 0.7em;
-}
-
-body {
-    background: #666;
-}
-
-header {
-    background-color: #fff;
-}
-
-.table-hover > tbody > tr:hover {
-    background: #666;
-    color: #000;
-}
-
-.row-actions button {
-    color: #000;
-}
-
-#main-content {
-    background: #333;
-    padding: 0.5em;
-    margin-top: 20vh;
-}
-
-.btn-primary {
-    margin: 0.5em 0;
-}
-
-.nav-tabs > li > a:hover {
-    color: #000;
-}
-
-.btn-primary:hover {
-    background: red;
-}
-
-#main-content .messages {
-    position: absolute;
-    top: -10vh;
-    left: 0;
-    background: transparent;
-}*/
-
 /* Marko Mrkonjić 3139/2016 */
 
 /*GENERAL*/
@@ -261,6 +215,20 @@ label
     background-size: 100% auto;
 }
 
+#adu-bckgrnd
+{
+    background: url('../img/9.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#anu-bckgrnd
+{
+    background: url('../img/10.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
 /*LOGIN*/
 
 #main-content > form > div
@@ -451,4 +419,56 @@ label
 
     border: none;
     border-radius: 0;
+}
+
+/*DISPLAY USERS*/
+
+#main-content > table
+{
+    position: relative;
+    top: 20vh;
+
+    width: 80%;
+    margin-left: 10%;
+}
+
+#main-content > table > tbody > tr:hover
+{
+    background: rgba(255,255,255,.15);
+}
+
+#main-content > table > tbody > tr > td > div > button
+{
+    border: none;
+    border-radius: 5px;
+    background: rgba(255,255,255,.15);
+    box-shadow: none;
+}
+
+#main-content > table > tbody > tr > td > div > button:hover
+{
+    background: rgba(255,255,255,.35);
+}
+
+/*NEW USER*/
+
+.anu-container
+{
+    position: relative;
+
+    width: 40%;
+    margin-bottom: 10vh;
+    margin-left: 30%;
+    padding-top: 20vh;
+}
+
+.anu-container > form > div > div>button
+{
+    width: 15vw;
+    margin-top: 5vh;
+    margin-left: 12.5vw;
+
+    border: 0;
+    background: rgba(255,255,255,.15);
+    box-shadow: none;
 }
