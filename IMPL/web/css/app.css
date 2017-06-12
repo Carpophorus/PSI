@@ -186,6 +186,44 @@ button:focus
     height: 100vh;
 }
 
+.index-left,
+.index-right
+{
+    font-family: 'Bangers', cursive;
+    font-size: 200%;
+    line-height: 90vh;
+
+    float: left;
+
+    width: 50%;
+    height: 90vh;
+
+    text-align: center;
+
+    background: url('../img/6.png') no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+
+    -webkit-filter: grayscale(.5);
+            filter: grayscale(.5);
+}
+
+.index-right
+{
+    background: url('../img/7.png') no-repeat;
+    background-position: 70% center;
+    background-size: auto 100%;
+}
+
+.index-left:hover,
+.index-right:hover
+{
+    font-size: 300%;
+
+    -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+}
+
 #lsp-bckgrnd
 {
     background: url('../img/1.png') no-repeat;
