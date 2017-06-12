@@ -30,26 +30,24 @@
     };
 
     $(document).ready(function () {
-        $(".messages").each(function(index, elem) {
-            setTimeout(function () {
-                $(elem).fadeOut(250).queue(function (nxt) {
-                    $(this).remove();
-                    nxt();
-                });
-            }, 6000);
-        });
+        var $elem = $(".messages");
+        setTimeout(function () {
+            $elem.fadeOut(250).queue(function (nxt) {
+                $(this).remove();
+                nxt();
+            });
+        }, 6000);
         $('[data-toggle="tooltip"]').tooltip();
     });
 
     $(document).ajaxComplete(function () {
-        $(".messages").each(function(index, elem) {
-            setTimeout(function () {
-                $(elem).fadeOut(250).queue(function (nxt) {
-                    $(this).remove();
-                    nxt();
-                });
-            }, 6000);
-        });
+        var $elem = $(".messages");
+        setTimeout(function () {
+            $elem.fadeOut(250).queue(function (nxt) {
+                $(this).remove();
+                nxt();
+            });
+        }, 6000);
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>

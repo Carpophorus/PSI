@@ -240,6 +240,7 @@ class AppController extends Controller
                 'summoner' => $participant->getSummoner()
             ]);
             $staticData['championMastery'][$participant->getId()] = ($championMastery ? $championMastery->getChampionLevel() : 1);
+            $staticData['summoner'][$participant->getId()] = $staticManager->getStaticFileData("profileicon", $participant->getSummoner()->getProfileIconId() . ".png");
 
             $staticData['spell'][$participant->getId()]['1'] = $staticManager->getStaticFileData('spell', $participant->getSpellId1() . ".png");
             $staticData['spell'][$participant->getId()]['2'] = $staticManager->getStaticFileData('spell', $participant->getSpellId2() . ".png");

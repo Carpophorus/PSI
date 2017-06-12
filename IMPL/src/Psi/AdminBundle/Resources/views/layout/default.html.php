@@ -17,65 +17,32 @@
         <header>
             <?php $view['UI']->output('_header'); ?>
         </header>
-            <div id="main-content">
-                <div class="messages">
-                    <?php
-                    $typeTranslation = [
-                        'notice' => 'info',
-                        'success' => 'success',
-                        'error' => 'danger'
-                    ];
-
-                    ?>
-                    <?php foreach ($view['session']->getFlashes() as $type => $flash_messages): ?>
-                        <?php foreach ($flash_messages as $flash_message): ?>
-                            <div class="alert alert-<?php echo $typeTranslation[$type] ?>">
-                                <?php echo $flash_message ?>
-                            </div>
-                        <?php endforeach; ?>
+        <div id="main-content">
+            <?php
+            $typeTranslation = [
+                'notice' => 'info',
+                'success' => 'success',
+                'error' => 'danger'
+            ];
+            $messages = $view['session']->getFlashes();
+            ?>
+            <?php if($messages && count($messages) > 0): ?>
+            <div class="messages">
+                <?php foreach ($messages as $type => $flash_messages): ?>
+                    <?php foreach ($flash_messages as $flash_message): ?>
+                        <div class="alert alert-<?php echo $typeTranslation[$type] ?>">
+                            <?php echo $flash_message ?>
+                        </div>
                     <?php endforeach; ?>
-                </div>
-                <?php $view['UI']->output('_content'); ?>
+                <?php endforeach; ?>
             </div>
+            <?php endif; ?>
+            <?php $view['UI']->output('_content'); ?>
+        </div>
         <footer>
-          NOOB TO MASTER &bull; PROJEKAT TIMA TEAM-O &bull; PRINCIPI SOFTVERSKOG INŽENJERSTVA &bull; &COPY; 2017. ALL RIGHTS RESERVED
+            NOOB TO MASTER &bull; PROJEKAT TIMA TEAM-O &bull; PRINCIPI SOFTVERSKOG INŽENJERSTVA &bull; &COPY; 2017. ALL RIGHTS RESERVED
             <?php $view['UI']->output('_footer'); ?>
             <?php $view['UI']->output('_footer_scripts'); ?>
-
-            <script type="text/javascript">
-                window.AdminUI = {
-                    loadContent: function (url) {
-                        $.ajax(url, {
-
-                        }).done(function (data) {
-                            var newContent = $(data).find('#main-content');
-                            $("#main-content").html(newContent.html());
-                        });
-                        return false;
-                    },
-                    submitForm: function (form) {
-                        var url = $(form).attr('action');
-                        $.ajax({
-                            type: "POST",
-                            url: url,
-                            data: $(form).serialize(),
-                            success: function (data)
-                            {
-                                var newContent = $(data).find('#main-content');
-                                $("#main-content").html(newContent.html());
-                            }
-                        });
-                        return false;
-                    },
-                    editUser: function(id) {
-                        var baseUrl = "<?php echo $view['router']->path('admin_user_edit_action'); ?>";
-                        window.location = baseUrl + "/" + id;
-                    }
-                };
-                $(document).ajaxStart(function () {
-                    Pace.restart();
-                });
-            </script>
         </footer>
     </body>
 </html>

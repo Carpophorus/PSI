@@ -57,7 +57,10 @@ class AccountController extends Controller
             $userManager = $this->get('psi.user.manager');
             //echo success message
         } else {
-            $this->addFlash('error', (string) $form->getErrors());
+            $errors = $form->getErrors();
+            if ($errors->count() > 0) {
+                $this->addFlash('error', (string) $errors);
+            }
         }
 
         return $this->indexAction($request);
@@ -106,7 +109,10 @@ class AccountController extends Controller
                 $this->addFlash('error', "Invalid login information.");
             }
         } elseif (!$form->isValid()) {
-            $this->addFlash('error', (string) $form->getErrors());
+            $errors = $form->getErrors();
+            if ($errors->count() > 0) {
+                $this->addFlash('error', (string) $errors);
+            }
         }
 
         return $this->indexAction($request);
@@ -166,7 +172,10 @@ class AccountController extends Controller
                 $this->addFlash('error', "A user with this email allready exists.");
             }
         } else {
-            $this->addFlash('error', (string) $form->getErrors());
+            $errors = $form->getErrors();
+            if ($errors->count() > 0) {
+                $this->addFlash('error', (string) $errors);
+            }
         }
         return $this->indexAction($request);
     }

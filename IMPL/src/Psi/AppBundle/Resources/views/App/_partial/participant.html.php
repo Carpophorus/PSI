@@ -8,7 +8,9 @@
         <?php $championMasteryBaseUrl = $view['assets']->getUrl('img/Champ_Mastery_'); ?>
         <img src="<?php echo $championMasteryBaseUrl . $static['championMastery'][$participant->getId()]; ?>.png" />
     </div>
-    <div class="summoner-icon"></div>
+    <div class="summoner-icon">
+        <img src="<?php echo $static['summoner'][$participant->getId()]; ?>" />
+    </div>
     <div class="summoner-spell-1">
         <img src="<?php echo $static['spell'][$participant->getId()]['1']; ?>" />
     </div>

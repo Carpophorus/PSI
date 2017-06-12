@@ -66,7 +66,7 @@ class UserController extends Controller
         ]);
     }
 
-    protected function buildUserForm(UserForm $userForm, $statusRegistry, $isNew = true, $action)
+    protected function buildUserForm(UserForm $userForm, $statusRegistry, $isNew = true, $action = "")
     {
         $formBuilder = $this->createFormBuilder($userForm)
             ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
