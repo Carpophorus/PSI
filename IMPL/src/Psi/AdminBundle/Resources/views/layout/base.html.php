@@ -29,25 +29,25 @@
             </div>
             <div class="collapse navbar-collapse" id="adminNav">
                 <ul class="nav navbar-nav">
-                    <?php
-                    if ($view['security']->isGranted('ROLE_ADMIN')) {
+                    <?php if ($view['security']->isGranted('ROLE_ADMIN')): ?>
+                        <?php
                         $links = [
                             'dashboard' => $router->generate('admin_dashboard_action'),
                             'system configuration' => $router->generate('configuration_index_action'),
-                            //'system statistics' => $router->generate('statistics_list_action'),
                             'display users' => $router->generate('admin_user_list_action'),
                             'new user' => $router->generate('admin_user_new_action')
                         ];
-                    } else {
-                        $links = [];
-                    }
 
-                    ?>
-                    <?php foreach ($links as $label => $href): ?>
+                        ?>
+                        <?php foreach ($links as $label => $href): ?>
+                            <li>
+                                <a href="#" onclick="AdminUI.loadContent('<?php echo $href; ?>')"><?php echo $label; ?></a>
+                            </li>                    
+                        <?php endforeach; ?>
                         <li>
-                            <a href="#" onclick="AdminUI.loadContent('<?php echo $href; ?>')"><?php echo $label; ?></a>
+                            <a href="<?php echo $view['router']->path('logout'); ?>">Logout</a>
                         </li>                    
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
