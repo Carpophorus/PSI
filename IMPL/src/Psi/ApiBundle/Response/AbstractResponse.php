@@ -16,6 +16,12 @@ abstract class AbstractResponse implements ResponseInterface
      */
     protected $_status;
     
+    /**
+     * Response header
+     * @var string
+     */
+    protected $_header;
+    
     public function getData(): array
     {
         return $this->_data;
@@ -24,5 +30,10 @@ abstract class AbstractResponse implements ResponseInterface
     public function getStatus(): integer
     {
         return $this->_status;
+    }
+    
+    public function getHeader() : string
+    {
+        return $this->_header;
     }
 }

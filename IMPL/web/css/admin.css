@@ -1,0 +1,474 @@
+/* Marko Mrkonjić 3139/2016 */
+
+/*GENERAL*/
+
+body
+{
+    font-family: 'Oswald', sans-serif;
+    font-size: 3vh;
+
+    position: relative;
+}
+
+header,
+footer
+{
+    position: fixed;
+    z-index: 1000;
+
+    width: 100%;
+    padding: 0;
+
+    color: #696969;
+    background: #f7f9f9;
+}
+
+header
+{
+    font-family: 'Bangers', cursive;
+    font-size: 4vh;
+    line-height: 8vh;
+
+    top: 0;
+
+    height: 8vh;
+
+    text-align: right;
+
+    background: url('../img/N2M.svg') no-repeat;
+    background-position: 10% center;
+    background-size: 13vh 13vh;
+}
+
+header nav
+{
+    float: right;
+
+    max-width: 80%;
+    height: 8vh;
+    min-height: 0;
+}
+
+.navbar
+{
+    min-height: 0;
+    margin: 0;
+}
+
+.navbar-nav
+{
+    position: absolute;
+    right: 5vw;
+}
+
+.navbar-default
+{
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+
+.navbar-default .navbar-nav li a
+{
+    font-size: inherit;
+    line-height: inherit;
+
+    padding: 0 2.5vw 0 2.5vw;
+
+    color: #696969;
+}
+
+footer
+{
+    font-size: 1.2vh;
+    line-height: 2.5vh;
+
+    bottom: 0;
+
+    height: 2.5vh;
+
+    text-align: center;
+}
+
+#main-content .messages
+{
+    font-size: 2vh;
+    line-height: 5vh;
+
+    position: fixed;
+    z-index: 1000;
+    top: 8vh;
+
+    width: 100%;
+    height: 5vh;
+
+    text-align: center;
+
+    background: rgba(27,188,155,.6);
+}
+
+a,
+a:hover,
+a:focus,
+a:visited
+{
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+a span
+{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus
+{
+    outline: none;
+}
+
+::-webkit-input-placeholder
+{
+    color: #b0b0b0;
+}
+
+:-ms-input-placeholder
+{
+    color: #b0b0b0;
+}
+
+::-moz-placeholder
+{
+    color: #b0b0b0;
+}
+
+:-moz-placeholder
+{
+    color: #b0b0b0;
+}
+
+#main-content
+{
+    position: relative;
+
+    min-height: 100vh;
+    padding-top: 8vh;
+
+    color: #f7f9f9;
+    background-color: transparent;
+}
+
+#main-content > div,
+#main-content > form
+{
+    position: relative;
+}
+
+label
+{
+    font-weight: 400;
+
+    margin: 0;
+    margin-top: 3vh;
+}
+
+/*BACKGROUNDS*/
+
+#main-content [id$=bckgrnd]
+{
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#al-bckgrnd
+{
+    background: url('../img/6.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#ad-bckgrnd
+{
+    background: url('../img/7.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#ac-bckgrnd
+{
+    background: url('../img/8.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#adu-bckgrnd
+{
+    background: url('../img/9.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#anu-bckgrnd
+{
+    background: url('../img/10.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+/*LOGIN*/
+
+#main-content > form > div
+{
+    padding-top: 20vh;
+
+    text-align: center;
+}
+
+#main-content > form > div > label
+{
+    display: block;
+
+    text-align: center;
+}
+
+#main-content > form > div > div > input
+{
+    line-height: 6vh;
+
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    width: 40%;
+    height: 6vh;
+    margin: auto;
+    margin-top: 1.5vh;
+
+    text-align: center;
+
+    border: none;
+    border-radius: 3vh;
+    background: rgba(0,0,0,.2);
+}
+
+#main-content > form > div > div > button
+{
+    width: 15%;
+    height: 6vh;
+    margin-top: 6vh;
+
+    border: none;
+    border-radius: 3vh;
+    background-color: rgba(255,255,255,.15);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 4vh 4vh;
+}
+
+.search-container .sc-button:hover
+{
+    background-color: rgba(255,255,255,.35);
+}
+
+/*DASHBOARD*/
+
+#main-content h2
+{
+    font-size: 100%;
+
+    position: relative;
+
+    margin: 0;
+    padding: 0;
+    padding-top: 20vh;
+
+    text-align: center;
+}
+
+#ad-menu
+{
+    font-family: 'Bangers', cursive;
+    font-size: 120%;
+
+    top: 13vh;
+
+    width: 100%;
+    height: 40vh;
+
+    text-align: center;
+}
+
+#ad-menu > div
+{
+    position: relative;
+
+    float: left;
+
+    width: 23vw;
+    height: 40vh;
+    margin-right: 5%;
+    margin-left: 5%;
+    padding-top: 15vh;
+
+    background: rgba(255,255,255,.15);
+}
+
+#ad-menu > div:hover
+{
+    background: rgba(255,255,255,.35);
+}
+
+/*SYSTEM CONFIGURATION*/
+
+#main-content > form > button
+{
+    position: absolute;
+
+    width: 15%;
+    margin-top: 10vh;
+    margin-left: 42.5%;
+
+    border: none;
+    background: rgba(255,255,255,.15);
+    box-shadow: none;
+}
+
+#main-content > form > button:hover
+{
+    background: rgba(255,255,255,.35);
+}
+
+.configuration-wrapper
+{
+    margin: 0 10% 0 10%;
+}
+
+.configuration-wrapper .nav-tabs
+{
+    border: none;
+}
+
+.nav-tabs li
+{
+    background: rgba(255,255,255,.15);
+}
+
+.nav-tabs > li > a
+{
+    margin: 0;
+}
+
+.nav-tabs > li.active > a
+{
+    color: #f7f9f9;
+    border: none;
+    border-radius: 0;
+    background: rgba(255,255,255,.35);
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a:hover
+{
+    color: #f7f9f9;
+    border: none;
+    border-radius: 0;
+    background: rgba(255,255,255,.35);
+}
+
+.tab-content .tab-pane .configuration-field .input-group .input-group-addon
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    color: #f7f9f9;
+    border: none;
+    border-radius: 0;
+    background: rgba(255,255,255,.35);
+}
+.tab-content .tab-pane .configuration-field .input-group input
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    border: none;
+    border-radius: 0;
+    background: #f7f9f9;
+}
+
+.form-control
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    height: 8vh;
+
+    border: none;
+    border-radius: 0;
+}
+
+/*DISPLAY USERS*/
+
+#main-content > table
+{
+    position: relative;
+    top: 20vh;
+
+    width: 80%;
+    margin-left: 10%;
+}
+
+#main-content > table > tbody > tr:hover
+{
+    background: rgba(255,255,255,.15);
+}
+
+#main-content > table > tbody > tr > td > div > button
+{
+    border: none;
+    border-radius: 5px;
+    background: rgba(255,255,255,.15);
+    box-shadow: none;
+}
+
+#main-content > table > tbody > tr > td > div > button:hover
+{
+    background: rgba(255,255,255,.35);
+}
+
+/*NEW USER*/
+
+.anu-container
+{
+    position: relative;
+
+    width: 40%;
+    margin-bottom: 10vh;
+    margin-left: 30%;
+    padding-top: 20vh;
+}
+
+.anu-container > form > div > div>button
+{
+    width: 15vw;
+    margin-top: 5vh;
+    margin-left: 12.5vw;
+
+    border: 0;
+    background: rgba(255,255,255,.15);
+    box-shadow: none;
+}

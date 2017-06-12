@@ -24,7 +24,8 @@ class AccessToken
     /**
      *
      * @var User
-     * @ORM\ManyToOne(targetEntity="Psi\UserBundle\Entity\User", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Psi\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL"))
      */
     protected $user;
 

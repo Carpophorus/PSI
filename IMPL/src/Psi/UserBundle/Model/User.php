@@ -1,4 +1,5 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\UserBundle\Model;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
@@ -26,7 +27,12 @@ class User implements AdvancedUserInterface, EntityUserInterface, EquatableInter
 
     public function eraseCredentials()
     {
-        
+        /* @todo */
+    }
+
+    public function getId()
+    {
+        return $this->entity->getId();
     }
 
     public function getPassword(): string
@@ -47,6 +53,16 @@ class User implements AdvancedUserInterface, EntityUserInterface, EquatableInter
     public function getUsername(): string
     {
         return $this->entity->getEmail();
+    }
+
+    public function getEmail(): string
+    {
+        return $this->entity->getEmail();
+    }
+
+    public function getStatus(): string
+    {
+        return $this->entity->getStatus();
     }
 
     public function isAccountNonExpired(): bool

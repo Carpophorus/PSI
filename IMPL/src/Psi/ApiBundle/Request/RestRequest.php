@@ -1,6 +1,8 @@
 <?php
 namespace Psi\ApiBundle\Request;
 
+use Psi\ApiBundle\Event\ApiRequestEvent;
+
 class RestRequest extends AbstractRequest
 {
 
@@ -62,15 +64,35 @@ class RestRequest extends AbstractRequest
             throw new Exception("CURL is not installed.");
         }
 
+        $dispatcher = $this->getEventDispatcher();
+        if ($dispatcher) {
+            $dispatcher->dispatch( ApiRequestEvent::NAME . '_send_before', new ApiRequestEvent($this));
+        }
+
         $url = $this->getUrl();
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPGET, true);
+        curl_setopt($curl, CURLOPT_VERBOSE, 1);
+        curl_setopt($curl, CURLOPT_HEADER, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        $responseData = json_decode(curl_exec($curl), true);
+        $response = curl_exec($curl);
+
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        $header = substr($response, 0, $header_size);
+        $body = substr($response, $header_size);
+
+        $responseData = json_decode($body, true);
         $responseInfo = curl_getinfo($curl);
         curl_close($curl);
+        $this->constructResponse($responseData, $responseInfo, $header);
 
-        $this->constructResponse($responseData, $responseInfo);
+        $this->_response->setHeader($header);
+
+        if ($dispatcher) {
+            $dispatcher->dispatch( ApiRequestEvent::NAME . '_send_after', new ApiRequestEvent($this));
+        }
+
+        return $this;
     }
 }

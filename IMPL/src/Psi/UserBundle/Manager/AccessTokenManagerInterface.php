@@ -1,4 +1,5 @@
 <?php
+// Nemanja Djokic - 496/2013
 namespace Psi\UserBundle\Manager;
 
 use Psi\UserBundle\Entity\User;

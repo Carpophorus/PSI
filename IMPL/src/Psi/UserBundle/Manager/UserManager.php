@@ -1,4 +1,5 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\UserBundle\Manager;
 
 use Psi\UserBundle\Manager\UserManagerInterface;
@@ -12,6 +13,9 @@ use Psi\UserBundle\Manager\AccessTokenManagerInterface;
 
 class UserManager implements UserManagerInterface
 {
+
+    const AUTHENTHICATED_ROLE = "IS_AUTHENTICATED_FULLY";
+    const ADMIN_ROLE = "ROLE_ADMIN";
 
     /**
      *
@@ -74,7 +78,7 @@ class UserManager implements UserManagerInterface
     {
 
         if ($this->findUser(['email' => $email])) {
-            throw new \Exception("User with specified email allready exists.");
+            throw new \Exception("User with specified email allready exists [$email].");
         }
 
 
@@ -92,12 +96,15 @@ class UserManager implements UserManagerInterface
 
     public function saveUser(UserInterface $user)
     {
+
         $model = $this->provider->getEntityUserModel($user);
         if ($model) {
             $entity = $model->getEntity();
             $this->provider->getObjectManager()->persist($entity);
             $this->provider->getObjectManager()->flush();
+            return true;
         }
+        return false;
     }
 
     public function updatePassword(UserInterface $user, $password)
@@ -109,6 +116,7 @@ class UserManager implements UserManagerInterface
             $encodedPassword = $encoder->encodePassword($password, $salt);
 
             $model->updatePassword($encodedPassword, $salt);
+            $this->saveUser($model);
         }
     }
 
@@ -132,8 +140,6 @@ class UserManager implements UserManagerInterface
             $model = $this->provider->getEntityUserModel($user);
             $encoder = $this->encoderFactory->getEncoder($model->getEntity());
             $salt = $model->getSalt();
-
-            $encodedPassword = $encoder->encodePassword($password, $salt);
 
             if ($encoder->isPasswordValid($model->getPassword(), $password, $salt)) {
                 return $model;

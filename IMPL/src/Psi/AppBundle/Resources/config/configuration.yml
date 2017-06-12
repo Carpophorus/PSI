@@ -1,0 +1,36 @@
+services:
+    
+    psi.app.configuration.api.key:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.app.api.key
+            - Api
+            - Api Key
+            - raw
+            - "%psi.configuration.view.template.default%"
+        tags:
+            - { name: psi.configuration }   
+            
+    psi.app.configuration.api.delay:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.app.api.delay
+            - Api
+            - Request delay time
+            - raw
+            - "%psi.configuration.view.template.default%"
+            - 0
+        tags:
+            - { name: psi.configuration }                
+            
+    psi.app.configuration.cache.duration:
+        class: "%psi.configuration.item.class%"
+        arguments:
+            - psi.app.cache.duration
+            - Cache
+            - Cache Duration
+            - raw
+            - "%psi.configuration.view.template.default%"
+            - 604800
+        tags:
+            - { name: psi.configuration }                   

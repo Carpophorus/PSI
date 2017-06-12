@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 class ConfigurationPass implements CompilerPassInterface
 {
 
-    const MANAGER_ID = 'psi.manager.configuration.registry';
+    const MANAGER_ID = 'psi.configuration.manager.registry';
     const CONFIGURATION_TAG_NAME = 'psi.configuration';
 
     /**
@@ -33,9 +33,9 @@ class ConfigurationPass implements CompilerPassInterface
      */
     protected function processConfigurations(Definition $managerDefinition, ContainerBuilder $container)
     {
-        $navigations = $container->findTaggedServiceIds(self::CONFIGURATION_TAG_NAME);
+        $configurations = $container->findTaggedServiceIds(self::CONFIGURATION_TAG_NAME);
 
-        foreach ($navigations as $serviceId => $tags) {
+        foreach ($configurations as $serviceId => $tags) {
             $ref = new Reference($serviceId);
             $managerDefinition->addMethodCall('addConfiguration', [$ref]);
         }

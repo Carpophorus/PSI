@@ -2,6 +2,7 @@
 namespace Psi\AdminBundle\Manager;
 
 use Psi\UserBundle\Manager\UserManagerInterface as BaseUserManagerInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 interface UserManagerInterface extends BaseUserManagerInterface
 {
@@ -11,5 +12,12 @@ interface UserManagerInterface extends BaseUserManagerInterface
      * @return \Psi\UserBundle\Manager\UserManagerInterface
      */
     public function getUserManager();
+    
+    /**
+     * 
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function hasAdminPrivileges(UserInterface $user);
     
 }

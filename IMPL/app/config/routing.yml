@@ -12,3 +12,6 @@ psi_app:
     resource: "@PsiAppBundle/Controller/"
     type:     annotation
     prefix:   /
+
+logout:
+    path: /logout    

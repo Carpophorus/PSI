@@ -21,7 +21,7 @@ class StaticDataMasteriesRequest extends RestRequest
     public function getQueryParams()
     {
         return [
-            'masteryListData' => 'image'
+            'masteryListData' => 'all'
         ];
     }
 }

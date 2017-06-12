@@ -1,4 +1,5 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -37,7 +38,7 @@ class Match
     /**
      *
      * @var string
-     *  @ORM\Column(name="version", type="string") 
+     *  @ORM\Column(name="version", type="string", nullable=true) 
      */
     protected $version;
 
@@ -50,14 +51,14 @@ class Match
 
     /**
      * @var string
-     * @ORM\Column(name="duration", type="bigint")
+     * @ORM\Column(name="duration", type="bigint", nullable=true)
      */
     protected $duration;
 
     /**
      *
      * @var string
-     * @ORM\Column(name="season", type="string")
+     * @ORM\Column(name="season", type="string", nullable=true)
      */
     protected $season;
 

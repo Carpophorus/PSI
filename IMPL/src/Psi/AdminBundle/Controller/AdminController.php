@@ -1,4 +1,5 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Psi\AdminBundle\Form\LoginForm;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdminController extends Controller
@@ -19,14 +19,17 @@ class AdminController extends Controller
 
     /**
      * Renders dashboard
+     *
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/dashboard", name="admin_dashboard_action")
      */
     public function dashboardAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render(
                 'PsiAdminBundle:Admin:dashboard.html.php', [
-                'router' => $this->container->get('router')
+                'router' => $this->container->get('router'),
+                'user' => $user,
         ]);
     }
 
@@ -36,12 +39,16 @@ class AdminController extends Controller
      */
     public function loginAction(Request $request)
     {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin_dashboard_action');
+        }
+
         $loginForm = new LoginForm();
 
         $form = $this->createFormBuilder($loginForm)
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
-            ->add('save', SubmitType::class, array('label' => 'Login'))
+            ->add('save', SubmitType::class, array('label' => 'Log In'))
             ->getForm();
 
         $form->handleRequest($request);
@@ -57,18 +64,18 @@ class AdminController extends Controller
             $user = $manager->validateCredentials($email, $password);
             if ($user) {
                 $roles = $user->getRoles()->toArray();
-                $roles[] = "IS_AUTHENTICATED_FULLY";
-                $roles[] = "ROLE_ADMIN";
 
-                $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $roles);
-                $this->get("security.token_storage")->setToken($token);
+                if ($manager->hasAdminPrivileges($user)) {
+                    $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $roles);
+                    $this->get("security.token_storage")->setToken($token);
 
-                $event = new InteractiveLoginEvent($request, $token);
-                $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+                    $event = new InteractiveLoginEvent($request, $token);
+                    $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
-                return $this->redirectToRoute('admin_dashboard_action');
+                    return $this->redirectToRoute('admin_dashboard_action');
+                }
             } else {
-                
+
             }
         }
 

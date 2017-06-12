@@ -1,4 +1,5 @@
 <?php
+// Viktor Galindo - 655/2013
 namespace Psi\UserBundle\Model;
 
 use Psi\UserBundle\Model\StatusRegistry;

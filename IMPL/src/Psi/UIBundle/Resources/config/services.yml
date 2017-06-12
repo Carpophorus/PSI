@@ -1,7 +1,16 @@
 parameters:
     psi.ui.helper.slots.class:  Psi\UIBundle\Helper\SlotsHelper
+    psi.ui.helper.datatable.class: Psi\UIBundle\Helper\DataTableHelper
 
 services:
+    
+    psi.ui.helper.datatable:
+        class: "%psi.ui.helper.datatable.class%"
+        arguments:
+            - "@templating"
+        tags:
+            - { name: templating.helper, alias: datatable }    
+    
     psi.ui.helper.slots:
         class: "%psi.ui.helper.slots.class%"
         arguments:

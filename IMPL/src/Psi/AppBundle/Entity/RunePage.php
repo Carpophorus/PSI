@@ -1,4 +1,6 @@
 <?php
+// Nemanja Djokic - 496/2013
+
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -37,6 +39,7 @@ class RunePage
     /**
      * @var \Psi\AppBundle\Entity\Rune[]
      * @ORM\OneToMany(targetEntity="Psi\AppBundle\Entity\Rune", mappedBy="runePage",cascade={"all"})
+     * @ORM\OrderBy({"slotId" = "ASC"})
      */
     protected $runes;
 

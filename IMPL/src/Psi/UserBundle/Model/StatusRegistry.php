@@ -1,4 +1,5 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\UserBundle\Model;
 
 class StatusRegistry
@@ -40,5 +41,15 @@ class StatusRegistry
     public function getStatuses()
     {
         return $this->statuses;
+    }
+
+    public function toFormOptions()
+    {
+        $options = [];
+        foreach ($this->statuses as $status) {
+            $options[$status['label']] = $status['code'];
+        }
+
+        return $options;
     }
 }

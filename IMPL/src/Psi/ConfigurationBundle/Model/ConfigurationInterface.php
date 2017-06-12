@@ -27,6 +27,18 @@ interface ConfigurationInterface
      * @return string
      */
     public function getGroup();
+    
+    /**
+     * Returns configuration internal name
+     * @return string
+     */
+    public function getName();
+    
+    /**
+     * Returns optional configuration options passed through service declaration
+     * @return array
+     */
+    public function getOptions();
 
     /**
      * @todo

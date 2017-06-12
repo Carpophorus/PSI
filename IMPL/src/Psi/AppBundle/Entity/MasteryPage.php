@@ -1,4 +1,5 @@
 <?php
+// Viktor Galindo - 655/2013
 namespace Psi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -37,6 +38,7 @@ class MasteryPage
     /**
      * @var Mastery[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="Psi\AppBundle\Entity\Mastery", mappedBy="masteryPage",cascade={"all"})
+     * @ORM\OrderBy({"externalId" = "DESC"})
      */
     protected $masteries;
 

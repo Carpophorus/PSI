@@ -1,4 +1,5 @@
 <?php
+// Viktor Galindo - 655/2013
 namespace Psi\ConfigurationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -34,7 +35,7 @@ class Configuration
 
     /**
      * @var string
-     * @ORM\Column(name="value", type="string")
+     * @ORM\Column(name="value", type="string", nullable=true)
      */
     protected $value;
 

@@ -19,4 +19,17 @@ interface ResponseInterface
      * @return array
      */
     public function getData();
+    
+    /**
+     * Returns string representation of header
+     * @return string
+     */
+    public function getHeader();
+    
+    
+    /**
+     * @param string $header
+     */
+    public function setHeader($header);    
+    
 }

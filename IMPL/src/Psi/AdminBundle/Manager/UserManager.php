@@ -1,9 +1,11 @@
 <?php
 namespace Psi\AdminBundle\Manager;
+
 use Psi\AdminBundle\Manager\UserManagerInterface;
 
 class UserManager implements UserManagerInterface
 {
+
     /**
      *
      * @var \Psi\UserBundle\Manager\UserManagerInterface
@@ -47,11 +49,22 @@ class UserManager implements UserManagerInterface
 
     public function updatePassword(\Symfony\Component\Security\Core\User\UserInterface $user, $password)
     {
-        return $this->updatePassword($user, $password);
+        return $this->userManager->updatePassword($user, $password);
     }
 
     public function validateCredentials($email, $password)
     {
-        return $this->validateCredentials($email, $password);
+        return $this->userManager->validateCredentials($email, $password);
+    }
+
+    public function hasAdminPrivileges(\Symfony\Component\Security\Core\User\UserInterface $user)
+    {
+        foreach ($user->getRoles() as $role) {
+            if ($role->getName() == "ROLE_ADMIN") {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

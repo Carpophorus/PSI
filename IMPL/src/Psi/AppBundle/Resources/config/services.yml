@@ -4,12 +4,23 @@ services:
 
     psi.app.request.static.authenthication:
         class: Psi\AppBundle\Request\StaticAuthentication
+        
+    psi.app.request.configuration.authenthication:
+        class: Psi\AppBundle\Request\ConfigurationAuthentication        
+        arguments:
+            - "@psi.configuration.manager.registry"
 
     psi.app.request.factory:
         class: Psi\ApiBundle\Request\Factory\RequestFactory
         arguments:
-            - "@psi.app.request.static.authenthication"
+            - "@psi.app.request.configuration.authenthication"
+            - "@event_dispatcher"
 
+    
+    psi.app.denormalizer.summoner:
+        class: Psi\AppBundle\Serializer\Denormalizer\SummonerDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"     
     
     psi.app.denormalizer.runePage:
         class: Psi\AppBundle\Serializer\Denormalizer\RunePageDenormalizer
@@ -21,10 +32,21 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"     
             
+    psi.app.denormalizer.championMastery:
+        class: Psi\AppBundle\Serializer\Denormalizer\ChampionMasteryDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"             
+            
     psi.app.denormalizer.match:
         class: Psi\AppBundle\Serializer\Denormalizer\MatchDenormalizer
         arguments:
-            - "@doctrine.orm.entity_manager"               
+            - "@doctrine.orm.entity_manager"    
+            
+    psi.app.denormalizer.active.match:
+        class: Psi\AppBundle\Serializer\Denormalizer\ActiveMatchDenormalizer
+        arguments:
+            - "@doctrine.orm.entity_manager"         
+            - "@service_container"
 
 
     psi.app.manager.api.response.manager:
@@ -32,10 +54,46 @@ services:
         calls:
             - method: addResponseHandler
               arguments: 
+                  - "@psi.app.denormalizer.summoner"            
+            - method: addResponseHandler
+              arguments: 
                   - "@psi.app.denormalizer.runePage"
             - method: addResponseHandler
               arguments: 
-                  - "@psi.app.denormalizer.masteryPage"    
+                  - "@psi.app.denormalizer.masteryPage"   
             - method: addResponseHandler
               arguments: 
-                  - "@psi.app.denormalizer.match"                     
+                  - "@psi.app.denormalizer.championMastery"                  
+            - method: addResponseHandler
+              arguments: 
+                  - "@psi.app.denormalizer.match"        
+            - method: addResponseHandler
+              arguments: 
+                  - "@psi.app.denormalizer.active.match"                        
+
+    psi.app.provider.static.data.provider:
+        class: Psi\AppBundle\Provider\StaticDataProvider
+        arguments:
+            - "@psi.app.request.factory"
+            - "@doctrine.orm.entity_manager"
+            - "@psi.configuration.manager.registry"
+                
+    psi.app.manager.static.file.manager:
+        class: Psi\AppBundle\Manager\StaticFileManager
+        arguments:
+            - "%kernel.root_dir%"
+            - "@templating.helper.assets"
+
+                  
+    psi.app.manager.static.data.manager:
+        class: Psi\AppBundle\Manager\StaticDataManager
+        arguments:
+            - "@psi.app.manager.static.file.manager"
+            - "@doctrine.orm.entity_manager"
+            
+    psi.app.request.helper:
+        class: Psi\AppBundle\Request\Helper
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@psi.app.request.factory"
+            - "@psi.app.manager.api.response.manager"

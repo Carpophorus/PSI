@@ -1,3 +1,1412 @@
-body {
-    background: #cecece;
+/* Marko Mrkonjić 3139/2016 */
+
+/*GENERAL*/
+
+body
+{
+    font-family: 'Oswald', sans-serif;
+    font-size: 3vh;
+
+    position: relative;
+}
+
+header,
+footer
+{
+    position: fixed;
+    z-index: 1000;
+
+    width: 100%;
+    padding: 0;
+
+    color: #696969;
+    background: #f7f9f9;
+}
+
+header
+{
+    font-family: 'Bangers', cursive;
+    font-size: 4vh;
+    line-height: 8vh;
+
+    top: 0;
+
+    height: 8vh;
+
+    text-align: right;
+
+    background: url('../img/N2M.svg') no-repeat;
+    background-position: 10% center;
+    background-size: 13vh 13vh;
+}
+
+header nav
+{
+    float: right;
+
+    max-width: 80%;
+    height: 8vh;
+    min-height: 0;
+}
+
+.navbar
+{
+    min-height: 0;
+    margin: 0;
+}
+
+.navbar-nav
+{
+    position: absolute;
+    right: 5vw;
+}
+
+.navbar-default
+{
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+
+.navbar-default .navbar-nav li a
+{
+    font-size: inherit;
+    line-height: inherit;
+
+    padding: 0 2.5vw 0 2.5vw;
+
+    color: #696969;
+}
+
+footer
+{
+    font-size: 1.2vh;
+    line-height: 2.5vh;
+
+    bottom: 0;
+
+    height: 2.5vh;
+
+    text-align: center;
+}
+
+#main-content .messages
+{
+    font-size: 2vh;
+    line-height: 5vh;
+
+    position: fixed;
+    z-index: 1000;
+    top: 8vh;
+
+    width: 100%;
+    height: 5vh;
+
+    text-align: center;
+
+    background: rgba(27,188,155,.6);
+}
+
+a,
+a:hover,
+a:focus,
+a:visited
+{
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+a span
+{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus
+{
+    outline: none;
+}
+
+::-webkit-input-placeholder
+{
+    color: #b0b0b0;
+}
+
+:-ms-input-placeholder
+{
+    color: #b0b0b0;
+}
+
+::-moz-placeholder
+{
+    color: #b0b0b0;
+}
+
+:-moz-placeholder
+{
+    color: #b0b0b0;
+}
+
+#main-content
+{
+    position: relative;
+
+    min-height: 100vh;
+    padding-top: 8vh;
+
+    color: #f7f9f9;
+    background-color: transparent;
+}
+
+#main-content > div,
+#main-content > form
+{
+    position: relative;
+}
+
+/*BACKGROUNDS*/
+
+#main-content [id$=bckgrnd]
+{
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.index-left,
+.index-right
+{
+    font-family: 'Bangers', cursive;
+    font-size: 200%;
+    line-height: 90vh;
+
+    float: left;
+
+    width: 50%;
+    height: 90vh;
+
+    text-align: center;
+
+    background: url('../img/6.png') no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+
+    -webkit-filter: grayscale(.5);
+            filter: grayscale(.5);
+}
+
+.index-right
+{
+    background: url('../img/7.png') no-repeat;
+    background-position: 70% center;
+    background-size: auto 100%;
+}
+
+.index-left:hover,
+.index-right:hover
+{
+    font-size: 300%;
+
+    -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+}
+
+#lsp-bckgrnd
+{
+    background: url('../img/1.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#main-content #runes-bckgrnd
+{
+    width: 53.4vw;
+    height: 80vh;
+
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    background: url('../img/runes.png') no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+#main-content #masteries-bckgrnd
+{
+    width: 53.4vw;
+    height: 80vh;
+
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    background: url('../img/masteries.png') no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+#lp-bckgrnd
+{
+    background: url('../img/4.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+#s-bckgrnd
+{
+    background: url('../img/5.png') no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+/*SEARCH*/
+
+.search-container
+{
+    padding-top: 20vh;
+
+    text-align: center;
+}
+
+.search-container .sc-label
+{
+    display: block;
+
+    text-align: center;
+}
+
+.search-container input
+{
+    line-height: 6vh;
+
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    width: 40%;
+    height: 6vh;
+    margin: auto;
+    margin-top: 1.5vh;
+
+    text-align: center;
+
+    border: none;
+    border-radius: 3vh;
+    background: rgba(0,0,0,.2);
+}
+
+.search-container .sc-button
+{
+    width: 15%;
+    height: 6vh;
+    margin-top: 6vh;
+
+    border: none;
+    border-radius: 3vh;
+    background-color: rgba(255,255,255,.15);
+    background-image: url('../img/search.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 4vh 4vh;
+}
+
+.search-container .sc-button:hover
+{
+    background-color: rgba(255,255,255,.35);
+}
+
+#main-content .loader
+{
+    height: 92vh;
+    margin-top: 8vh;
+    padding-top: 63vh;
+
+    background: rgba(255,255,255,.15);
+}
+
+/*ACCOUNT*/
+
+.lsp-container
+{
+    padding-top: 20vh;
+
+    text-align: center;
+}
+
+.btn-group
+{
+    display: inline-block;
+
+    height: 6vh;
+    margin-bottom: 5vh;
+
+    border-radius: 3vh;
+}
+
+.btn
+{
+    font-size: 3vh;
+    line-height: 6vh;
+
+    padding: 0 5vh;
+
+    border: none;
+    border-radius: 3vh;
+}
+
+.btn-primary
+{
+    background-color: rgba(255,255,255,.15);
+}
+
+.btn-primary.active,
+.btn-primary:active,
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active.hover,
+.btn-primary.active:hover,
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:active.hover,
+.btn-primary:active:hover,
+.btn-primary.hover,
+.btn-primary:hover,
+.btn-primary.focus,
+.btn-primary:focus
+{
+    outline: none;
+    background-color: rgba(255,255,255,.35);
+    box-shadow: none;
+}
+
+.lsp-container .lsp-label
+{
+    margin-top: 3vh;
+
+    text-align: center;
+}
+
+.lsp-container input
+{
+    line-height: 6vh;
+
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    width: 40%;
+    height: 6vh;
+    margin: auto;
+    margin-top: 1.5vh;
+
+    text-align: center;
+
+    border: none;
+    border-radius: 3vh;
+    background: rgba(0,0,0,.2);
+}
+
+.section-tab button
+{
+    line-height: 6vh;
+
+    width: 15%;
+    height: 6vh;
+    margin-top: 6vh;
+    padding: 0;
+
+    border: none;
+    border-radius: 3vh;
+    background: rgba(255,255,255,.15);
+}
+
+.section-tab button:hover
+{
+    background: rgba(255,255,255,.35);
+}
+
+.signup-container button
+{
+    margin-bottom: 20vh;
+}
+
+/*MATCH INFO ON SEARCH*/
+
+#search-results #s-bckgrnd
+{
+    background: none;
+}
+
+#search-results .blue-team-container,
+#search-results .red-team-container
+{
+    float: left;
+
+    width: 50%;
+    margin-top: 8vh;
+}
+
+#search-results .blue-team-member,
+#search-results .red-team-member
+{
+    font-size: 70%;
+
+    position: relative;
+
+    height: 6vh;
+    margin-bottom: 1vh;
+
+    background: rgba(0,0,0,.2);
+}
+
+#search-results .blue-team-member
+{
+    margin-right: 2.5%;
+
+    border-radius: 0 3vh 3vh 0;
+}
+
+#search-results .red-team-member
+{
+    margin-left: 2.5%;
+
+    border-radius: 3vh 0 0 3vh;
+}
+
+#search-results .grayscale-champion-icon img
+{
+    width: 5vh;
+    height: 5vh;
+
+    border-radius: 2.5vh;
+
+    -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+}
+
+#search-results .blue-team-member .grayscale-champion-icon
+{
+    position: absolute;
+    top: .45vh;
+    right: .5vh;
+}
+
+#search-results .blue-team-member .champion-icon-tint
+{
+    position: absolute;
+    top: .4vh;
+    right: .5vh;
+
+    width: 5vh;
+    height: 5vh;
+
+    border-radius: 2.5vh;
+    background: rgba(75,142,203,.4);
+}
+
+#search-results .red-team-member .grayscale-champion-icon
+{
+    position: absolute;
+    top: .45vh;
+    left: .5vh;
+}
+
+#search-results .red-team-member .champion-icon-tint
+{
+    position: absolute;
+    top: .4vh;
+    left: .5vh;
+
+    width: 5vh;
+    height: 5vh;
+
+    border-radius: 2.5vh;
+    background: rgba(204,82,79,.4);
+}
+
+#search-results .blue-team-member .champion-name,
+#search-results .blue-team-member .summoner-name
+{
+    line-height: 6vh;
+
+    position: absolute;
+    right: 7vh;
+
+    height: 6vh;
+}
+
+#search-results .blue-team-member .summoner-name
+{
+    right: 30%;
+}
+
+#search-results .red-team-member .champion-name,
+#search-results .red-team-member .summoner-name
+{
+    line-height: 6vh;
+
+    position: absolute;
+    left: 7vh;
+
+    height: 6vh;
+}
+
+#search-results .red-team-member .summoner-name
+{
+    left: 30%;
+}
+
+#search-results .champion-mastery-icon
+{
+    visibility: hidden;
+}
+
+#search-results #match-found-overlay
+{
+    font-family: 'Bangers', cursive;
+    font-size: 25vh;
+    line-height: 45vh;
+
+    width: 100%;
+    height: 40vh;
+    margin-top: 3vh;
+
+    text-align: center;
+
+    color: rgba(255,255,255,.15);
+}
+
+/*MATCH INFO*/
+
+.blue-team-container,
+.red-team-container
+{
+    float: left;
+
+    width: 50%;
+    margin-top: 9vh;
+}
+
+.blue-team-member-container,
+.red-team-member-container
+{
+    position: relative;
+
+    height: 12vh;
+    margin-bottom: 3vh;
+
+    background: rgba(0,0,0,.2);
+}
+
+.blue-team-member-container
+{
+    margin-right: 2vh;
+
+    border-radius: 0 6vh 6vh 0;
+}
+
+.red-team-member-container
+{
+    margin-left: 2vh;
+
+    border-radius: 6vh 0 0 6vh;
+}
+
+.grayscale-champion-icon img
+{
+    width: 10vh;
+    height: 10vh;
+
+    border-radius: 5vh;
+
+    -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+}
+
+.blue-team-member-container .grayscale-champion-icon
+{
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+}
+
+.blue-team-member-container .champion-icon-tint
+{
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+
+    width: 10vh;
+    height: 10vh;
+
+    border-radius: 5vh;
+    background: rgba(75,142,203,.4);
+}
+
+.red-team-member-container .grayscale-champion-icon
+{
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+}
+
+.red-team-member-container .champion-icon-tint
+{
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+
+    width: 10vh;
+    height: 10vh;
+
+    border-radius: 5vh;
+    background: rgba(204,82,79,.4);
+}
+
+.blue-team-member-container .champion-name
+{
+    font-size: 60%;
+    line-height: 3vh;
+
+    position: absolute;
+    top: 5vh;
+    right: 12vh;
+
+    height: 3vh;
+}
+
+.blue-team-member-container .summoner-name
+{
+    line-height: 4vh;
+
+    position: absolute;
+    top: 7vh;
+    right: 12vh;
+
+    height: 4vh;
+}
+
+.red-team-member-container .champion-name
+{
+    font-size: 60%;
+    line-height: 3vh;
+
+    position: absolute;
+    top: 5vh;
+    left: 12vh;
+
+    height: 3vh;
+}
+
+.red-team-member-container .summoner-name
+{
+    line-height: 4vh;
+
+    position: absolute;
+    top: 7vh;
+    left: 12vh;
+
+    height: 4vh;
+}
+
+.summoner-icon,
+.summoner-spell-1,
+.summoner-spell-2
+{
+    position: absolute;
+
+    width: 4vh;
+    height: 4vh;
+
+    border-radius: 2vh;
+}
+
+.summoner-icon img,
+.summoner-spell-1 img,
+.summoner-spell-2 img
+{
+    width: 4vh;
+    height: 4vh;
+
+    vertical-align: top;
+
+    border-radius: 2vh;
+}
+
+.blue-team-member-container .summoner-icon
+{
+    top: 7.5vh;
+    right: 0;
+}
+
+.red-team-member-container .summoner-icon
+{
+    top: 7.5vh;
+}
+
+.blue-team-member-container .summoner-spell-1
+{
+    top: 1.5vh;
+    right: 20vh;
+}
+
+.red-team-member-container .summoner-spell-1
+{
+    top: 1.5vh;
+    left: 20vh;
+}
+
+.blue-team-member-container .summoner-spell-2
+{
+    top: 1.5vh;
+    right: 25vh;
+}
+
+.red-team-member-container .summoner-spell-2
+{
+    top: 1.5vh;
+    left: 25vh;
+}
+
+.champion-mastery-icon
+{
+    position: absolute;
+
+    width: 6vh;
+    height: 6vh;
+}
+
+.champion-mastery-icon img
+{
+    width: 6vh;
+    height: 6vh;
+}
+
+.blue-team-member-container .champion-mastery-icon
+{
+    right: 7.5vh;
+}
+
+.red-team-member-container .champion-mastery-icon
+{
+    left: 7.5vh;
+}
+
+.masteries-icon,
+.runes-icon
+{
+    position: absolute;
+    z-index: 900;
+    top: 3vh;
+}
+
+.blue-team-member-container .masteries-icon
+{
+    right: 55%;
+}
+
+.blue-team-member-container .runes-icon
+{
+    right: 64%;
+}
+
+.red-team-member-container .masteries-icon
+{
+    left: 55%;
+}
+
+.red-team-member-container .runes-icon
+{
+    left: 64%;
+}
+
+.blue-team-member-container:nth-child(1) .masteries-icon,
+.blue-team-member-container:nth-child(5) .masteries-icon
+{
+    right: 42%;
+}
+
+.blue-team-member-container:nth-child(1) .runes-icon,
+.blue-team-member-container:nth-child(5) .runes-icon
+{
+    right: 51%;
+}
+
+.red-team-member-container:nth-child(1) .masteries-icon,
+.red-team-member-container:nth-child(5) .masteries-icon
+{
+    left: 42%;
+}
+
+.red-team-member-container:nth-child(1) .runes-icon,
+.red-team-member-container:nth-child(5) .runes-icon
+{
+    left: 51%;
+}
+
+.blue-team-member-container:nth-child(2) .masteries-icon,
+.blue-team-member-container:nth-child(4) .masteries-icon
+{
+    right: 53%;
+}
+
+.blue-team-member-container:nth-child(2) .runes-icon,
+.blue-team-member-container:nth-child(4) .runes-icon
+{
+    right: 62%;
+}
+
+.red-team-member-container:nth-child(2) .masteries-icon,
+.red-team-member-container:nth-child(4) .masteries-icon
+{
+    left: 53%;
+}
+
+.red-team-member-container:nth-child(2) .runes-icon,
+.red-team-member-container:nth-child(4) .runes-icon
+{
+    left: 62%;
+}
+
+.masteries-icon button,
+.runes-icon button
+{
+    width: 6vh;
+    height: 6vh;
+
+    border: none;
+    border-radius: 3vh;
+}
+
+.masteries-icon button:hover,
+.runes-icon button:hover
+{
+    background-color: rgba(255,255,255,.5);
+}
+
+.masteries-icon .rm-active,
+.runes-icon .rm-active
+{
+    background-color: rgba(255,255,255,.5);
+}
+
+.masteries-icon button
+{
+    background-color: rgba(255,255,255,.15);
+    background-image: url('../img/masteries-button.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+.runes-icon button
+{
+    background-color: rgba(255,255,255,.15);
+    background-image: url('../img/runes-button.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+div[id^='summoner-runes-'],
+div[id^='summoner-masteries-']
+{
+    position: absolute;
+    z-index: 800;
+    top: 13.3vh;
+
+    display: none;
+    float: left;
+
+    width: 109%;
+    height: 80vh;
+
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+}
+
+.blue-team-member-container:nth-child(1) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(1) div[id^='summoner-masteries-']
+{
+    top: -5vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(2) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(2) div[id^='summoner-masteries-']
+{
+    top: -20vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(3) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(3) div[id^='summoner-masteries-']
+{
+    top: -35vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(4) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(4) div[id^='summoner-masteries-']
+{
+    top: -50vh;
+    left: 47.5%;
+}
+
+.blue-team-member-container:nth-child(5) div[id^='summoner-runes-'],
+.blue-team-member-container:nth-child(5) div[id^='summoner-masteries-']
+{
+    top: -65vh;
+    left: 47.5%;
+}
+
+.red-team-member-container:nth-child(1) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(1) div[id^='summoner-masteries-']
+{
+    top: -5vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(2) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(2) div[id^='summoner-masteries-']
+{
+    top: -20vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(3) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(3) div[id^='summoner-masteries-']
+{
+    top: -35vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(4) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(4) div[id^='summoner-masteries-']
+{
+    top: -50vh;
+    right: 47.5%;
+}
+
+.red-team-member-container:nth-child(5) div[id^='summoner-runes-'],
+.red-team-member-container:nth-child(5) div[id^='summoner-masteries-']
+{
+    top: -65vh;
+    right: 47.5%;
+}
+
+.masteries-container > div
+{
+    position: relative;
+
+    float: left;
+
+    width: 30%;
+    height: 80vh;
+}
+
+.ferocity-container
+{
+    margin-left: 5%;
+}
+
+.resolve-container
+{
+    margin-right: 5%;
+}
+
+.masteries-container > div > div
+{
+    position: absolute;
+    z-index: 950;
+
+    width: 2vw;
+    height: 2vw;
+
+    text-align: center;
+}
+
+.masteries-container > div > div > .tooltip
+{
+    position: absolute;
+    z-index: 960;
+
+    width: 30vw;
+
+    text-align: center;
+}
+
+.masteries-container > div > div > img
+{
+    width: 2vw;
+    height: 2vw;
+}
+
+.masteries-container > div > div > span
+{
+    font-size: 1.5vh;
+    line-height: 2vh;
+
+    display: block;
+}
+
+.masteries-container > div > .mastery-points
+{
+    top: 12vh;
+
+    width: 100%;
+
+    color: rgba(255,255,255,.5);
+}
+
+.masteries-container > div > .mastery-points > span
+{
+    font-size: 4vh;
+}
+
+.f11,
+.c11,
+.r11
+{
+    top: 17vh;
+    left: 3vw;
+}
+
+.f12,
+.c12,
+.r12
+{
+    top: 17vh;
+    right: 3vw;
+}
+
+.f21,
+.c21,
+.r21
+{
+    top: 25vh;
+    left: 3vw;
+}
+
+.f22,
+.c22,
+.r22
+{
+    top: 25vh;
+    left: 7vw;
+}
+
+.f23,
+.c23,
+.r23
+{
+    top: 25vh;
+    right: 3vw;
+}
+
+.f31,
+.c31,
+.r31
+{
+    top: 33vh;
+    left: 3vw;
+}
+
+.f32,
+.c32,
+.r32
+{
+    top: 33vh;
+    right: 3vw;
+}
+
+.f41,
+.c41,
+.r41
+{
+    top: 41vh;
+    left: 3vw;
+}
+
+.f42,
+.c42,
+.r42
+{
+    top: 41vh;
+    left: 7vw;
+}
+
+.f43,
+.c43,
+.r43
+{
+    top: 41vh;
+    right: 3vw;
+}
+
+.f51,
+.c51,
+.r51
+{
+    top: 49vh;
+    left: 3vw;
+}
+
+.f52,
+.c52,
+.r52
+{
+    top: 49vh;
+    right: 3vw;
+}
+
+.f61,
+.c61,
+.r61
+{
+    top: 57vh;
+    left: 3vw;
+}
+
+.f62,
+.c62,
+.r62
+{
+    top: 57vh;
+    left: 7vw;
+}
+
+.f63,
+.c63,
+.r63
+{
+    top: 57vh;
+    right: 3vw;
+}
+
+.runes-container > div
+{
+    position: absolute;
+
+    width: 7vh;
+    height: 7vh;
+}
+
+.runes-container > div > img
+{
+    width: 7vh;
+    height: 7vh;
+}
+
+.runes-container > div > .tooltip
+{
+    width: 30vw;
+
+    text-align: center;
+}
+
+.mark-1
+{
+    top: 15vh;
+    left: 17vw;
+}
+
+.mark-2
+{
+    top: 15vh;
+    left: 21vw;
+}
+
+.mark-3
+{
+    top: 15vh;
+    left: 25vw;
+}
+
+.mark-4
+{
+    top: 15vh;
+    left: 29vw;
+}
+
+.mark-5
+{
+    top: 15vh;
+    left: 33vw;
+}
+
+.mark-6
+{
+    top: 21vh;
+    left: 19vw;
+}
+
+.mark-7
+{
+    top: 21vh;
+    left: 23vw;
+}
+
+.mark-8
+{
+    top: 21vh;
+    left: 27vw;
+}
+
+.mark-9
+{
+    top: 21vh;
+    left: 31vw;
+}
+
+.glyph-1
+{
+    top: 29vh;
+    left: 17vw;
+}
+
+.glyph-2
+{
+    top: 29vh;
+    left: 21vw;
+}
+
+.glyph-3
+{
+    top: 29vh;
+    left: 25vw;
+}
+
+.glyph-4
+{
+    top: 29vh;
+    left: 29vw;
+}
+
+.glyph-5
+{
+    top: 29vh;
+    left: 33vw;
+}
+
+.glyph-6
+{
+    top: 35vh;
+    left: 19vw;
+}
+
+.glyph-7
+{
+    top: 35vh;
+    left: 23vw;
+}
+
+.glyph-8
+{
+    top: 35vh;
+    left: 27vw;
+}
+
+.glyph-9
+{
+    top: 35vh;
+    left: 31vw;
+}
+
+.seal-1
+{
+    top: 43vh;
+    left: 17vw;
+}
+
+.seal-2
+{
+    top: 43vh;
+    left: 21vw;
+}
+
+.seal-3
+{
+    top: 43vh;
+    left: 25vw;
+}
+
+.seal-4
+{
+    top: 43vh;
+    left: 29vw;
+}
+
+.seal-5
+{
+    top: 43vh;
+    left: 33vw;
+}
+
+.seal-6
+{
+    top: 49vh;
+    left: 19vw;
+}
+
+.seal-7
+{
+    top: 49vh;
+    left: 23vw;
+}
+
+.seal-8
+{
+    top: 49vh;
+    left: 27vw;
+}
+
+.seal-9
+{
+    top: 49vh;
+    left: 31vw;
+}
+
+.runes-container .quint-1 > img,
+.runes-container .quint-2 > img,
+.runes-container .quint-3 > img
+{
+    width: 8vh;
+    height: 8vh;
+}
+
+.quint-1
+{
+    top: 58vh;
+    left: 19.7vw;
+}
+
+.quint-2
+{
+    top: 58vh;
+    left: 24.7vw;
+}
+
+.quint-3
+{
+    top: 58vh;
+    left: 29.7vw;
 }

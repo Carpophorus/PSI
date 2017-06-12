@@ -1,4 +1,5 @@
 <?php
+// Viktor Galindo - 655/2013
 namespace Psi\ConfigurationBundle\Component;
 
 use Symfony\Component\Serializer\Encoder\JsonEncoder;

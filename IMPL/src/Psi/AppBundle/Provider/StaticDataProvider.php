@@ -1,10 +1,13 @@
 <?php
+// Stefan Erakovic 3086/2016
 namespace Psi\AppBundle\Provider;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Psi\ApiBundle\Request\Factory\RequestFactory;
 use Psi\AppBundle\Entity\CacheTag;
 use Psi\AppBundle\Entity\Cache;
+use Psi\AppBundle\Entity\ChampionCache;
+use Psi\ConfigurationBundle\Manager\ConfigurationRegistry;
 
 class StaticDataProvider
 {
@@ -23,10 +26,17 @@ class StaticDataProvider
      */
     private $objectManager;
 
-    public function __construct(RequestFactory $factory, ObjectManager $objectManager)
+    /**
+     *
+     * @var ConfigurationRegistry
+     */
+    private $configurationRegistry;
+
+    public function __construct(RequestFactory $factory, ObjectManager $objectManager, ConfigurationRegistry $configurationRegistry)
     {
-        $this->factory = $factory;
+        $this->requestFactory = $factory;
         $this->objectManager = $objectManager;
+        $this->configurationRegistry = $configurationRegistry;
     }
 
     protected function getFileProviderNamespaces()
@@ -60,20 +70,22 @@ class StaticDataProvider
     {
         $methods = $this->getApiProviderNamespaces();
         if (isset($methods[$namespace])) {
-            $this->__call($methods[$namespace]);
+            $this->{$methods[$namespace]}();
         }
         return null;
     }
 
     protected function fetchApiData($apiRequest)
     {
-        $apiResponse = $apiRequest->sendRequest();
+        $apiResponse = $apiRequest->sendRequest()->getResponse();
         $apiData = $apiResponse->getData();
 
         // check validity of response data
         if (!isset($apiData['data'], $apiData['type'])) {
             return;
         }
+
+        $cacheDuration = $this->configurationRegistry->getConfiguration("psi.app.cache.duration")->getValue();
 
         foreach ($apiData['data'] as $data) {
             $cacheTagName = $apiData['type'] . "_" . $data['id'];
@@ -84,6 +96,7 @@ class StaticDataProvider
             } else {
                 $cache = new Cache();
                 $cache->setData(serialize($data));
+                $cache->setExpirationTime($cacheDuration); // 7 days
 
                 $cacheTag = new CacheTag();
                 $cacheTag->setTag($apiData['type'] . "_" . $data['id']);
@@ -98,14 +111,16 @@ class StaticDataProvider
 
     protected function fetchChampions()
     {
-        $apiRequest = $this->requestFactory->createStaticDataChampionsRequest();
-        $apiResponse = $apiRequest->sendRequest();
+        $apiRequest = $this->requestFactory->createStaticDataChampionsRequest([]);
+        $apiResponse = $apiRequest->sendRequest()->getResponse();
         $apiData = $apiResponse->getData();
 
         // check validity of response data
         if (!isset($apiData['data'], $apiData['type'])) {
             return;
         }
+        
+        $cacheDuration = $this->configurationRegistry->getConfiguration("psi.app.cache.duration")->getValue();
 
         foreach ($apiData['data'] as $championData) {
 
@@ -119,6 +134,7 @@ class StaticDataProvider
             } else {
                 $cache = new Cache();
                 $cache->setData(serialize($championData));
+                $cache->setExpirationTime($cacheDuration); // 7 days
 
                 $cacheTag = new CacheTag();
                 $cacheTag->setTag($apiData['type'] . "_" . $championData['id']);
@@ -137,25 +153,25 @@ class StaticDataProvider
 
     protected function fetchRunes()
     {
-        $apiRequest = $this->requestFactory->createStaticDataRunesRequest();
+        $apiRequest = $this->requestFactory->createStaticDataRunesRequest([]);
         $this->fetchApiData($apiRequest);
     }
 
     protected function fetchMasteries()
     {
-        $apiRequest = $this->requestFactory->createStaticDataMasteriesRequest();
+        $apiRequest = $this->requestFactory->createStaticDataMasteriesRequest([]);
         $this->fetchApiData($apiRequest);
     }
 
     protected function fetchSummonerSpells()
     {
-        $apiRequest = $this->requestFactory->createStaticDataSummonerSpellsRequest();
+        $apiRequest = $this->requestFactory->createStaticDataSummonerSpellsRequest([]);
         $this->fetchApiData($apiRequest);
     }
 
     protected function fetchSummonerIcons()
     {
-        $apiRequest = $this->requestFactory->createStaticDataProfileIconsRequest();
+        $apiRequest = $this->requestFactory->createStaticDataProfileIconsRequest([]);
         $this->fetchApiData($apiRequest);
     }
 }
